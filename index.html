@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dzeny.ru — Визуальная карта сайта</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f1117;
+            color: #e2e8f0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1, #a78bfa, #6366f1);
+            border-radius: 2px;
+        }
+        .header h1 {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a78bfa 0%, #6366f1 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .header p {
+            font-size: 17px;
+            color: #94a3b8;
+            margin-top: 8px;
+            font-weight: 300;
+        }
+        .funnel { display: flex; flex-direction: column; gap: 24px; }
+        .level {
+            background: #1a1d27;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #2a2d3a;
+            position: relative;
+            overflow: hidden;
+        }
+        .level::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+        }
+        .level.level-home::before { background: linear-gradient(90deg, #f59e0b, #eab308); }
+        .level.level-commercial::before { background: linear-gradient(90deg, #ef4444, #f97316); }
+        .level.level-tests::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .level.level-blog::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .level.level-services::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .level.level-trust::before { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+        .level.level-tech::before { background: linear-gradient(90deg, #64748b, #94a3b8); }
+        .level-header { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+        .level-badge {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; flex-shrink: 0;
+        }
+        .level-home .level-badge { background: rgba(245, 158, 11, 0.15); }
+        .level-commercial .level-badge { background: rgba(239, 68, 68, 0.15); }
+        .level-tests .level-badge { background: rgba(16, 185, 129, 0.15); }
+        .level-blog .level-badge { background: rgba(59, 130, 246, 0.15); }
+        .level-services .level-badge { background: rgba(139, 92, 246, 0.15); }
+        .level-trust .level-badge { background: rgba(6, 182, 212, 0.15); }
+        .level-tech .level-badge { background: rgba(100, 116, 139, 0.15); }
+        .level-title { font-size: 24px; font-weight: 700; color: #f1f5f9; letter-spacing: -0.5px; }
+        .level-subtitle { font-size: 13px; color: #64748b; margin-left: 60px; margin-bottom: 20px; }
+        .section-divider { display: flex; align-items: center; gap: 12px; margin: 24px 0 16px; }
+        .section-divider-line { flex: 1; height: 1px; background: #2a2d3a; }
+        .section-divider-text {
+            font-size: 12px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.5px; white-space: nowrap; padding: 4px 12px; border-radius: 6px;
+        }
+        .divider-red .section-divider-text { color: #f87171; background: rgba(239, 68, 68, 0.1); }
+        .divider-green .section-divider-text { color: #34d399; background: rgba(16, 185, 129, 0.1); }
+        .divider-blue .section-divider-text { color: #60a5fa; background: rgba(59, 130, 246, 0.1); }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+        .card {
+            background: #22252f; border-radius: 10px; padding: 18px;
+            border-left: 3px solid; cursor: pointer; transition: all 0.25s ease;
+        }
+        .card:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .card.home { border-color: #f59e0b; }
+        .card.commercial { border-color: #ef4444; }
+        .card.tests { border-color: #10b981; }
+        .card.blog { border-color: #3b82f6; }
+        .card.services { border-color: #8b5cf6; }
+        .card.trust { border-color: #06b6d4; }
+        .card.tech { border-color: #64748b; }
+        .card.hub { border-left-width: 3px; border-left-style: double; }
+        .card-title { font-size: 15px; font-weight: 600; color: #f1f5f9; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+        .card-url { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #64748b; margin-bottom: 8px; }
+        .card-desc { font-size: 12px; color: #94a3b8; line-height: 1.5; }
+        .badge-hub { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(139, 92, 246, 0.2); color: #a78bfa; }
+        .badge-new { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+        .subcategories { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #333845; display: none; }
+        .subcategories.active { display: block; }
+        .subcat-item { font-size: 11px; color: #94a3b8; padding: 3px 0 3px 18px; position: relative; font-family: 'JetBrains Mono', monospace; }
+        .subcat-item::before { content: "→"; position: absolute; left: 0; color: #4a5568; }
+        .expand-hint { font-size: 10px; color: #4a5568; margin-top: 6px; font-style: italic; }
+        .connector { display: flex; justify-content: center; padding: 4px 0; }
+        .connector svg { width: 24px; height: 24px; color: #2a2d3a; }
+        .legend { margin-top: 40px; background: #1a1d27; border-radius: 16px; padding: 28px; border: 1px solid #2a2d3a; }
+        .legend-title { font-size: 16px; font-weight: 600; color: #f1f5f9; margin-bottom: 16px; }
+        .legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+        .legend-item { display: flex; align-items: center; gap: 10px; }
+        .legend-color { width: 28px; height: 14px; border-radius: 4px; flex-shrink: 0; border-left: 3px solid; }
+        .legend-label { font-size: 12px; color: #94a3b8; }
+        .notes { margin-top: 20px; background: #1a1d27; border-radius: 16px; padding: 28px; border: 1px solid #2a2d3a; }
+        .notes-title { font-size: 16px; font-weight: 600; color: #f1f5f9; margin-bottom: 12px; }
+        .notes-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+        .notes-text strong { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>dzeny.ru</h1>
+        <p>Визуальная карта сайта • Базовая структура</p>
+    </div>
+
+    <div class="funnel">
+
+        <!-- ГЛАВНАЯ -->
+        <div class="level level-home">
+            <div class="level-header">
+                <div class="level-badge">🏠</div>
+                <div class="level-title">ГЛАВНАЯ СТРАНИЦА</div>
+            </div>
+            <div class="level-subtitle">Точка входа • Кластер «ИИ-психолог» (3.5K) + брендовые запросы</div>
+            <div class="cards-grid">
+                <div class="card home">
+                    <div class="card-title">Главная dzeny.ru</div>
+                    <div class="card-url">/</div>
+                    <div class="card-desc">Основная посадочная под кластер «ИИ-психолог» (71 запрос, 3.5K). Hero с описанием продукта, сравнение ИИ-психолога с живым специалистом, блоки доверия, навигация по разделам. Отдельная /ii-psikholog/ не создаётся — во избежание каннибализации</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- КОММЕРЧЕСКИЕ -->
+        <div class="level level-commercial">
+            <div class="level-header">
+                <div class="level-badge">💰</div>
+                <div class="level-title">КОММЕРЧЕСКИЕ СТРАНИЦЫ</div>
+            </div>
+            <div class="level-subtitle">Страницы с CTA «попробовать ИИ-психолога» • Основной источник конверсий</div>
+
+            <div class="section-divider divider-red">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">🔴 Общие услуги (ядро)</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card commercial hub">
+                    <div class="card-title">Все услуги <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/uslugi/</div>
+                    <div class="card-desc">Корневой хаб. Навигация по аудитории, методам, проблемам</div>
+                </div>
+                <div class="card commercial" onclick="toggleSub(this)">
+                    <div class="card-title">Психолог для взрослых</div>
+                    <div class="card-url">/uslugi/psikholog-dlya-vzroslykh/</div>
+                    <div class="card-desc">353K частотность • Максимальный спрос во всём СЯ</div>
+                    <div class="expand-hint">+ ещё в ядре ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">психолог онлайн — /uslugi/psikholog-onlayn/ (18K, 92 запроса)</div>
+                        <div class="subcat-item">психологическая помощь — /uslugi/psikhologicheskaya-pomoshch/ (50K)</div>
+                        <div class="subcat-item">психотерапевт — /uslugi/psikhoterapevt/ (67K)</div>
+                        <div class="subcat-item">анонимный психолог — /uslugi/anonimnyy-psikholog/ (7.7K, USP продукта)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-red">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">👥 По аудитории</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card commercial hub">
+                    <div class="card-title">Для мужчин <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/uslugi/dlya-muzhchin/</div>
+                    <div class="card-desc">Хаб • мужской психолог (2.5K), психолог мужчина (2.7K)</div>
+                </div>
+                <div class="card commercial hub">
+                    <div class="card-title">Для женщин <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/uslugi/dlya-zhenshchin/</div>
+                    <div class="card-desc">Хаб • женский психолог (1.6K)</div>
+                </div>
+                <div class="card commercial">
+                    <div class="card-title">Для пожилых людей</div>
+                    <div class="card-url">/uslugi/psikholog-dlya-pozhilykh/</div>
+                    <div class="card-desc">236 частотность • Малоконкурентная ниша</div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-red">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">💑 Семья и отношения</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card commercial" onclick="toggleSub(this)">
+                    <div class="card-title">Семейный психолог</div>
+                    <div class="card-url">/uslugi/semeynyy-psikholog/</div>
+                    <div class="card-desc">7.5K • 80 запросов</div>
+                    <div class="expand-hint">+ ещё в блоке ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">психолог по отношениям — /uslugi/psikholog-po-otnosheniyam/</div>
+                        <div class="subcat-item">психолог при разводе — /uslugi/psikholog-pri-razvode/</div>
+                        <div class="subcat-item">психолог для родителей — /uslugi/psikholog-dlya-roditeley/</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-red">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">🔬 По методу терапии</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card commercial" onclick="toggleSub(this)">
+                    <div class="card-title">КПТ-психолог</div>
+                    <div class="card-url">/uslugi/kpt-psikholog/</div>
+                    <div class="card-desc">4.5K • 49 запросов</div>
+                    <div class="expand-hint">+ ещё по методу ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">клинический психолог — /uslugi/klinicheskiy-psikholog/ (12K)</div>
+                        <div class="subcat-item">аналитический психолог — /uslugi/analiticheskiy-psikholog/</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-red">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">🎯 По проблемам</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card commercial hub">
+                    <div class="card-title">По проблемам <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/uslugi/problemy/</div>
+                    <div class="card-desc">Хаб • Навигация по проблематике</div>
+                </div>
+                <div class="card commercial" onclick="toggleSub(this)">
+                    <div class="card-title">Кризисный психолог</div>
+                    <div class="card-url">/uslugi/krizisnyy-psikholog/</div>
+                    <div class="card-desc">1.1K частотность</div>
+                    <div class="expand-hint">+ ещё по проблемам ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">психолог при панических атаках</div>
+                        <div class="subcat-item">психолог при беременности</div>
+                        <div class="subcat-item">психологическая помощь в трудных ситуациях</div>
+                    </div>
+                </div>
+                <div class="card commercial">
+                    <div class="card-title">Бизнес-психолог</div>
+                    <div class="card-url">/uslugi/biznes-psikholog/</div>
+                    <div class="card-desc">1.8K • B2B, корпоративный + спортивный</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- ТЕСТЫ -->
+        <div class="level level-tests">
+            <div class="level-header">
+                <div class="level-badge">📝</div>
+                <div class="level-title">ТЕСТЫ</div>
+            </div>
+            <div class="level-subtitle">Верх воронки • Виральный трафик → вовлечение → CTA после прохождения</div>
+
+            <div class="cards-grid">
+                <div class="card tests hub">
+                    <div class="card-title">Все тесты <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/testy/</div>
+                    <div class="card-desc">Кластер «онлайн психологический тест» (2.9K) • Каталог с фильтрами</div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-green">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">😰 Тревога и депрессия</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card tests hub">
+                    <div class="card-title">Тревога и депрессия <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/testy/trevoga-depressiya/</div>
+                    <div class="card-desc">Кластер «тест на депрессию уровень» (2.7K)</div>
+                </div>
+                <div class="card tests" onclick="toggleSub(this)">
+                    <div class="card-title">Шкала Гамильтона</div>
+                    <div class="card-url">/testy/shkala-gamiltona/</div>
+                    <div class="card-desc">10K • Клинический инструмент</div>
+                    <div class="expand-hint">+ ещё тестов ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">тест HADS (8.3K), Спилбергера-Ханина (8.3K)</div>
+                        <div class="subcat-item">тест тревожности (5K), биполярное, социофобия</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-green">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">❤️ Отношения и эмоции</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card tests hub">
+                    <div class="card-title">Отношения и эмоции <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/testy/otnosheniya/</div>
+                    <div class="card-desc">Кластер «тест на отношения» (2.3K)</div>
+                </div>
+                <div class="card tests" onclick="toggleSub(this)">
+                    <div class="card-title">Тест на языки любви</div>
+                    <div class="card-url">/testy/test-na-yazyki-lyubvi/</div>
+                    <div class="card-desc">15K • Виральный</div>
+                    <div class="expand-hint">+ ещё ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">типы привязанности (13.5K), тесты на любовь (11.5K)</div>
+                        <div class="subcat-item">эмоциональный интеллект, самооценка, эмпатия</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-green">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">🧠 Личность и характер</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card tests hub">
+                    <div class="card-title">Личность и характер <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/testy/lichnost/</div>
+                    <div class="card-desc">Кластер «личностные тесты» (2.3K)</div>
+                </div>
+                <div class="card tests">
+                    <div class="card-title">Тест на тип темперамента</div>
+                    <div class="card-url">/testy/tip-temperamenta/</div>
+                    <div class="card-desc">9.3K • 47 запросов. + акцентуации, нарциссизм</div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-green">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">⚡ Агрессия, стресс, специализированные</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card tests" onclick="toggleSub(this)">
+                    <div class="card-title">Опросник выгорания Маслач</div>
+                    <div class="card-url">/testy/oprosnik-maslach/</div>
+                    <div class="card-desc">2.7K • B2B-связка</div>
+                    <div class="expand-hint">+ ещё ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">тесты на агрессию, индекс жизненного стиля</div>
+                        <div class="subcat-item">тест на травмы, детские травмы</div>
+                        <div class="subcat-item">тест Рокича, тест Томаса</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- БЛОГ -->
+        <div class="level level-blog">
+            <div class="level-header">
+                <div class="level-badge">📚</div>
+                <div class="level-title">БЛОГ</div>
+            </div>
+            <div class="level-subtitle">Информационный трафик • E-E-A-T • Перелинковка на коммерческие и тесты</div>
+
+            <div class="cards-grid">
+                <div class="card blog hub">
+                    <div class="card-title">Блог — Главная <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/blog/</div>
+                    <div class="card-desc">Индексная страница с рубриками</div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-blue">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">📖 Психологические понятия</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card blog" onclick="toggleSub(this)">
+                    <div class="card-title">Типы темперамента</div>
+                    <div class="card-url">/blog/tipy-temperamenta/</div>
+                    <div class="card-desc">73K! • Огромный информационный трафик</div>
+                    <div class="expand-hint">+ ещё понятий ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">аффирмации (22.5K), фрустрация (14K)</div>
+                        <div class="subcat-item">сангвиник (12.5K), флегматик (11K)</div>
+                        <div class="subcat-item">эмпатия (8.9K), совесть (9.6K), альтруизм (7.9K)</div>
+                        <div class="subcat-item">апатия, рефлексия, меланхолик, холерик</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-blue">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">🧪 Методы терапии</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card blog hub">
+                    <div class="card-title">Методы терапии — обзор <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/blog/metody-terapii/</div>
+                    <div class="card-desc">Сравнительная страница всех методов</div>
+                </div>
+                <div class="card blog" onclick="toggleSub(this)">
+                    <div class="card-title">Когнитивно-поведенческая терапия</div>
+                    <div class="card-url">/blog/kognitivno-povedencheskaya-terapiya/</div>
+                    <div class="card-desc">34K • Мост к КПТ-услугам и инструментам</div>
+                    <div class="expand-hint">+ ещё методов ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">гештальт терапия (6.2K), телесно-ориентированная (3.6K)</div>
+                        <div class="subcat-item">транзактный анализ (3.4K), психодрама (3.3K)</div>
+                        <div class="subcat-item">экзистенциальная, юнгианский анализ, позитивная</div>
+                        <div class="subcat-item">понимающая, клиент-центрированная, системная семейная</div>
+                        <div class="subcat-item">КПТ 3 волны, цикл контакта в гештальте</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-blue">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">👔 Профессии и различия</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card blog" onclick="toggleSub(this)">
+                    <div class="card-title">Кто такой психолог</div>
+                    <div class="card-url">/blog/kto-takoy-psikholog/</div>
+                    <div class="card-desc">19K • Воронка через объяснение</div>
+                    <div class="expand-hint">+ ещё ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">психотерапевт vs психиатр (15K)</div>
+                        <div class="subcat-item">виды психологов (4.9K)</div>
+                        <div class="subcat-item">психолог vs клинический, психолог vs нейропсихолог</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider divider-blue">
+                <div class="section-divider-line"></div>
+                <div class="section-divider-text">💪 Самопомощь</div>
+                <div class="section-divider-line"></div>
+            </div>
+            <div class="cards-grid">
+                <div class="card blog">
+                    <div class="card-title">Как выйти из депрессии</div>
+                    <div class="card-url">/blog/kak-vyyti-iz-depressii/</div>
+                    <div class="card-desc">1K • Высокий конверсионный потенциал</div>
+                </div>
+                <div class="card blog">
+                    <div class="card-title">Как выбрать психолога</div>
+                    <div class="card-url">/blog/kak-vybrat-psikhologa/</div>
+                    <div class="card-desc">1.2K • Воронка → CTA на продукт</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- СЕРВИСЫ -->
+        <div class="level level-services">
+            <div class="level-header">
+                <div class="level-badge">🛠️</div>
+                <div class="level-title">СЕРВИСЫ / ИНСТРУМЕНТЫ</div>
+            </div>
+            <div class="level-subtitle">Интерактивные инструменты • Повышение вовлечённости и retention</div>
+            <div class="cards-grid">
+                <div class="card services hub">
+                    <div class="card-title">Инструменты <span class="badge-hub">хаб</span></div>
+                    <div class="card-url">/instrumenty/</div>
+                    <div class="card-desc">Каталог КПТ-инструментов</div>
+                </div>
+                <div class="card services" onclick="toggleSub(this)">
+                    <div class="card-title">КПТ-дневник мыслей</div>
+                    <div class="card-url">/instrumenty/kpt-dnevnik/</div>
+                    <div class="card-desc">Продуктовый сервис • Интерактивный дневник</div>
+                    <div class="expand-hint">+ ещё инструментов ↓</div>
+                    <div class="subcategories">
+                        <div class="subcat-item">техники КПТ (2.2K), КПТ упражнения</div>
+                        <div class="subcat-item">КПТ-таблица, КПТ при тревожности</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- ДОВЕРИЕ -->
+        <div class="level level-trust">
+            <div class="level-header">
+                <div class="level-badge">🛡️</div>
+                <div class="level-title">СТРАНИЦЫ ДОВЕРИЯ</div>
+            </div>
+            <div class="level-subtitle">E-E-A-T • Конверсионная поддержка • Нет кластеров в СЯ, но критичны для YMYL</div>
+            <div class="cards-grid">
+                <div class="card trust">
+                    <div class="card-title">Как работает ИИ-психолог <span class="badge-new">new</span></div>
+                    <div class="card-url">/kak-eto-rabotaet/</div>
+                    <div class="card-desc">Прозрачность технологии, безопасность, конфиденциальность. Интент «как устроено», не пересекается с главной</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">Цены <span class="badge-new">new</span></div>
+                    <div class="card-url">/tseny/</div>
+                    <div class="card-desc">Тарифы и подписки</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">Отзывы <span class="badge-new">new</span></div>
+                    <div class="card-url">/otzyvy/</div>
+                    <div class="card-desc">UGC, социальное доказательство, разметка Review</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">FAQ <span class="badge-new">new</span></div>
+                    <div class="card-url">/faq/</div>
+                    <div class="card-desc">FAQ-разметка → rich snippets</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">О нас <span class="badge-new">new</span></div>
+                    <div class="card-url">/o-nas/</div>
+                    <div class="card-desc">Команда, миссия, экспертиза. E-E-A-T</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">Экстренная помощь <span class="badge-new">new</span></div>
+                    <div class="card-url">/ekstrennaya-pomoshch/</div>
+                    <div class="card-desc">Телефоны доверия, кризисные центры</div>
+                </div>
+                <div class="card trust">
+                    <div class="card-title">Авторы и эксперты <span class="badge-new">new</span></div>
+                    <div class="card-url">/eksperty/</div>
+                    <div class="card-desc">Профили редакторов контента. E-E-A-T для YMYL</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connector"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+
+        <!-- ТЕХНИЧЕСКИЕ -->
+        <div class="level level-tech">
+            <div class="level-header">
+                <div class="level-badge">⚙️</div>
+                <div class="level-title">ТЕХНИЧЕСКИЕ / ЮРИДИЧЕСКИЕ</div>
+            </div>
+            <div class="level-subtitle">Обязательные служебные страницы</div>
+            <div class="cards-grid">
+                <div class="card tech">
+                    <div class="card-title">Политика конфиденциальности</div>
+                    <div class="card-url">/politika-konfidentsialnosti/</div>
+                    <div class="card-desc">152-ФЗ</div>
+                </div>
+                <div class="card tech">
+                    <div class="card-title">Пользовательское соглашение</div>
+                    <div class="card-url">/polzovatelskoe-soglashenie/</div>
+                    <div class="card-desc">Условия использования</div>
+                </div>
+                <div class="card tech">
+                    <div class="card-title">Согласие на обработку ПД</div>
+                    <div class="card-url">/soglasie-pd/</div>
+                    <div class="card-desc">152-ФЗ</div>
+                </div>
+                <div class="card tech">
+                    <div class="card-title">Оферта</div>
+                    <div class="card-url">/oferta/</div>
+                    <div class="card-desc">Публичная оферта</div>
+                </div>
+                <div class="card tech">
+                    <div class="card-title">Контакты</div>
+                    <div class="card-url">/kontakty/</div>
+                    <div class="card-desc">Реквизиты, обратная связь</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-title">Легенда</div>
+        <div class="legend-grid">
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#f59e0b;"></div><div class="legend-label">Главная страница</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#ef4444;"></div><div class="legend-label">Коммерческие (услуги)</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#10b981;"></div><div class="legend-label">Тесты</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#3b82f6;"></div><div class="legend-label">Блог</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#8b5cf6;"></div><div class="legend-label">Сервисы / Инструменты</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#06b6d4;"></div><div class="legend-label">Страницы доверия (E-E-A-T)</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#64748b;"></div><div class="legend-label">Технические / Юридические</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#a78bfa;border-left-width:3px;border-left-style:double;"></div><div class="legend-label"><span class="badge-hub">хаб</span> — хабовая страница</div></div>
+            <div class="legend-item"><div class="legend-color" style="background:#1a1d27;border-color:#22d3ee;"></div><div class="legend-label"><span class="badge-new">new</span> — нет в СЯ, нужна для E-E-A-T</div></div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+    function toggleSub(el) {
+        const sub = el.querySelector('.subcategories');
+        const hint = el.querySelector('.expand-hint');
+        if (sub) {
+            sub.classList.toggle('active');
+            if (sub.classList.contains('active')) {
+                hint.textContent = 'Нажмите чтобы скрыть ↑';
+            } else {
+                hint.textContent = hint.dataset.original || 'Нажмите для деталей ↓';
+            }
+        }
+    }
+    document.querySelectorAll('.expand-hint').forEach(h => h.dataset.original = h.textContent);
+</script>
+</body>
+</html>
