@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест на тревожность онлайн — шкала Бека | Dzeny</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky: #C8E8F5;
+    --sky-light: #E8F5FC;
+    --sky-pale: #F2F9FD;
+    --charcoal: #1E1E1E;
+    --charcoal-2: #2D2D2D;
+    --charcoal-3: #3A3A3A;
+    --mid: #6B7280;
+    --soft: #9CA3AF;
+    --blue-accent: #4BA3D3;
+    --blue-dark: #2B6CB0;
+    --white: #FFFFFF;
+    --off-white: #F8FAFB;
+    --amber: #FBBF24;
+    --green: #34D399;
+    --green-dark: #065F46;
+    --radius: 20px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--charcoal); font-size: 16px; line-height: 1.6; }
+
+  /* ============ NAV ============ */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; color: var(--charcoal); text-decoration: none; }
+  .nav-logo-dot { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #6EC6F0 0%, #3A8FD6 100%); display: flex; align-items: center; justify-content: center; }
+  .nav-logo-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: white; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--charcoal-3); text-decoration: none; font-size: 15px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a.active { color: var(--blue-accent); font-weight: 500; }
+  .nav-links a:hover { color: var(--blue-accent); }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-login { background: transparent; color: var(--charcoal-3); border: 1.5px solid rgba(0,0,0,0.12); padding: 10px 24px; border-radius: 100px; font-size: 14px; font-weight: 400; cursor: pointer; font-family: inherit; transition: border-color 0.2s; }
+  .nav-login:hover { border-color: var(--charcoal); }
+  .nav-cta { background: var(--charcoal); color: white; border: none; padding: 12px 28px; border-radius: 100px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.2s; position: relative; }
+  .nav-cta:hover { opacity: 0.8; }
+  .nav-badge { position: absolute; top: -8px; right: -8px; background: #EF4444; color: white; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+
+  /* ============ BREADCRUMB ============ */
+  .breadcrumb { padding: 16px 60px; font-size: 13px; color: var(--soft); background: var(--off-white); }
+  .breadcrumb a { color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--blue-accent); }
+  .breadcrumb span { margin: 0 6px; }
+
+  /* ============ COMMON ============ */
+  .btn-primary { background: var(--charcoal); color: white; border: none; padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: inherit; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .btn-primary-blue { background: var(--blue-accent); }
+  .btn-primary-blue:hover { box-shadow: 0 8px 24px rgba(75,163,211,0.3); }
+  .btn-ghost { background: transparent; color: var(--charcoal-3); border: 1.5px solid rgba(0,0,0,0.15); padding: 15px 32px; border-radius: 100px; font-size: 16px; font-weight: 400; cursor: pointer; font-family: inherit; transition: border-color 0.2s; }
+  .btn-ghost:hover { border-color: var(--charcoal); }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-accent); margin-bottom: 14px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--charcoal); line-height: 1.2; margin-bottom: 16px; font-weight: 400; }
+  .section-sub { font-size: 17px; color: var(--mid); line-height: 1.7; max-width: 600px; font-weight: 300; margin-bottom: 50px; }
+
+  /* ============ HERO (TEST HEADER) ============ */
+  .test-hero { background: linear-gradient(160deg, var(--sky-light) 0%, var(--sky-pale) 40%, var(--white) 100%); padding: 60px 60px 80px; position: relative; overflow: hidden; }
+  .test-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(74,163,211,0.1) 0%, transparent 70%); pointer-events: none; }
+  .test-hero-grid { display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: start; }
+  .test-hero-content { position: relative; z-index: 2; }
+  .test-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .test-tag { background: rgba(74,163,211,0.12); color: var(--blue-dark); font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+  .test-tag:hover { background: rgba(74,163,211,0.2); }
+  .test-hero h1 { font-family: 'DM Serif Display', serif; font-size: 44px; line-height: 1.15; color: var(--charcoal); margin-bottom: 24px; font-weight: 400; }
+  .test-hero h1 em { font-style: italic; color: var(--blue-accent); }
+
+  /* META BAR */
+  .meta-bar { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
+  .meta-item { display: flex; align-items: center; gap: 6px; font-size: 14px; color: var(--mid); font-weight: 400; }
+  .meta-item .meta-icon { font-size: 16px; }
+  .meta-divider { width: 1px; height: 16px; background: rgba(0,0,0,0.1); }
+  .share-buttons { display: flex; gap: 8px; margin-left: auto; }
+  .share-btn { width: 34px; height: 34px; border-radius: 50%; background: white; border: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; font-size: 14px; cursor: pointer; transition: background 0.2s, border-color 0.2s; text-decoration: none; color: var(--mid); }
+  .share-btn:hover { background: var(--sky-pale); border-color: var(--blue-accent); color: var(--blue-accent); }
+
+  /* COVER IMAGE */
+  .test-cover { position: relative; z-index: 2; }
+  .cover-image { width: 100%; aspect-ratio: 4/3; border-radius: var(--radius); overflow: hidden; background: linear-gradient(145deg, #D4ECFB 0%, #A8D5F0 30%, #7FBDE0 60%, #5AA3CF 100%); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-md); position: relative; }
+  .cover-illustration { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .cover-face { width: 100px; height: 100px; border-radius: 50%; background: rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; font-size: 56px; backdrop-filter: blur(8px); border: 2px solid rgba(255,255,255,0.4); }
+  .cover-waves { display: flex; gap: 4px; align-items: flex-end; }
+  .cover-wave { width: 6px; border-radius: 3px; background: rgba(255,255,255,0.5); }
+  .cover-badge-top { position: absolute; top: 16px; left: 16px; background: rgba(255,255,255,0.85); backdrop-filter: blur(6px); padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--charcoal); }
+  .cover-badge-bot { position: absolute; bottom: 16px; right: 16px; background: rgba(255,255,255,0.85); backdrop-filter: blur(6px); padding: 6px 14px; border-radius: 100px; font-size: 12px; font-weight: 500; color: var(--blue-dark); }
+
+  /* ============ CTA BLOCK ============ */
+  .start-cta { padding: 48px 60px; background: white; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .start-cta-inner { display: flex; align-items: center; gap: 40px; }
+  .start-summary { display: flex; gap: 20px; align-items: center; }
+  .summary-pill { background: var(--off-white); border-radius: var(--radius-sm); padding: 14px 20px; text-align: center; min-width: 100px; }
+  .summary-num { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--charcoal); }
+  .summary-label { font-size: 12px; color: var(--mid); font-weight: 400; }
+  .start-cta-right { display: flex; flex-direction: column; gap: 10px; }
+  .start-cta-sub { font-size: 14px; color: var(--blue-accent); font-weight: 500; }
+  .start-trust { display: flex; gap: 16px; margin-left: auto; flex-wrap: wrap; }
+  .trust-chip { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--mid); }
+  .trust-chip::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 13px; }
+
+  /* ============ MAIN CONTENT + SIDEBAR LAYOUT ============ */
+  .content-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; padding: 60px; align-items: start; }
+
+  /* MAIN CONTENT */
+  .main-content section { padding: 0; margin-bottom: 60px; }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 100px; }
+  .sidebar-card { background: var(--charcoal); color: white; border-radius: var(--radius); padding: 32px 24px; box-shadow: var(--shadow-md); text-align: center; }
+  .sidebar-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(74,163,211,0.2); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 18px; }
+  .sidebar-card h3 { font-size: 18px; font-weight: 600; color: white; margin-bottom: 10px; line-height: 1.35; }
+  .sidebar-card p { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.6; margin-bottom: 24px; }
+  .sidebar-card .btn-primary-blue { width: 100%; padding: 14px 20px; font-size: 15px; }
+  .sidebar-trial { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 12px; }
+
+  /* ============ METHODOLOGY ============ */
+  .method-text { color: var(--charcoal-3); line-height: 1.85; font-weight: 300; font-size: 16px; }
+  .method-text p { margin-bottom: 18px; }
+  .method-text a { color: var(--blue-accent); text-decoration: none; }
+  .method-text a:hover { text-decoration: underline; }
+  .method-details { background: var(--off-white); border-radius: var(--radius); padding: 24px 28px; margin-top: 28px; }
+  .method-details h4 { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .detail-row { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; }
+  .detail-label { color: var(--mid); font-weight: 400; min-width: 110px; flex-shrink: 0; }
+  .detail-value { color: var(--charcoal-3); font-weight: 400; }
+  .detail-value a { color: var(--blue-accent); text-decoration: none; }
+  .detail-value a:hover { text-decoration: underline; }
+  .ymyl-disclaimer { margin-top: 24px; font-size: 13px; color: var(--soft); font-style: italic; padding: 16px 20px; background: #FFF8E7; border-radius: var(--radius-sm); border-left: 3px solid var(--amber); }
+
+  /* ============ REVIEWER / E-E-A-T ============ */
+  .reviewer-block { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: var(--off-white); border-radius: var(--radius); margin-top: 28px; border: 1px solid rgba(0,0,0,0.05); }
+  .reviewer-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--sky), var(--blue-accent)); display: flex; align-items: center; justify-content: center; font-size: 22px; color: white; flex-shrink: 0; }
+  .reviewer-info { font-size: 14px; }
+  .reviewer-label { color: var(--soft); font-size: 12px; font-weight: 400; margin-bottom: 2px; }
+  .reviewer-name { font-weight: 600; color: var(--charcoal); }
+  .reviewer-name a { color: var(--blue-accent); text-decoration: none; }
+  .reviewer-name a:hover { text-decoration: underline; }
+  .reviewer-qual { color: var(--mid); font-weight: 300; }
+  .reviewer-date { font-size: 12px; color: var(--soft); margin-top: 2px; }
+
+  /* ============ STEPS ============ */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .step-card { background: var(--sky-pale); border-radius: var(--radius); padding: 24px 20px; text-align: center; position: relative; border: 1px solid rgba(74,163,211,0.08); }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--blue-accent); color: white; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+  .step-card h3 { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+  .step-card p { font-size: 13px; color: var(--mid); line-height: 1.55; font-weight: 300; }
+  .step-connector { position: absolute; top: 38px; right: -10px; color: var(--soft); font-size: 14px; z-index: 2; }
+
+  /* ============ TEST WIDGET ============ */
+  .test-widget-section { background: var(--off-white); border-radius: var(--radius); padding: 40px; margin-bottom: 60px; }
+  .widget-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+  .widget-progress-text { font-size: 14px; color: var(--mid); font-weight: 400; }
+  .widget-progress-text strong { color: var(--charcoal); font-weight: 600; }
+  .widget-progress-bar { height: 6px; background: rgba(0,0,0,0.08); border-radius: 3px; overflow: hidden; flex: 1; margin-left: 20px; max-width: 300px; }
+  .widget-progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue-accent), #3A8FD6); border-radius: 3px; width: 25%; transition: width 0.4s; }
+  .widget-question { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--charcoal); line-height: 1.35; margin-bottom: 28px; font-weight: 400; }
+  .widget-options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .widget-option { display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: white; border-radius: var(--radius-sm); border: 1.5px solid rgba(0,0,0,0.08); cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+  .widget-option:hover { border-color: var(--blue-accent); background: rgba(74,163,211,0.04); }
+  .widget-option.selected { border-color: var(--blue-accent); background: rgba(74,163,211,0.08); }
+  .widget-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+  .widget-option.selected .widget-radio { border-color: var(--blue-accent); }
+  .widget-option.selected .widget-radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--blue-accent); }
+  .widget-option-text { font-size: 15px; color: var(--charcoal-3); font-weight: 400; }
+  .widget-nav { display: flex; justify-content: space-between; align-items: center; }
+  .widget-back { background: none; border: none; color: var(--soft); font-size: 14px; cursor: pointer; font-family: inherit; padding: 10px 0; }
+  .widget-back:hover { color: var(--charcoal); }
+
+  /* ============ RESULT PREVIEW ============ */
+  .result-preview { background: white; border-radius: var(--radius); padding: 36px; box-shadow: var(--shadow); margin-top: 28px; display: none; }
+  .result-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .result-score { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--sky-light), var(--sky)); display: flex; align-items: center; justify-content: center; }
+  .result-score-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--charcoal); }
+  .result-title { font-size: 20px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; }
+  .result-subtitle { font-size: 14px; color: var(--mid); font-weight: 300; }
+  .result-bar-visual { margin-bottom: 24px; }
+  .result-scale { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 8px; }
+  .result-scale-seg { height: 100%; }
+  .result-scale-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--soft); }
+  .result-cta-block { background: var(--sky-pale); border-radius: var(--radius-sm); padding: 20px; text-align: center; }
+  .result-cta-block p { font-size: 14px; color: var(--charcoal-3); margin-bottom: 14px; font-weight: 400; }
+
+  /* ============ RELATED TESTS ============ */
+  .related-section { padding: 60px; background: var(--off-white); }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .related-card { background: white; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+  .related-card:hover { transform: translateY(-4px); }
+  .related-cover { height: 140px; position: relative; }
+  .related-cover-1 { background: linear-gradient(135deg, #FECACA 0%, #FCA5A5 100%); }
+  .related-cover-2 { background: linear-gradient(135deg, #D9F99D 0%, #86EFAC 100%); }
+  .related-cover-3 { background: linear-gradient(135deg, #C7D2FE 0%, #A5B4FC 100%); }
+  .related-cover-4 { background: linear-gradient(135deg, #FDE68A 0%, #FCD34D 100%); }
+  .related-cover-5 { background: linear-gradient(135deg, #FBCFE8 0%, #F9A8D4 100%); }
+  .related-cover-6 { background: linear-gradient(135deg, #BAE6FD 0%, #7DD3FC 100%); }
+  .related-cover-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 48px; opacity: 0.5; }
+  .related-body { padding: 20px; }
+  .related-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .related-tag { font-size: 11px; color: var(--blue-dark); background: rgba(74,163,211,0.1); padding: 3px 8px; border-radius: 100px; font-weight: 500; }
+  .related-name { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+  .related-desc { font-size: 13px; color: var(--mid); line-height: 1.5; font-weight: 300; margin-bottom: 12px; }
+  .related-meta { font-size: 12px; color: var(--soft); display: flex; gap: 12px; }
+
+  /* ============ FAQ ============ */
+  .faq-section { padding: 60px; }
+  .faq-list { max-width: 800px; }
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .faq-question { width: 100%; background: none; border: none; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: inherit; text-align: left; }
+  .faq-question span { font-size: 16px; font-weight: 500; color: var(--charcoal); }
+  .faq-arrow { font-size: 20px; color: var(--soft); transition: transform 0.3s; flex-shrink: 0; margin-left: 16px; }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 0 24px; font-size: 15px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .faq-answer-inner a { color: var(--blue-accent); text-decoration: none; }
+  .faq-answer-inner a:hover { text-decoration: underline; }
+
+  /* ============ SUBSCRIBE ============ */
+  .subscribe-section { background: var(--off-white); padding: 60px; }
+  .subscribe-inner { display: flex; align-items: center; gap: 48px; max-width: 900px; }
+  .subscribe-visual { flex-shrink: 0; width: 100px; height: 100px; border-radius: var(--radius); background: linear-gradient(135deg, var(--sky-light), rgba(74,163,211,0.2)); display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .subscribe-content h2 { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--charcoal); margin-bottom: 8px; font-weight: 400; }
+  .subscribe-content p { font-size: 15px; color: var(--mid); font-weight: 300; margin-bottom: 20px; }
+  .subscribe-form { display: flex; gap: 10px; }
+  .subscribe-input { flex: 1; padding: 14px 20px; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 100px; font-size: 15px; font-family: inherit; outline: none; max-width: 320px; transition: border-color 0.2s; }
+  .subscribe-input:focus { border-color: var(--blue-accent); }
+  .subscribe-consent { font-size: 12px; color: var(--soft); margin-top: 10px; }
+  .subscribe-consent a { color: var(--blue-accent); text-decoration: none; }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta { background: linear-gradient(160deg, var(--sky-light) 0%, var(--sky-pale) 100%); text-align: center; padding: 100px 60px; }
+  .final-cta .section-title { font-size: 44px; margin-bottom: 16px; max-width: 700px; margin-inline: auto; }
+  .final-cta .section-sub { margin-inline: auto; max-width: 500px; }
+  .final-cta-badges { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+  .badge { background: rgba(74,163,211,0.1); color: var(--blue-dark); font-size: 13px; padding: 6px 16px; border-radius: 100px; font-weight: 500; }
+
+  /* ============ CRISIS ============ */
+  .crisis-block { background: #FEF3C7; padding: 28px 60px; display: flex; align-items: center; gap: 20px; }
+  .crisis-icon { font-size: 28px; flex-shrink: 0; }
+  .crisis-text { font-size: 14px; color: #92400E; line-height: 1.6; }
+  .crisis-text strong { font-weight: 600; }
+  .crisis-text a { color: #B45309; font-weight: 500; }
+
+  /* ============ EXPERTS ============ */
+  .experts-section { padding: 60px; background: var(--off-white); }
+  .experts-row { display: flex; gap: 24px; }
+  .expert-card { background: white; border-radius: var(--radius); padding: 24px 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 16px; flex: 1; }
+  .expert-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--sky) 0%, var(--blue-accent) 100%); display: flex; align-items: center; justify-content: center; font-size: 24px; color: white; flex-shrink: 0; }
+  .expert-name { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 2px; }
+  .expert-role { font-size: 13px; color: var(--blue-accent); font-weight: 500; margin-bottom: 4px; }
+  .expert-desc { font-size: 12px; color: var(--mid); font-weight: 300; line-height: 1.5; }
+  .experts-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 24px; font-size: 15px; color: var(--blue-accent); font-weight: 500; text-decoration: none; }
+  .experts-link:hover { text-decoration: underline; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 60px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand { font-size: 14px; line-height: 1.7; }
+  .footer-brand .nav-logo { color: white; margin-bottom: 14px; }
+  .footer-col h4 { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-legal { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; margin-left: 24px; }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-dot"></div>
+    Dzeny
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Услуги</a></li>
+    <li><a href="#">Как это работает</a></li>
+    <li><a href="#">Тарифы</a></li>
+    <li><a href="#">Инструменты КПТ</a></li>
+    <li><a href="#">Блог</a></li>
+    <li><a href="#" class="active">Тесты</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-login">Войти</button>
+    <button class="nav-cta">
+      Попробовать бесплатно
+      <span class="nav-badge">7 дней</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ BREADCRUMB ============ -->
+<div class="breadcrumb">
+  <a href="#">Главная</a><span>›</span>
+  <a href="#">Тесты</a><span>›</span>
+  Шкала тревожности Бека
+</div>
+
+<!-- ============ HERO: H1 + META-BAR + COVER ============ -->
+<section class="test-hero">
+  <div class="test-hero-grid">
+    <div class="test-hero-content">
+      <div class="test-tags">
+        <a href="#" class="test-tag">тревожность</a>
+        <a href="#" class="test-tag">КПТ</a>
+        <a href="#" class="test-tag">самодиагностика</a>
+      </div>
+      <h1>Тест на тревожность онлайн — <em>шкала Бека</em></h1>
+
+      <!-- META BAR -->
+      <div class="meta-bar">
+        <div class="meta-item"><span class="meta-icon">📋</span> 21 вопрос</div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-icon">⏱</span> 5 минут</div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-icon">👥</span> 1 240 прохождений</div>
+        <div class="meta-divider"></div>
+        <div class="meta-item"><span class="meta-icon">🔄</span> Обновлено 15 марта 2026</div>
+        <div class="share-buttons">
+          <a href="#" class="share-btn" title="Telegram">✈</a>
+          <a href="#" class="share-btn" title="WhatsApp">💬</a>
+          <a href="#" class="share-btn" title="VK">V</a>
+          <a href="#" class="share-btn" title="Скопировать ссылку">🔗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- COVER IMAGE -->
+    <div class="test-cover">
+      <div class="cover-image">
+        <div class="cover-illustration">
+          <div class="cover-face">😟</div>
+          <div class="cover-waves">
+            <div class="cover-wave" style="height:18px;"></div>
+            <div class="cover-wave" style="height:30px;"></div>
+            <div class="cover-wave" style="height:24px;"></div>
+            <div class="cover-wave" style="height:36px;"></div>
+            <div class="cover-wave" style="height:20px;"></div>
+            <div class="cover-wave" style="height:28px;"></div>
+            <div class="cover-wave" style="height:14px;"></div>
+          </div>
+        </div>
+        <div class="cover-badge-top">Клинический опросник</div>
+        <div class="cover-badge-bot">BAI · Beck, 1988</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA: НАЧАТЬ ТЕСТ ============ -->
+<div class="start-cta" id="start">
+  <div class="start-cta-inner">
+    <div class="start-summary">
+      <div class="summary-pill">
+        <div class="summary-num">21</div>
+        <div class="summary-label">вопрос</div>
+      </div>
+      <div class="summary-pill">
+        <div class="summary-num">5</div>
+        <div class="summary-label">минут</div>
+      </div>
+      <div class="summary-pill">
+        <div class="summary-num">0 ₽</div>
+        <div class="summary-label">бесплатно</div>
+      </div>
+    </div>
+    <div class="start-cta-right">
+      <button class="btn-primary" onclick="document.getElementById('test-widget').scrollIntoView({behavior:'smooth'})">Пройти тест бесплатно</button>
+      <div class="start-cta-sub">+ получить ИИ-интерпретацию результатов от Dzeny</div>
+    </div>
+    <div class="start-trust">
+      <div class="trust-chip">Анонимно</div>
+      <div class="trust-chip">Без регистрации</div>
+      <div class="trust-chip">Результат сразу</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MAIN + SIDEBAR ============ -->
+<div class="content-layout">
+  <div class="main-content">
+
+    <!-- СЕКЦИЯ 4: ОПИСАНИЕ МЕТОДИКИ -->
+    <section>
+      <div class="section-label">О тесте</div>
+      <h2 class="section-title">Описание методики</h2>
+      <div class="method-text">
+        <p>Шкала тревожности Бека (Beck Anxiety Inventory, BAI) — один из самых распространённых клинических инструментов для оценки уровня тревожности. Опросник разработан Аароном Беком и его коллегами в 1988 году и включает 21 утверждение, описывающее симптомы тревоги.</p>
+        <p>Тест измеряет соматические, когнитивные и эмоциональные проявления тревожности за последнюю неделю. Каждый пункт оценивается по шкале от 0 до 3, максимальный балл — 63. BAI позволяет дифференцировать <a href="#">тревожные расстройства</a> от депрессии — в отличие от многих аналогичных шкал.</p>
+        <p>Тест подходит взрослым от 17 лет и широко используется в клинической практике, научных исследованиях и <a href="#">когнитивно-поведенческой терапии</a>. Результаты помогают оценить текущий уровень тревоги и отслеживать динамику.</p>
+      </div>
+
+      <!-- ДЕТАЛИ МЕТОДИКИ -->
+      <div class="method-details">
+        <h4>Детали методики</h4>
+        <div class="detail-row">
+          <span class="detail-label">Автор</span>
+          <span class="detail-value">Aaron T. Beck, 1988</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Адаптация</span>
+          <span class="detail-value">Рябичева Т.В., 2003</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Шкалы</span>
+          <span class="detail-value">Соматическая тревога, когнитивная тревога</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Литература</span>
+          <span class="detail-value"><a href="#">Beck A.T. et al., 1988. Journal of Consulting and Clinical Psychology</a></span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Бланк</span>
+          <span class="detail-value"><a href="#">Скачать бланк вопросов (PDF)</a></span>
+        </div>
+      </div>
+
+      <!-- YMYL DISCLAIMER -->
+      <div class="ymyl-disclaimer">
+        ⚠️ Тест носит ознакомительный характер и не является диагностическим инструментом. При подозрении на клиническое состояние обратитесь к специалисту.
+      </div>
+
+      <!-- REVIEWER -->
+      <div class="reviewer-block">
+        <div class="reviewer-avatar">👩‍⚕️</div>
+        <div class="reviewer-info">
+          <div class="reviewer-label">Материал проверен</div>
+          <div class="reviewer-name"><a href="#">Елена Смирнова</a>, клинический психолог, КПТ-терапевт</div>
+          <div class="reviewer-qual">15 лет клинической практики</div>
+          <div class="reviewer-date">Последняя проверка: 10 марта 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ 5: КАК ПРОХОДИТ ТЕСТ -->
+    <section>
+      <div class="section-label">Процесс</div>
+      <h2 class="section-title">Как пройти тест и получить результат</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Пройдите тест</h3>
+          <p>Ответьте на вопросы честно и интуитивно. Это займёт 5 минут.</p>
+          <span class="step-connector">→</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>Получите результат</h3>
+          <p>Система подсчитает баллы и покажет вашу оценку с расшифровкой.</p>
+          <span class="step-connector">→</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>ИИ-интерпретация</h3>
+          <p>Dzeny проанализирует результаты, объяснит простым языком и даст рекомендации.</p>
+          <span class="step-connector">→</span>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h3>План действий</h3>
+          <p>Персональный план практик КПТ, медитаций и упражнений на основе результатов.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- СЕКЦИЯ 7: ВИДЖЕТ ТЕСТА -->
+    <div class="test-widget-section" id="test-widget">
+      <div class="widget-header">
+        <div class="widget-progress-text"><strong>Вопрос 4</strong> из 21 — 19%</div>
+        <div class="widget-progress-bar"><div class="widget-progress-fill" style="width:19%"></div></div>
+      </div>
+      <div class="widget-question">За последнюю неделю, насколько вас беспокоило ощущение онемения или покалывания?</div>
+      <div class="widget-options">
+        <div class="widget-option" onclick="document.querySelectorAll('.widget-option').forEach(o=>o.classList.remove('selected'));this.classList.add('selected')">
+          <div class="widget-radio"></div>
+          <div class="widget-option-text">Совсем не беспокоило</div>
+        </div>
+        <div class="widget-option" onclick="document.querySelectorAll('.widget-option').forEach(o=>o.classList.remove('selected'));this.classList.add('selected')">
+          <div class="widget-radio"></div>
+          <div class="widget-option-text">Немного — не слишком меня беспокоило</div>
+        </div>
+        <div class="widget-option selected" onclick="document.querySelectorAll('.widget-option').forEach(o=>o.classList.remove('selected'));this.classList.add('selected')">
+          <div class="widget-radio"></div>
+          <div class="widget-option-text">Умеренно — это было неприятно, но я мог(ла) терпеть</div>
+        </div>
+        <div class="widget-option" onclick="document.querySelectorAll('.widget-option').forEach(o=>o.classList.remove('selected'));this.classList.add('selected')">
+          <div class="widget-radio"></div>
+          <div class="widget-option-text">Сильно — я с трудом мог(ла) это переносить</div>
+        </div>
+      </div>
+      <div class="widget-nav">
+        <button class="widget-back">← Назад</button>
+        <button class="btn-primary" style="padding:14px 32px; font-size:15px;">Далее →</button>
+      </div>
+    </div>
+
+    <!-- RESULT PREVIEW (показывается после завершения) -->
+    <div class="result-preview" style="display:block; margin-bottom: 60px;">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-accent); margin-bottom:16px;">Пример результата</div>
+      <div class="result-header">
+        <div class="result-score"><div class="result-score-num">24</div></div>
+        <div>
+          <div class="result-title">Умеренная тревожность</div>
+          <div class="result-subtitle">24 из 63 баллов по шкале BAI</div>
+        </div>
+      </div>
+      <div class="result-bar-visual">
+        <div class="result-scale">
+          <div class="result-scale-seg" style="flex:7; background: #86EFAC;"></div>
+          <div class="result-scale-seg" style="flex:8; background: #FDE68A;"></div>
+          <div class="result-scale-seg" style="flex:11; background: #FCA5A5;"></div>
+          <div class="result-scale-seg" style="flex:37; background: #F87171;"></div>
+        </div>
+        <div class="result-scale-labels">
+          <span>0–7 минимальная</span>
+          <span>8–15 лёгкая</span>
+          <span>16–25 умеренная</span>
+          <span>26–63 выраженная</span>
+        </div>
+      </div>
+      <div class="result-cta-block">
+        <p>Хотите разобраться, что означает ваш результат?<br>Получите персональную ИИ-интерпретацию от Dzeny.</p>
+        <button class="btn-primary-blue btn-primary" style="padding:14px 28px; font-size:15px;">Получить ИИ-интерпретацию — бесплатно</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============ SIDEBAR ============ -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-icon">🧠</div>
+      <h3>Обсудите результаты с ИИ-психологом Dzeny</h3>
+      <p>Получите персональную интерпретацию и план действий на основе когнитивно-поведенческой терапии.</p>
+      <button class="btn-primary btn-primary-blue">Попробовать бесплатно</button>
+      <div class="sidebar-trial">7 дней бесплатно · Без карты</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ СВЯЗАННЫЕ ТЕСТЫ ============ -->
+<section class="related-section">
+  <div class="section-label">Связанные тесты</div>
+  <h2 class="section-title">Вместе с этим тестом проходят</h2>
+  <p class="section-sub">Рекомендуем пройти для более полной картины вашего эмоционального состояния.</p>
+  <div class="related-grid">
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-1"><div class="related-cover-icon">😔</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">депрессия</span><span class="related-tag">клинический</span></div>
+        <div class="related-name">Шкала депрессии Бека (BDI-II)</div>
+        <div class="related-desc">Оцените уровень депрессивных симптомов по международному стандарту.</div>
+        <div class="related-meta"><span>21 вопрос</span><span>5 мин</span><span>2 350 прохождений</span></div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-2"><div class="related-cover-icon">🧘</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">стресс</span><span class="related-tag">самооценка</span></div>
+        <div class="related-name">Шкала воспринимаемого стресса (PSS-10)</div>
+        <div class="related-desc">Узнайте, насколько стрессовыми вы воспринимаете ситуации в жизни.</div>
+        <div class="related-meta"><span>10 вопросов</span><span>3 мин</span><span>980 прохождений</span></div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-3"><div class="related-cover-icon">💤</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">сон</span><span class="related-tag">бессонница</span></div>
+        <div class="related-name">Индекс тяжести бессонницы (ISI)</div>
+        <div class="related-desc">Оцените качество сна и его влияние на ваше дневное самочувствие.</div>
+        <div class="related-meta"><span>7 вопросов</span><span>2 мин</span><span>740 прохождений</span></div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-4"><div class="related-cover-icon">🔥</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">выгорание</span><span class="related-tag">работа</span></div>
+        <div class="related-name">Тест на профессиональное выгорание (MBI)</div>
+        <div class="related-desc">Проверьте уровень эмоционального истощения и деперсонализации.</div>
+        <div class="related-meta"><span>22 вопроса</span><span>7 мин</span><span>1 560 прохождений</span></div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-5"><div class="related-cover-icon">❤️</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">отношения</span><span class="related-tag">привязанность</span></div>
+        <div class="related-name">Тест на тип привязанности</div>
+        <div class="related-desc">Узнайте свой стиль привязанности в близких отношениях.</div>
+        <div class="related-meta"><span>16 вопросов</span><span>4 мин</span><span>1 120 прохождений</span></div>
+      </div>
+    </a>
+    <a href="#" class="related-card">
+      <div class="related-cover related-cover-6"><div class="related-cover-icon">⚖️</div></div>
+      <div class="related-body">
+        <div class="related-tags"><span class="related-tag">баланс</span><span class="related-tag">саморазвитие</span></div>
+        <div class="related-name">Колесо баланса жизни</div>
+        <div class="related-desc">Оцените удовлетворённость 8 ключевыми сферами жизни за 5 минут.</div>
+        <div class="related-meta"><span>8 вопросов</span><span>3 мин</span><span>2 870 прохождений</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-section">
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Часто задаваемые вопросы</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Как правильно отвечать на вопросы теста?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Отвечайте интуитивно, опираясь на ваши ощущения за последнюю неделю. Не задумывайтесь слишком долго над каждым вопросом — первая реакция обычно самая точная. Честные ответы помогут получить более достоверный результат.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Насколько точны результаты онлайн-теста?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Шкала тревожности Бека — валидированный клинический инструмент с высокой надёжностью. Однако онлайн-формат не заменяет профессиональную диагностику. Результат показывает текущий уровень тревоги и помогает понять, нужна ли дополнительная поддержка.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Может ли этот тест заменить диагноз специалиста?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Нет. Тест носит ознакомительный характер и не является диагностическим инструментом. При подозрении на клиническое состояние обратитесь к специалисту. Dzeny может помочь подготовиться к визиту — <a href="#">подробнее о методах КПТ</a>.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Как интерпретировать результаты?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">После прохождения теста вы получите балл и расшифровку по шкале: 0–7 (минимальная тревожность), 8–15 (лёгкая), 16–25 (умеренная), 26–63 (выраженная). ИИ-психолог Dzeny также предоставит персональную интерпретацию и рекомендации.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Можно ли проходить тест повторно?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да, тест можно проходить регулярно для отслеживания динамики. Рекомендуемый интервал — 1–2 недели. Dzeny сохраняет историю ваших результатов и показывает прогресс в <a href="#">трекере эмоций</a>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUBSCRIBE / ЛИД-МАГНИТ ============ -->
+<section class="subscribe-section">
+  <div class="subscribe-inner">
+    <div class="subscribe-visual">📬</div>
+    <div class="subscribe-content">
+      <h2>Гид по ментальному здоровью</h2>
+      <p>Оставьте email — и мы отправим вам памятку с техниками самопомощи при тревожности и стрессе.</p>
+      <div class="subscribe-form">
+        <input type="email" class="subscribe-input" placeholder="Ваш email">
+        <button class="btn-primary" style="padding:14px 28px; font-size:15px;">Подписаться</button>
+      </div>
+      <div class="subscribe-consent">
+        <input type="checkbox" id="consent" style="margin-right:6px;">
+        <label for="consent">Согласен с <a href="#">политикой конфиденциальности</a> и на получение рассылки</label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="section-label">Следующий шаг</div>
+  <h2 class="section-title">Узнайте больше о себе — попробуйте бесплатную сессию с Dzeny</h2>
+  <p class="section-sub">ИИ-психолог проанализирует ваши результаты и составит персональный план действий.</p>
+  <div class="final-cta-badges">
+    <span class="badge">✓ 7 дней бесплатно</span>
+    <span class="badge">✓ КПТ-методология</span>
+    <span class="badge">✓ Анонимно</span>
+    <span class="badge">✓ Доступен 24/7</span>
+  </div>
+  <button class="btn-primary" style="font-size: 18px; padding: 18px 48px;">Начать бесплатно — 7 дней</button>
+</section>
+
+<!-- ============ CRISIS ============ -->
+<div class="crisis-block">
+  <div class="crisis-icon">🆘</div>
+  <div class="crisis-text">
+    <strong>Если вы или ваши близкие находитесь в кризисной ситуации — обратитесь за помощью немедленно.</strong><br>
+    Телефон доверия: <strong>8-800-2000-122</strong> (бесплатно, круглосуточно) · <a href="#">Страница экстренной помощи →</a>
+  </div>
+</div>
+
+<!-- ============ EXPERTS ============ -->
+<section class="experts-section">
+  <div class="section-label">Экспертиза</div>
+  <h2 class="section-title" style="font-size:32px;">За контентом стоят реальные специалисты</h2>
+  <div class="experts-row">
+    <div class="expert-card">
+      <div class="expert-avatar">👩‍⚕️</div>
+      <div>
+        <div class="expert-name">Елена Смирнова</div>
+        <div class="expert-role">Клинический психолог, КПТ-терапевт</div>
+        <div class="expert-desc">15 лет практики. Рецензент материалов Dzeny.</div>
+      </div>
+    </div>
+    <div class="expert-card">
+      <div class="expert-avatar">👨‍⚕️</div>
+      <div>
+        <div class="expert-name">Алексей Воронов</div>
+        <div class="expert-role">Психиатр, нейропсихолог</div>
+        <div class="expert-desc">Консультант по валидности методик и тестов.</div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="experts-link">Подробнее о команде экспертов →</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-dot"></div>
+        Dzeny
+      </a>
+      <p style="margin-top:14px;">ИИ-психолог на базе когнитивно-поведенческой терапии. Анонимная поддержка ментального здоровья 24/7.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Тесты</h4>
+      <a href="#">Тест на тревожность</a>
+      <a href="#">Шкала депрессии Бека</a>
+      <a href="#">Колесо баланса</a>
+      <a href="#">Все тесты →</a>
+    </div>
+    <div class="footer-col">
+      <h4>Компания</h4>
+      <a href="#">Как это работает</a>
+      <a href="#">Тарифы</a>
+      <a href="#">Блог</a>
+      <a href="#">Эксперты</a>
+    </div>
+    <div class="footer-col">
+      <h4>Поддержка</h4>
+      <a href="#">Telegram-бот</a>
+      <a href="#">support@dzeny.ru</a>
+      <a href="#">App Store</a>
+      <a href="#">Google Play</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 Dzeny · ИНН 0000000000 · ОГРН 0000000000000 · Dzeny не является медицинским сервисом и не заменяет профессионального психолога.</div>
+    <div class="footer-links">
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Условия использования</a>
+      <a href="#">Обработка ПД</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

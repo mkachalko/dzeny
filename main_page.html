@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИИ-психолог Dzeny — психологическая поддержка онлайн 24/7</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sky:#C8E8F5;--sky-light:#E8F5FC;--sky-pale:#F2F9FD;--ch:#1E1E1E;--ch2:#2D2D2D;--ch3:#3A3A3A;--mid:#6B7280;--soft:#9CA3AF;--blue:#4BA3D3;--blue-dk:#2B6CB0;--wh:#FFFFFF;--off:#F8FAFB;--amber:#FBBF24;--green:#34D399;--r:20px;--rs:12px;--sh:0 4px 24px rgba(0,0,0,.06);--shm:0 8px 40px rgba(0,0,0,.10)}
+body{font-family:'DM Sans',sans-serif;background:var(--wh);color:var(--ch);font-size:16px;line-height:1.6}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 60px;position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(0,0,0,.05)}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;color:var(--ch);text-decoration:none}
+.logo-d{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#6EC6F0,#3A8FD6);display:flex;align-items:center;justify-content:center}
+.logo-d::after{content:'';width:10px;height:10px;border-radius:50%;background:white}
+.nv{display:flex;gap:32px;list-style:none}
+.nv a{color:var(--ch3);text-decoration:none;font-size:15px;transition:color .2s}
+.nv a:hover,.nv a.ac{color:var(--blue)}
+.nr{display:flex;align-items:center;gap:14px}
+.nb-login{background:0;color:var(--ch3);border:1.5px solid rgba(0,0,0,.12);padding:10px 24px;border-radius:100px;font-size:14px;cursor:pointer;font-family:inherit}
+.nb-cta{background:var(--ch);color:white;border:0;padding:12px 28px;border-radius:100px;font-size:15px;font-weight:500;cursor:pointer;font-family:inherit;position:relative}
+.nb-cta:hover{opacity:.8}
+.nb-badge{position:absolute;top:-8px;right:-8px;background:#EF4444;color:white;font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px}
+
+/* BUTTONS */
+.bp{background:var(--ch);color:white;border:0;padding:16px 36px;border-radius:100px;font-size:16px;font-weight:500;cursor:pointer;font-family:inherit;transition:transform .2s,box-shadow .2s}
+.bp:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.bg{background:0;color:var(--ch3);border:1.5px solid rgba(0,0,0,.15);padding:15px 32px;border-radius:100px;font-size:16px;cursor:pointer;font-family:inherit}
+.bg:hover{border-color:var(--ch)}
+.bb{background:var(--blue)}.bb:hover{box-shadow:0 8px 24px rgba(75,163,211,.3)}
+.sl{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.st{font-family:'DM Serif Display',serif;font-size:40px;color:var(--ch);line-height:1.2;margin-bottom:16px;font-weight:400}
+.ss{font-size:17px;color:var(--mid);line-height:1.7;max-width:600px;font-weight:300;margin-bottom:50px}
+section{padding:80px 60px}
+
+/* DISCLAIMER POPUP */
+.popup-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.popup-card{background:white;border-radius:var(--r);padding:40px;max-width:520px;width:90%;box-shadow:var(--shm);text-align:center}
+.popup-card h3{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:16px;font-weight:400}
+.popup-card p{font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:24px;font-weight:300}
+.popup-check{display:flex;align-items:flex-start;gap:10px;text-align:left;margin-bottom:24px;font-size:14px;color:var(--ch3)}
+.popup-check input{margin-top:3px;width:18px;height:18px;accent-color:var(--blue)}
+.popup-crisis{font-size:12px;color:var(--soft);margin-top:16px}
+.popup-crisis a{color:var(--blue)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--sky-light) 0%,var(--sky-pale) 40%,var(--wh) 100%);padding:80px 60px 100px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(74,163,211,.12),transparent 70%);pointer-events:none}
+.hero h1{font-family:'DM Serif Display',serif;font-size:46px;line-height:1.15;margin-bottom:20px;font-weight:400}
+.hero h1 em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:17px;color:var(--mid);line-height:1.7;margin-bottom:12px;max-width:500px;font-weight:300}
+.hero-rotate{font-size:15px;color:var(--blue);font-weight:500;margin-bottom:28px;height:24px;overflow:hidden}
+.hero-rotate span{display:block;animation:rotate 10s infinite}
+@keyframes rotate{0%,18%{transform:translateY(0)}20%,38%{transform:translateY(-24px)}40%,58%{transform:translateY(-48px)}60%,78%{transform:translateY(-72px)}80%,100%{transform:translateY(-96px)}}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.trust-b{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mid)}
+.trust-b::before{content:'✓';color:var(--blue);font-weight:600}
+.store-row{display:flex;gap:12px;margin-top:8px}
+.store-btn{background:var(--ch);color:white;border:0;padding:10px 20px;border-radius:10px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
+.store-btn:hover{opacity:.8}
+/* HERO PHONE */
+.hero-vis{position:relative;display:flex;justify-content:center}
+.hp{width:250px;height:450px;background:var(--ch2);border-radius:36px;padding:14px;box-shadow:var(--shm);z-index:2}
+.hps{background:var(--off);border-radius:26px;height:100%;display:flex;flex-direction:column;overflow:hidden}
+.hph{background:white;padding:14px 16px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,0,0,.06)}
+.hpa{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#6EC6F0,#3A8FD6)}
+.hpn{font-size:13px;font-weight:600}
+.hpb{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;overflow:hidden}
+.cm{max-width:82%;padding:10px 14px;border-radius:16px;font-size:11px;line-height:1.5}
+.cm-a{background:white;color:var(--ch3);border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.cm-u{background:var(--ch);color:white;border-bottom-right-radius:4px;align-self:flex-end}
+.hf1{position:absolute;top:20px;right:-40px;background:white;border-radius:var(--rs);padding:12px 16px;box-shadow:var(--shm);font-size:12px;z-index:3}
+.hf1 strong{display:block;margin-bottom:2px;font-size:13px;font-weight:600}
+.hf2{position:absolute;bottom:50px;left:-40px;background:white;border-radius:var(--rs);padding:10px 14px;box-shadow:var(--shm);font-size:12px;z-index:3;display:flex;align-items:center;gap:8px}
+.fb{width:8px;height:8px;border-radius:50%;background:var(--green)}
+
+/* METRICS */
+.metrics{background:var(--off)}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.mc{text-align:center;padding:36px 20px;background:white;border-radius:var(--r);box-shadow:var(--sh)}
+.mn{font-family:'DM Serif Display',serif;font-size:42px;color:var(--ch);margin-bottom:6px}
+.ml{font-size:14px;color:var(--mid)}
+
+/* PROBLEMS */
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.pc{background:var(--sky-pale);border-radius:var(--r);padding:24px 20px;border:1px solid rgba(74,163,211,.08);transition:transform .2s,box-shadow .2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+.pc:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.pi{font-size:26px;margin-bottom:12px}
+.pn{font-size:14px;font-weight:600;color:var(--ch);margin-bottom:6px}
+.pd{font-size:13px;color:var(--mid);line-height:1.5;font-weight:300}
+
+/* STEPS */
+.steps{background:var(--ch);color:white}
+.steps .sl{color:rgba(74,163,211,.8)}
+.steps .st{color:white}
+.steps .ss{color:rgba(255,255,255,.55)}
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.sc{background:rgba(255,255,255,.06);border-radius:var(--r);padding:28px 22px;border:1px solid rgba(255,255,255,.08);text-align:center;position:relative}
+.sn{width:40px;height:40px;border-radius:50%;background:rgba(74,163,211,.2);color:var(--sky);font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.sc h3{font-size:15px;font-weight:500;margin-bottom:10px}
+.sc p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;font-weight:300}
+.scc{position:absolute;top:48px;right:-12px;color:rgba(255,255,255,.2);font-size:16px;z-index:2}
+
+/* FEATURES */
+.features{background:var(--off)}
+.fg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fc{background:white;border-radius:var(--r);padding:30px 24px;box-shadow:var(--sh);transition:transform .2s}
+.fc:hover{transform:translateY(-3px)}
+.fi{width:44px;height:44px;border-radius:var(--rs);background:var(--sky-pale);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:18px}
+.fc h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.fc p{font-size:14px;color:var(--mid);line-height:1.65;font-weight:300}
+
+/* COMPARE */
+.ctb{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.ctb thead th{background:var(--ch);color:white;padding:20px 24px;font-size:15px;font-weight:500;text-align:left}
+.ctb thead th:first-child{border-top-left-radius:var(--r)}
+.ctb thead th:last-child{border-top-right-radius:var(--r);background:var(--blue-dk)}
+.ctb tbody td{padding:18px 24px;font-size:14px;color:var(--ch3);border-bottom:1px solid rgba(0,0,0,.06);font-weight:300}
+.ctb tbody td:first-child{font-weight:500;color:var(--ch);background:var(--off)}
+.ctb tbody td:last-child{background:rgba(74,163,211,.04)}
+.ctb tbody tr:last-child td{border-bottom:0}
+.cd{margin-top:20px;font-size:13px;color:var(--soft);font-style:italic;padding:16px 20px;background:var(--off);border-radius:var(--rs);border-left:3px solid var(--blue)}
+
+/* EEAT */
+.eeat{background:var(--off)}
+.eg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px}
+.ec{background:white;border-radius:var(--r);padding:30px 24px;box-shadow:var(--sh);text-align:center}
+.ea{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--sky),var(--blue));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:white}
+.en{font-size:16px;font-weight:600;margin-bottom:4px}
+.er{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:10px}
+.ed{font-size:13px;color:var(--mid);line-height:1.6;font-weight:300}
+.logos-row{display:flex;gap:32px;align-items:center;justify-content:center;flex-wrap:wrap;padding:24px 0;opacity:.5}
+.logos-row span{font-size:14px;font-weight:600;color:var(--ch);letter-spacing:.05em}
+
+/* SECURITY */
+.secg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.secc{background:var(--off);border-radius:var(--r);padding:28px 22px;text-align:center}
+.seci{font-size:32px;margin-bottom:14px}
+.sech{font-size:15px;font-weight:600;margin-bottom:6px}
+.secp{font-size:13px;color:var(--mid);line-height:1.55;font-weight:300}
+
+/* REVIEWS */
+.reviews{background:var(--off)}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rc{background:white;border-radius:var(--r);padding:28px 24px;box-shadow:var(--sh)}
+.rs{color:var(--amber);font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.rt{font-size:14px;color:var(--ch3);line-height:1.65;margin-bottom:16px;font-weight:300;font-style:italic}
+.ra{font-size:13px;font-weight:600;color:var(--mid)}
+
+/* TESTS BLOCK */
+.tests-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tc{background:var(--off);border-radius:var(--r);overflow:hidden;border:1.5px solid transparent;transition:all .2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+.tc:hover{border-color:var(--blue);transform:translateY(-3px)}
+.tcv{height:100px;display:flex;align-items:center;justify-content:center}
+.tc1{background:linear-gradient(135deg,#FECACA,#FCA5A5)}.tc2{background:linear-gradient(135deg,#C7D2FE,#A5B4FC)}.tc3{background:linear-gradient(135deg,#D9F99D,#86EFAC)}.tc4{background:linear-gradient(135deg,#FDE68A,#FCD34D)}
+.tci{font-size:36px;opacity:.5}
+.tcb{padding:16px 18px}
+.tcn{font-size:14px;font-weight:600;margin-bottom:4px}
+.tcm{font-size:12px;color:var(--soft)}
+
+/* QUIZ */
+.quiz-section{background:var(--ch);color:white}
+.quiz-section .sl{color:rgba(74,163,211,.8)}
+.quiz-section .st{color:white}
+.quiz-section .ss{color:rgba(255,255,255,.55)}
+.quiz-card{background:rgba(255,255,255,.06);border-radius:var(--r);padding:40px;max-width:600px;border:1px solid rgba(255,255,255,.08)}
+.quiz-q{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:24px;font-weight:400}
+.quiz-opts{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.quiz-opt{padding:14px 20px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:var(--rs);cursor:pointer;font-size:15px;color:rgba(255,255,255,.8);transition:all .2s}
+.quiz-opt:hover{border-color:var(--blue);background:rgba(74,163,211,.1)}
+.quiz-opt.sel{border-color:var(--blue);background:rgba(74,163,211,.15);color:white}
+.quiz-step{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:12px}
+.quiz-dots{display:flex;gap:6px;margin-bottom:20px}
+.quiz-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)}
+.quiz-dot.ac{background:var(--blue)}
+
+/* PRICING */
+.pricing{background:var(--off)}
+.prg{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px}
+.prc{background:white;border-radius:var(--r);padding:36px 28px;box-shadow:var(--sh);border:2px solid transparent;position:relative}
+.prc.ft{border-color:var(--blue)}
+.prb{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--blue);color:white;font-size:12px;font-weight:600;padding:4px 16px;border-radius:100px;white-space:nowrap}
+.prn{font-size:16px;font-weight:600;margin-bottom:8px}
+.pra{font-family:'DM Serif Display',serif;font-size:40px;margin-bottom:4px}
+.prp{font-size:14px;color:var(--mid);margin-bottom:20px}
+.prf{list-style:none;margin-bottom:24px}
+.prf li{font-size:14px;color:var(--ch3);padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);display:flex;align-items:center;gap:8px}
+.prf li::before{content:'✓';color:var(--blue);font-weight:600}
+
+/* FAQ */
+.faq-list{max-width:800px}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.08)}
+.faq-q{width:100%;background:0;border:0;padding:24px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:inherit;text-align:left}
+.faq-q span{font-size:16px;font-weight:500;color:var(--ch)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s}
+.faq-ai{padding:0 0 24px;font-size:15px;color:var(--mid);line-height:1.7;font-weight:300}
+.faq-ai a{color:var(--blue);text-decoration:none}
+.faq-arr{font-size:20px;color:var(--soft);transition:transform .3s;flex-shrink:0;margin-left:16px}
+.faq-item.open .faq-arr{transform:rotate(45deg)}
+
+/* BLOG */
+.blog{background:var(--off)}
+.blg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.blc{background:white;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:transform .2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+.blc:hover{transform:translateY(-3px)}
+.blcv{height:140px}.bl1{background:linear-gradient(135deg,#BAE6FD,#7DD3FC)}.bl2{background:linear-gradient(135deg,#FBCFE8,#F9A8D4)}.bl3{background:linear-gradient(135deg,#D9F99D,#86EFAC)}
+.blcb{padding:20px}
+.blct{font-size:11px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.blcn{font-size:15px;font-weight:600;margin-bottom:6px}
+.blcd{font-size:13px;color:var(--mid);line-height:1.5;font-weight:300}
+
+/* CRISIS */
+.crisis{background:#FEF3C7;padding:28px 60px;display:flex;align-items:center;gap:20px}
+.crisis-i{font-size:28px;flex-shrink:0}
+.crisis-t{font-size:14px;color:#92400E;line-height:1.6}
+.crisis-t strong{font-weight:600}
+.crisis-t a{color:#B45309;font-weight:500}
+
+/* SEO TEXT */
+.seo{background:var(--off)}
+.seo-txt{max-width:800px;color:var(--ch3);font-size:15px;line-height:1.8;font-weight:300}
+.seo-txt p{margin-bottom:16px}
+.seo-txt a{color:var(--blue);text-decoration:none}
+.seo-txt a:hover{text-decoration:underline}
+.seo-txt h3{font-size:18px;font-weight:600;color:var(--ch);margin:24px 0 10px}
+
+/* FINAL CTA */
+.fcta{background:linear-gradient(160deg,var(--sky-light),var(--sky-pale));text-align:center;padding:100px 60px}
+.fcta .st{font-size:44px;max-width:700px;margin-inline:auto;margin-bottom:16px}
+.fcta .ss{margin-inline:auto;max-width:520px}
+.fcta-badges{display:flex;gap:12px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.badge{background:rgba(74,163,211,.1);color:var(--blue-dk);font-size:13px;padding:6px 16px;border-radius:100px;font-weight:500}
+
+/* FOOTER */
+footer{background:var(--ch);color:rgba(255,255,255,.5);padding:60px}
+.ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ftb{font-size:14px;line-height:1.7}
+.ftb .logo{color:white;margin-bottom:14px}
+.ftc h4{font-size:13px;font-weight:600;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.ftc a{display:block;font-size:14px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:10px;transition:color .2s}
+.ftc a:hover{color:white}
+.ftbot{padding-top:30px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.ftl{font-size:12px;color:rgba(255,255,255,.35)}
+.ftlk a{font-size:12px;color:rgba(255,255,255,.4);text-decoration:none;margin-left:24px}
+.ftlk a:hover{color:rgba(255,255,255,.7)}
+</style>
+</head>
+<body>
+
+<!-- DISCLAIMER POPUP -->
+<div class="popup-overlay" id="popup" onclick="if(event.target===this)return">
+  <div class="popup-card">
+    <h3>Прежде чем начать — важно знать</h3>
+    <p>Dzeny — это ИИ-инструмент психологической поддержки, а не лицензированный психолог или медицинский сервис. Результаты не являются диагнозом.</p>
+    <label class="popup-check"><input type="checkbox" id="popcheck">Я понимаю, что Dzeny не заменяет профессиональную помощь</label>
+    <button class="bp" onclick="document.getElementById('popup').style.display='none'" style="width:100%">Понятно, продолжить</button>
+    <div class="popup-crisis">Нужна срочная помощь? Телефон доверия: <strong>8-800-2000-122</strong> · <a href="#">Экстренная помощь →</a></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#"><div class="logo-d"></div>Dzeny</a>
+  <ul class="nv">
+    <li><a href="#" class="ac">Услуги</a></li>
+    <li><a href="#">Тесты</a></li>
+    <li><a href="#">Блог</a></li>
+    <li><a href="#">Как это работает</a></li>
+    <li><a href="#">Цены</a></li>
+  </ul>
+  <div class="nr">
+    <button class="nb-login">Войти</button>
+    <button class="nb-cta">Начать бесплатно<span class="nb-badge">7 дней</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>ИИ-психолог Dzeny — <em>психологическая поддержка онлайн 24/7</em></h1>
+    <p class="hero-sub">Анонимный чат с ИИ-психологом на основе КПТ. Персональные рекомендации, упражнения и тесты — без записи и ожидания.</p>
+    <div class="hero-rotate"><span>Поможет справиться с: тревогой<br>Поможет справиться с: стрессом<br>Поможет справиться с: выгоранием<br>Поможет справиться с: расставанием<br>Поможет справиться с: низкой самооценкой</span></div>
+    <div class="hero-btns">
+      <button class="bp">Начать бесплатную сессию</button>
+      <button class="bg">Пройти тест</button>
+    </div>
+    <div class="trust-row">
+      <span class="trust-b">Полная анонимность</span>
+      <span class="trust-b">На основе КПТ</span>
+      <span class="trust-b">Доступно 24/7</span>
+    </div>
+    <div class="store-row">
+      <button class="store-btn">🍎 App Store</button>
+      <button class="store-btn">▶ Google Play</button>
+    </div>
+  </div>
+  <div class="hero-vis">
+    <div class="hp"><div class="hps"><div class="hph"><div class="hpa"></div><span class="hpn">Dzeny</span></div><div class="hpb"><div class="cm cm-a">Привет! Я Dzeny — ваш ИИ-психолог. Что вас беспокоит сегодня?</div><div class="cm cm-u">Постоянная тревога, не могу сосредоточиться на работе</div><div class="cm cm-a">Понимаю. Тревога часто мешает концентрации. Давайте попробуем технику КПТ…</div></div></div></div>
+    <div class="hf1"><strong>КПТ-методология</strong>Рекомендована ВОЗ</div>
+    <div class="hf2"><div class="fb"></div>Онлайн · 24/7</div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+  <div class="sl">Dzeny в цифрах</div>
+  <h2 class="st">Нам доверяют тысячи пользователей</h2>
+  <div class="mg">
+    <div class="mc"><div class="mn">50 000+</div><div class="ml">проведённых сессий</div></div>
+    <div class="mc"><div class="mn">87%</div><div class="ml">пользователей заметили улучшения</div></div>
+    <div class="mc"><div class="mn">12 мин</div><div class="ml">средняя длительность сессии</div></div>
+    <div class="mc"><div class="mn">24/7</div><div class="ml">доступность без записи</div></div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section>
+  <div class="sl">Направления помощи</div>
+  <h2 class="st">С чем поможет ИИ-психолог Dzeny</h2>
+  <p class="ss">Каждая карточка — это отдельное направление работы с персональным подходом.</p>
+  <div class="pg">
+    <a href="#" class="pc"><div class="pi">😰</div><div class="pn">Тревога и стресс</div><div class="pd">Техники для снижения тревожности и управления стрессом</div></a>
+    <a href="#" class="pc"><div class="pi">🌧️</div><div class="pn">Депрессия и апатия</div><div class="pd">Практики для восстановления энергии и интереса к жизни</div></a>
+    <a href="#" class="pc"><div class="pi">🔥</div><div class="pn">Выгорание</div><div class="pd">Инструменты для профилактики и восстановления ресурсов</div></a>
+    <a href="#" class="pc"><div class="pi">💔</div><div class="pn">Отношения</div><div class="pd">Работа с границами, коммуникацией и расставанием</div></a>
+    <a href="#" class="pc"><div class="pi">🪞</div><div class="pn">Самооценка</div><div class="pd">Преодоление самокритики и формирование уверенности</div></a>
+    <a href="#" class="pc"><div class="pi">💤</div><div class="pn">Сон и тревога</div><div class="pd">Медитации и техники для улучшения качества сна</div></a>
+    <a href="#" class="pc"><div class="pi">⏳</div><div class="pn">Прокрастинация</div><div class="pd">Понимание причин и формирование продуктивных привычек</div></a>
+    <a href="#" class="pc"><div class="pi">🕊️</div><div class="pn">Горевание и утрата</div><div class="pd">Поддержка в переживании потери и адаптации</div></a>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="steps">
+  <div class="sl">Процесс</div>
+  <h2 class="st">Как работает ИИ-психолог</h2>
+  <p class="ss">4 шага от первого сообщения до формирования привычки заботы о себе.</p>
+  <div class="sg">
+    <div class="sc"><div class="sn">1</div><h3>Опишите проблему</h3><p>Напишите или позвоните Dzeny — расскажите, что беспокоит. Полная анонимность.</p><span class="scc">→</span></div>
+    <div class="sc"><div class="sn">2</div><h3>ИИ анализирует</h3><p>Определяет уровень стресса и эмоциональный фон по валидированным методикам.</p><span class="scc">→</span></div>
+    <div class="sc"><div class="sn">3</div><h3>Рекомендации</h3><p>Персональные практики КПТ, медитации и упражнения под ваш запрос.</p><span class="scc">→</span></div>
+    <div class="sc"><div class="sn">4</div><h3>Итоги и план</h3><p>Трекер эмоций, AI-инсайты и адаптивный план для долгосрочного результата.</p></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="sl">Возможности</div>
+  <h2 class="st">Всё для заботы о себе — в одном приложении</h2>
+  <p class="ss">От ежедневных чекинов до структурированных техник КПТ.</p>
+  <div class="fg">
+    <div class="fc"><div class="fi">💬</div><h3>Чат с ИИ-психологом</h3><p>Текстовые сессии 24/7, без записи и ожидания. Поддержка в любой момент.</p></div>
+    <div class="fc"><div class="fi">🎙️</div><h3>Голосовые заметки</h3><p>Расскажите, что чувствуете, и получите персональный ответ от ИИ.</p></div>
+    <div class="fc"><div class="fi">🧠</div><h3>КПТ-упражнения</h3><p>Структурированные техники когнитивно-поведенческой терапии под ваши цели.</p></div>
+    <div class="fc"><div class="fi">🧘</div><h3>Медитации и дыхание</h3><p>Практики для снижения тревоги, расслабления и улучшения сна.</p></div>
+    <div class="fc"><div class="fi">📊</div><h3>Трекер настроения</h3><p>Ежедневные чекины + AI-аналитика для выявления эмоциональных паттернов.</p></div>
+    <div class="fc"><div class="fi">🎯</div><h3>Персональный план</h3><p>Адаптивная программа под ваши цели: стресс, уверенность, сон, мотивация.</p></div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section>
+  <div class="sl">Сравнение</div>
+  <h2 class="st">Чем отличается ИИ-психолог от обычного</h2>
+  <p class="ss">Dzeny не заменяет, а дополняет — делая помощь доступной каждый день.</p>
+  <table class="ctb">
+    <thead><tr><th>Параметр</th><th>Живой специалист</th><th>ИИ-психолог Dzeny</th></tr></thead>
+    <tbody>
+      <tr><td>Доступность</td><td>Запись за дни/недели</td><td>Мгновенно, 24/7</td></tr>
+      <tr><td>Стоимость</td><td>~3 000 ₽ за сессию</td><td>от 325 ₽/мес (7 дней бесплатно)</td></tr>
+      <tr><td>Анонимность</td><td>Ограничена</td><td>100% — без имени и камеры</td></tr>
+      <tr><td>Методология</td><td>Индивидуальный, зависит от школы</td><td>КПТ-алгоритмы + персонализация</td></tr>
+      <tr><td>Прогресс</td><td>Нет / субъективно</td><td>Трекер эмоций, AI-инсайты</td></tr>
+      <tr><td>Ограничения</td><td>Клинические расстройства, глубинная терапия</td><td>Повседневная поддержка, навыки, привычки</td></tr>
+    </tbody>
+  </table>
+  <div class="cd">ИИ-психолог не заменяет квалифицированную помощь. При серьёзных состояниях обратитесь к специалисту.</div>
+</section>
+
+<!-- E-E-A-T -->
+<section class="eeat">
+  <div class="sl">Экспертиза</div>
+  <h2 class="st">Кто стоит за Dzeny</h2>
+  <p class="ss">Методология разработана при участии клинических психологов и основана на принципах КПТ.</p>
+  <div class="eg">
+    <div class="ec"><div class="ea">👩‍⚕️</div><div class="en">Елена Смирнова</div><div class="er">Клинический психолог, КПТ-терапевт</div><div class="ed">15 лет практики. Научный руководитель методологии Dzeny.</div></div>
+    <div class="ec"><div class="ea">👨‍⚕️</div><div class="en">Алексей Воронов</div><div class="er">Психиатр, нейропсихолог</div><div class="ed">Консультант по безопасности алгоритмов и YMYL-соответствию.</div></div>
+    <div class="ec"><div class="ea">👩‍💻</div><div class="en">Мария Козлова</div><div class="er">PhD, исследователь ИИ</div><div class="ed">Разработчик моделей персонализации терапевтических интервенций.</div></div>
+  </div>
+  <div class="logos-row"><span>СКОЛКОВО</span><span>МГУ</span><span>Forbes</span><span>РБК</span><span>VC.ru</span></div>
+</section>
+
+<!-- SECURITY -->
+<section>
+  <div class="sl">Безопасность</div>
+  <h2 class="st">Ваши данные под защитой</h2>
+  <p class="ss">Полная конфиденциальность — от первого сообщения до последнего.</p>
+  <div class="secg">
+    <div class="secc"><div class="seci">🔒</div><div class="sech">100% анонимность</div><div class="secp">Не требуется настоящее имя, паспорт или камера</div></div>
+    <div class="secc"><div class="seci">🛡️</div><div class="sech">Шифрование данных</div><div class="secp">Все диалоги защищены сквозным шифрованием</div></div>
+    <div class="secc"><div class="seci">🚫</div><div class="sech">Данные не передаются</div><div class="secp">Мы никогда не продаём данные третьим лицам</div></div>
+    <div class="secc"><div class="seci">📜</div><div class="sech">152-ФЗ</div><div class="secp">Обработка данных в соответствии с законодательством РФ</div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="sl">Отзывы</div>
+  <h2 class="st">Что говорят пользователи</h2>
+  <p class="ss">Реальные отзывы людей, которые уже используют Dzeny.</p>
+  <div class="rg">
+    <div class="rc"><div class="rs">★★★★★</div><div class="rt">«Я изменила свои негативные привычки всего за неделю. Помогла арт-терапия — теперь это моя любимая часть плана.»</div><div class="ra">Данна К. · 16 сентября 2024</div></div>
+    <div class="rc"><div class="rs">★★★★★</div><div class="rt">«Мне нравится это приложение! Оно задаёт вдумчивые вопросы и даёт практические советы.»</div><div class="ra">Максим · 10 января 2025</div></div>
+    <div class="rc"><div class="rs">★★★★★</div><div class="rt">«Dzeny меня слышит, поддерживает и отслеживает негативные мысли, когда мне это важно.»</div><div class="ra">Константин З. · 11 ноября 2024</div></div>
+  </div>
+</section>
+
+<!-- TESTS -->
+<section>
+  <div class="sl">Тесты</div>
+  <h2 class="st">Пройдите психологический тест онлайн</h2>
+  <p class="ss">Бесплатные проверенные тесты с ИИ-интерпретацией результатов.</p>
+  <div class="tests-grid">
+    <a href="#" class="tc"><div class="tcv tc1"><div class="tci">😰</div></div><div class="tcb"><div class="tcn">Тест на тревожность (BAI)</div><div class="tcm">21 вопрос · 5 мин</div></div></a>
+    <a href="#" class="tc"><div class="tcv tc2"><div class="tci">😔</div></div><div class="tcb"><div class="tcn">Шкала депрессии Бека</div><div class="tcm">21 вопрос · 5 мин</div></div></a>
+    <a href="#" class="tc"><div class="tcv tc3"><div class="tci">❤️</div></div><div class="tcb"><div class="tcn">Тип привязанности</div><div class="tcm">16 вопросов · 4 мин</div></div></a>
+    <a href="#" class="tc"><div class="tcv tc4"><div class="tci">⚖️</div></div><div class="tcb"><div class="tcn">Колесо баланса жизни</div><div class="tcm">8 вопросов · 3 мин</div></div></a>
+  </div>
+  <div style="margin-top:28px"><a href="#" style="color:var(--blue);font-weight:500;text-decoration:none;font-size:15px">Все тесты →</a></div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section">
+  <div class="sl">Экспресс-чекин</div>
+  <h2 class="st">Не знаете, с чего начать?</h2>
+  <p class="ss">Пройдите экспресс-чекин за 1 минуту — без регистрации.</p>
+  <div class="quiz-card">
+    <div class="quiz-step">Вопрос 1 из 3</div>
+    <div class="quiz-dots"><div class="quiz-dot ac"></div><div class="quiz-dot"></div><div class="quiz-dot"></div></div>
+    <div class="quiz-q">Как вы себя чувствуете прямо сейчас?</div>
+    <div class="quiz-opts">
+      <div class="quiz-opt" onclick="document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel')">😌 Спокойно</div>
+      <div class="quiz-opt sel" onclick="document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel')">😟 Тревожно</div>
+      <div class="quiz-opt" onclick="document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel')">😔 Подавленно</div>
+      <div class="quiz-opt" onclick="document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('sel'));this.classList.add('sel')">🤷 Не знаю</div>
+    </div>
+    <button class="bp bb" style="padding:14px 32px;font-size:15px">Далее →</button>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="sl">Тарифы</div>
+  <h2 class="st">Стоимость ИИ-психолога</h2>
+  <p class="ss">Прозрачные цены. 7 дней бесплатно без привязки карты.</p>
+  <div class="prg">
+    <div class="prc">
+      <div class="prn">Бесплатно</div>
+      <div class="pra">0 ₽</div>
+      <div class="prp">7 дней</div>
+      <ul class="prf"><li>3 сессии с ИИ</li><li>Трекер настроения</li><li>1 тест с ИИ-интерпретацией</li></ul>
+      <button class="bp" style="width:100%">Начать бесплатно</button>
+    </div>
+    <div class="prc ft">
+      <div class="prb">Популярный</div>
+      <div class="prn">Ежемесячный</div>
+      <div class="pra">990 ₽</div>
+      <div class="prp">в месяц</div>
+      <ul class="prf"><li>Безлимитные сессии</li><li>Все тесты + ИИ-интерпретация</li><li>КПТ-практики и медитации</li><li>Персональный план</li></ul>
+      <button class="bp" style="width:100%">Попробовать бесплатно</button>
+    </div>
+    <div class="prc">
+      <div class="prn">Годовой</div>
+      <div class="pra">3 900 ₽</div>
+      <div class="prp">в год · 325 ₽/мес</div>
+      <ul class="prf"><li>Всё из ежемесячного</li><li>Расширенная аналитика</li><li>Экономия 7 980 ₽</li><li>Приоритетные обновления</li></ul>
+      <button class="bp" style="width:100%">Попробовать бесплатно</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="sl">FAQ</div>
+  <h2 class="st">Частые вопросы об ИИ-психологе</h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Что такое ИИ-психолог?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">ИИ-психолог — это сервис на основе искусственного интеллекта, который использует методы когнитивно-поведенческой терапии (КПТ) для оказания психологической поддержки. Dzeny анализирует ваши эмоции, предлагает персональные практики и помогает формировать здоровые привычки. <a href="#">Подробнее о методологии →</a></div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Это научно обосновано?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">Да. Dzeny построен на принципах когнитивно-поведенческой терапии, рекомендованной ВОЗ. Методология разработана при участии клинических психологов и основана на результатах научных исследований. <a href="#">Наши эксперты →</a></div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Гарантируете ли вы анонимность?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">Полностью. Мы не требуем имени, паспорта или видео. Все данные зашифрованы и не передаются третьим лицам. Обработка данных соответствует 152-ФЗ. <a href="#">Политика конфиденциальности →</a></div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Чем Dzeny отличается от ChatGPT?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">В отличие от общих ИИ-ассистентов, Dzeny специализируется на психологической поддержке: использует клинические методики КПТ, запоминает контекст ваших сессий, отслеживает прогресс и предлагает персональный план действий.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Может ли ИИ заменить терапевта?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">Нет. Dzeny не ставит диагнозы и не работает с клиническими расстройствами. При серьёзных состояниях обратитесь к специалисту. Dzeny — это доступный инструмент ежедневной поддержки и дополнение к терапии.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Сколько стоит и можно ли попробовать бесплатно?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">Первые 7 дней полностью бесплатны и без привязки карты. Далее — от 325 ₽/мес при годовом тарифе или 990 ₽/мес. <a href="#">Подробнее о тарифах →</a></div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="this.parentElement.classList.toggle('open');var a=this.nextElementSibling;a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px'"><span>Безопасны ли мои данные?</span><span class="faq-arr">+</span></button><div class="faq-a"><div class="faq-ai">Все диалоги зашифрованы сквозным шифрованием. Мы не продаём и не передаём данные третьим лицам. Обработка персональных данных — в соответствии с 152-ФЗ.</div></div></div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog">
+  <div class="sl">Блог</div>
+  <h2 class="st">Полезные статьи</h2>
+  <p class="ss">Материалы о ментальном здоровье, техниках КПТ и самопомощи.</p>
+  <div class="blg">
+    <a href="#" class="blc"><div class="blcv bl1"></div><div class="blcb"><div class="blct">КПТ</div><div class="blcn">Что такое когнитивно-поведенческая терапия и как она работает</div><div class="blcd">Разбираемся в основах КПТ — самого исследованного метода психотерапии.</div></div></a>
+    <a href="#" class="blc"><div class="blcv bl2"></div><div class="blcb"><div class="blct">Тревожность</div><div class="blcn">5 техник КПТ для снижения тревожности за 10 минут</div><div class="blcd">Практические упражнения, которые можно сделать прямо сейчас.</div></div></a>
+    <a href="#" class="blc"><div class="blcv bl3"></div><div class="blcb"><div class="blct">Выгорание</div><div class="blcn">Как распознать эмоциональное выгорание на ранней стадии</div><div class="blcd">Признаки, которые легко пропустить, и что с ними делать.</div></div></a>
+  </div>
+  <div style="margin-top:28px"><a href="#" style="color:var(--blue);font-weight:500;text-decoration:none;font-size:15px">Все статьи →</a></div>
+</section>
+
+<!-- CRISIS -->
+<div class="crisis">
+  <div class="crisis-i">🆘</div>
+  <div class="crisis-t"><strong>Если вам или близкому нужна срочная помощь — обратитесь немедленно.</strong><br>Телефон доверия: <strong>8-800-2000-122</strong> (бесплатно, круглосуточно) · <a href="#">Экстренная помощь →</a></div>
+</div>
+
+<!-- SEO TEXT -->
+<section class="seo">
+  <h2 class="st" style="font-size:32px">ИИ-психолог Dzeny — психологическая помощь онлайн</h2>
+  <div class="seo-txt">
+    <p>Dzeny — это <a href="#">ИИ-психолог онлайн</a>, созданный для ежедневной психологической поддержки. Сервис на основе искусственного интеллекта использует методы когнитивно-поведенческой терапии (КПТ), чтобы помочь справиться с тревогой, стрессом, выгоранием и другими эмоциональными трудностями — анонимно, бесплатно и без записи.</p>
+    <h3>Что умеет ИИ-психолог</h3>
+    <p>Dzeny ведёт диалог, анализирует ваше эмоциональное состояние и предлагает персональные практики: <a href="#">КПТ-упражнения</a>, медитации, дыхательные техники и инструменты для отслеживания прогресса. Встроенный трекер настроения и AI-инсайты помогают видеть динамику и понимать, что влияет на ваше самочувствие.</p>
+    <h3>Кому подойдёт Dzeny</h3>
+    <p>Сервис подходит всем, кто хочет лучше понимать свои эмоции, формировать здоровые привычки или подготовиться к работе с живым психологом. Dzeny — это не замена терапии, а доступный первый шаг к <a href="#">ментальному здоровью</a>. Пройдите <a href="#">бесплатный тест</a> или начните сессию — 7 дней без оплаты.</p>
+    <p style="font-size:13px;color:var(--soft);font-style:italic;margin-top:20px">Dzeny не является медицинским сервисом и не заменяет консультацию специалиста.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="fcta">
+  <div class="sl">Начните сейчас</div>
+  <h2 class="st">Сделайте первый шаг к ментальному здоровью</h2>
+  <p class="ss">ИИ-психолог для ежедневной поддержки — бесплатно первые 7 дней.</p>
+  <div class="fcta-badges"><span class="badge">✓ 7 дней бесплатно</span><span class="badge">✓ На основе КПТ</span><span class="badge">✓ 24/7</span><span class="badge">✓ Анонимно</span></div>
+  <button class="bp" style="font-size:18px;padding:18px 48px">Начать бесплатную сессию</button>
+  <div style="margin-top:20px;font-size:14px;color:var(--mid)">Присоединяйтесь к <strong style="color:var(--ch)">12 000+</strong> пользователей</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftg">
+    <div class="ftb"><a class="logo" href="#"><div class="logo-d"></div>Dzeny</a><p style="margin-top:14px">ИИ-психолог на базе КПТ. Анонимная поддержка ментального здоровья 24/7.</p><div class="store-row" style="margin-top:16px"><button class="store-btn">🍎 App Store</button><button class="store-btn">▶ Google Play</button></div></div>
+    <div class="ftc"><h4>О сервисе</h4><a href="#">О нас</a><a href="#">Как это работает</a><a href="#">Цены</a><a href="#">Отзывы</a><a href="#">Эксперты</a></div>
+    <div class="ftc"><h4>Полезное</h4><a href="#">Блог</a><a href="#">Тесты</a><a href="#">Инструменты КПТ</a><a href="#">Экстренная помощь</a></div>
+    <div class="ftc"><h4>Контакты</h4><a href="#">general@dzeny.com</a><a href="#">Telegram</a><a href="#">VK</a><a href="#">Политика конфиденциальности</a><a href="#">Оферта</a></div>
+  </div>
+  <div class="ftbot">
+    <div class="ftl">© 2025 Dzeny · ИНН 0000000000 · ОГРН 0000000000000 · Dzeny не является медицинским сервисом.</div>
+    <div class="ftlk"><a href="#">Политика конфиденциальности</a><a href="#">Условия использования</a><a href="#">Обработка ПД</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

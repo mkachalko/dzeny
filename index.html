@@ -47,6 +47,7 @@
             font-weight: 300;
         }
         .funnel { display: flex; flex-direction: column; gap: 24px; }
+        .mockup-link { color: inherit; font-style: inherit; text-decoration: none; }
         .level {
             background: #1a1d27;
             border-radius: 16px;
@@ -143,7 +144,7 @@
         <div class="level level-home">
             <div class="level-header">
                 <div class="level-badge">🏠</div>
-                <div class="level-title">ГЛАВНАЯ СТРАНИЦА</div>
+                <div class="level-title"><a class="mockup-link" href="/main_page.html">ГЛАВНАЯ СТРАНИЦА</a></div>
             </div>
             <div class="level-subtitle">Точка входа • Кластер «ИИ-психолог» (3.5K) + брендовые запросы</div>
             <div class="cards-grid">
@@ -172,12 +173,12 @@
             </div>
             <div class="cards-grid">
                 <div class="card commercial hub">
-                    <div class="card-title">Все услуги <span class="badge-hub">хаб</span></div>
+                    <div class="card-title">Все услуги<span class="badge-hub">хаб</span></div>
                     <div class="card-url">/uslugi/</div>
                     <div class="card-desc">Корневой хаб. Навигация по аудитории, методам, проблемам</div>
                 </div>
                 <div class="card commercial" onclick="toggleSub(this)">
-                    <div class="card-title">Психолог для взрослых</div>
+                    <div class="card-title"><a class="mockup-link" href="/service_page.html">Психолог для взрослых</a></div>
                     <div class="card-url">/uslugi/psikholog-dlya-vzroslykh/</div>
                     <div class="card-desc">353K частотность • Максимальный спрос во всём СЯ</div>
                     <div class="expand-hint">+ ещё в ядре ↓</div>
@@ -292,7 +293,7 @@
 
             <div class="cards-grid">
                 <div class="card tests hub">
-                    <div class="card-title">Все тесты <span class="badge-hub">хаб</span></div>
+                    <div class="card-title"><a class="mockup-link" href="/tests_hub.html">Все тесты</a> <span class="badge-hub">хаб</span></div>
                     <div class="card-url">/testy/</div>
                     <div class="card-desc">Кластер «онлайн психологический тест» (2.9K) • Каталог с фильтрами</div>
                 </div>
@@ -316,7 +317,7 @@
                     <div class="expand-hint">+ ещё тестов ↓</div>
                     <div class="subcategories">
                         <div class="subcat-item">тест HADS (8.3K), Спилбергера-Ханина (8.3K)</div>
-                        <div class="subcat-item">тест тревожности (5K), биполярное, социофобия</div>
+                        <div class="subcat-item"><a class="mockup-link" href="/test_page.html">тест тревожности (5K)</a> , биполярное, социофобия</div>
                     </div>
                 </div>
             </div>

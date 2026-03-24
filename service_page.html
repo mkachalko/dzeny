@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИИ-психолог для взрослых — Dzeny | Бесплатно 7 дней</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky: #C8E8F5;
+    --sky-light: #E8F5FC;
+    --sky-pale: #F2F9FD;
+    --charcoal: #1E1E1E;
+    --charcoal-2: #2D2D2D;
+    --charcoal-3: #3A3A3A;
+    --mid: #6B7280;
+    --soft: #9CA3AF;
+    --blue-accent: #4BA3D3;
+    --blue-dark: #2B6CB0;
+    --white: #FFFFFF;
+    --off-white: #F8FAFB;
+    --green-soft: #D1FAE5;
+    --green-dark: #065F46;
+    --amber: #FBBF24;
+    --radius: 20px;
+    --radius-sm: 12px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 40px rgba(0,0,0,0.10);
+  }
+
+  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--charcoal); font-size: 16px; line-height: 1.6; }
+
+  /* ============ NAV ============ */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 60px; position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); z-index: 100; border-bottom: 1px solid rgba(0,0,0,0.05); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; color: var(--charcoal); text-decoration: none; }
+  .nav-logo-dot { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #6EC6F0 0%, #3A8FD6 100%); display: flex; align-items: center; justify-content: center; }
+  .nav-logo-dot::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: white; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--charcoal-3); text-decoration: none; font-size: 15px; font-weight: 400; transition: color 0.2s; position: relative; }
+  .nav-links a.active { color: var(--blue-accent); font-weight: 500; }
+  .nav-links a:hover { color: var(--blue-accent); }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .nav-login { background: transparent; color: var(--charcoal-3); border: 1.5px solid rgba(0,0,0,0.12); padding: 10px 24px; border-radius: 100px; font-size: 14px; font-weight: 400; cursor: pointer; font-family: inherit; transition: border-color 0.2s; }
+  .nav-login:hover { border-color: var(--charcoal); }
+  .nav-cta { background: var(--charcoal); color: white; border: none; padding: 12px 28px; border-radius: 100px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.2s; position: relative; }
+  .nav-cta:hover { opacity: 0.8; }
+  .nav-badge { position: absolute; top: -8px; right: -8px; background: #EF4444; color: white; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+
+  /* ============ BREADCRUMB ============ */
+  .breadcrumb { padding: 16px 60px; font-size: 13px; color: var(--soft); background: var(--off-white); }
+  .breadcrumb a { color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--blue-accent); }
+  .breadcrumb span { margin: 0 6px; }
+
+  /* ============ HERO ============ */
+  .hero { background: linear-gradient(160deg, var(--sky-light) 0%, var(--sky-pale) 40%, var(--white) 100%); padding: 80px 60px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; overflow: hidden; position: relative; }
+  .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(74,163,211,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(74,163,211,0.12); color: var(--blue-dark); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
+  .hero-tag::before { content: '●'; font-size: 8px; }
+  .hero h1 { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.15; color: var(--charcoal); margin-bottom: 20px; font-weight: 400; }
+  .hero h1 em { font-style: italic; color: var(--blue-accent); }
+  .hero-sub { font-size: 17px; color: var(--mid); line-height: 1.7; margin-bottom: 32px; max-width: 480px; font-weight: 300; }
+  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+  .btn-primary { background: var(--charcoal); color: white; border: none; padding: 16px 36px; border-radius: 100px; font-size: 16px; font-weight: 500; cursor: pointer; font-family: inherit; transition: transform 0.2s, box-shadow 0.2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+  .btn-ghost { background: transparent; color: var(--charcoal-3); border: 1.5px solid rgba(0,0,0,0.15); padding: 15px 32px; border-radius: 100px; font-size: 16px; font-weight: 400; cursor: pointer; font-family: inherit; transition: border-color 0.2s; }
+  .btn-ghost:hover { border-color: var(--charcoal); }
+  .trust-badges { display: flex; gap: 20px; flex-wrap: wrap; }
+  .trust-badge { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--mid); font-weight: 400; }
+  .trust-badge::before { content: '✓'; color: var(--blue-accent); font-weight: 600; font-size: 14px; }
+
+  /* HERO VISUAL — chat UI */
+  .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+  .hero-phone { width: 260px; height: 460px; background: var(--charcoal-2); border-radius: 36px; padding: 14px; box-shadow: var(--shadow-md); position: relative; z-index: 2; }
+  .phone-screen { background: var(--off-white); border-radius: 26px; height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+  .phone-header { background: white; padding: 14px 16px 10px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .phone-header-left { display: flex; align-items: center; gap: 8px; }
+  .phone-avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #6EC6F0, #3A8FD6); }
+  .phone-header-text { font-size: 13px; font-weight: 600; color: var(--charcoal); }
+  .phone-status { width: 8px; height: 8px; border-radius: 50%; background: #34D399; }
+  .phone-body { flex: 1; padding: 14px 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .chat-msg { max-width: 82%; padding: 10px 14px; border-radius: 16px; font-size: 12px; line-height: 1.5; }
+  .chat-ai { background: white; color: var(--charcoal-3); border-bottom-left-radius: 4px; align-self: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .chat-user { background: var(--charcoal); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+  .chat-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: white; border-radius: 16px; border-bottom-left-radius: 4px; align-self: flex-start; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .typing-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--soft); animation: typing 1.4s infinite; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing { 0%, 60%, 100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+
+  .hero-float-1 { position: absolute; top: 20px; right: -44px; background: white; border-radius: var(--radius-sm); padding: 12px 16px; box-shadow: var(--shadow-md); font-size: 12px; color: var(--charcoal); z-index: 3; }
+  .hero-float-1 strong { font-weight: 600; display: block; margin-bottom: 2px; font-size: 13px; }
+  .hero-float-2 { position: absolute; bottom: 50px; left: -44px; background: white; border-radius: var(--radius-sm); padding: 10px 14px; box-shadow: var(--shadow-md); font-size: 12px; z-index: 3; display: flex; align-items: center; gap: 8px; }
+  .float-badge { width: 8px; height: 8px; border-radius: 50%; background: #34D399; flex-shrink: 0; }
+
+  /* ============ COMMON SECTION ============ */
+  section { padding: 80px 60px; }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-accent); margin-bottom: 14px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--charcoal); line-height: 1.2; margin-bottom: 16px; font-weight: 400; }
+  .section-sub { font-size: 17px; color: var(--mid); line-height: 1.7; max-width: 600px; font-weight: 300; margin-bottom: 50px; }
+
+  /* ============ SEO INTRO ============ */
+  .intro-section { background: var(--off-white); }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .intro-text p { color: var(--charcoal-3); line-height: 1.8; margin-bottom: 20px; font-size: 16px; font-weight: 300; }
+  .intro-disclaimer { font-size: 13px; color: var(--soft); font-style: italic; margin-top: 10px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06); }
+  .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .stat-card { background: white; border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--charcoal); font-weight: 400; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: var(--mid); font-weight: 400; }
+  .stat-card-accent { background: var(--charcoal); color: white; grid-column: span 2; }
+  .stat-card-accent .stat-num { color: white; font-size: 22px; line-height: 1.3; }
+  .stat-card-accent .stat-label { color: rgba(255,255,255,0.65); }
+
+  /* ============ SIGNS / КОМУ ПОДХОДИТ ============ */
+  .signs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .sign-card { background: var(--sky-pale); border-radius: var(--radius); padding: 24px 20px; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid rgba(74,163,211,0.08); cursor: default; }
+  .sign-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+  .sign-icon { font-size: 26px; margin-bottom: 12px; }
+  .sign-title { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+  .sign-desc { font-size: 13px; color: var(--mid); line-height: 1.5; font-weight: 300; }
+  .signs-cta { margin-top: 40px; display: flex; align-items: center; gap: 16px; }
+  .signs-cta-text { font-size: 15px; color: var(--charcoal-3); font-weight: 400; }
+
+  /* ============ PROBLEMS / ЗАПРОСЫ ============ */
+  .problems { background: var(--off-white); }
+  .problems-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .problem-card { background: white; border-radius: var(--radius); padding: 30px 24px; box-shadow: var(--shadow); transition: transform 0.2s; }
+  .problem-card:hover { transform: translateY(-3px); }
+  .problem-icon { font-size: 28px; margin-bottom: 14px; }
+  .problem-card h3 { font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 10px; }
+  .problem-card p { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 300; }
+  .problem-link { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--blue-accent); font-weight: 500; text-decoration: none; }
+  .problem-link:hover { text-decoration: underline; }
+
+  /* ============ STEPS / КАК РАБОТАЕТ ============ */
+  .steps-section { background: var(--charcoal); color: white; }
+  .steps-section .section-label { color: rgba(74,163,211,0.8); }
+  .steps-section .section-title { color: white; }
+  .steps-section .section-sub { color: rgba(255,255,255,0.55); }
+  .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+  .step-card { background: rgba(255,255,255,0.06); border-radius: var(--radius); padding: 28px 22px; border: 1px solid rgba(255,255,255,0.08); text-align: center; position: relative; }
+  .step-number { width: 40px; height: 40px; border-radius: 50%; background: rgba(74,163,211,0.2); color: var(--sky); font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .step-card h3 { font-size: 15px; font-weight: 500; color: white; margin-bottom: 10px; }
+  .step-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; font-weight: 300; }
+  .step-connector { position: absolute; top: 48px; right: -12px; color: rgba(255,255,255,0.2); font-size: 16px; z-index: 2; }
+
+  /* ============ ADVANTAGES / ПРЕИМУЩЕСТВА ============ */
+  .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .adv-card { display: flex; gap: 16px; align-items: flex-start; padding: 28px 24px; border-radius: var(--radius); background: var(--off-white); transition: transform 0.2s; }
+  .adv-card:hover { transform: translateY(-2px); }
+  .adv-icon { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--sky-pale); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .adv-title { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+  .adv-desc { font-size: 14px; color: var(--mid); line-height: 1.55; font-weight: 300; }
+
+  /* ============ SOCIAL PROOF ============ */
+  .social-section { background: var(--off-white); }
+  .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 50px; }
+  .metric-card { text-align: center; padding: 32px 20px; background: white; border-radius: var(--radius); box-shadow: var(--shadow); }
+  .metric-num { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--charcoal); margin-bottom: 6px; }
+  .metric-label { font-size: 14px; color: var(--mid); font-weight: 400; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .review-card { background: white; border-radius: var(--radius); padding: 28px 24px; box-shadow: var(--shadow); }
+  .review-stars { color: var(--amber); font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: var(--charcoal-3); line-height: 1.65; margin-bottom: 16px; font-weight: 300; font-style: italic; }
+  .review-author { font-size: 13px; font-weight: 600; color: var(--mid); }
+
+  /* ============ COMPARISON TABLE ============ */
+  .compare-section { background: white; }
+  .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-table thead th { background: var(--charcoal); color: white; padding: 20px 24px; font-size: 15px; font-weight: 500; text-align: left; }
+  .compare-table thead th:first-child { border-top-left-radius: var(--radius); }
+  .compare-table thead th:last-child { border-top-right-radius: var(--radius); background: var(--blue-dark); }
+  .compare-table tbody td { padding: 18px 24px; font-size: 14px; color: var(--charcoal-3); border-bottom: 1px solid rgba(0,0,0,0.06); font-weight: 300; }
+  .compare-table tbody td:first-child { font-weight: 500; color: var(--charcoal); background: var(--off-white); }
+  .compare-table tbody td:last-child { background: rgba(74,163,211,0.04); }
+  .compare-table tbody tr:last-child td { border-bottom: none; }
+  .compare-table tbody tr:last-child td:first-child { border-bottom-left-radius: var(--radius); }
+  .compare-table tbody tr:last-child td:last-child { border-bottom-right-radius: var(--radius); }
+  .compare-disclaimer { margin-top: 20px; font-size: 13px; color: var(--soft); font-style: italic; padding: 16px 20px; background: var(--off-white); border-radius: var(--radius-sm); border-left: 3px solid var(--blue-accent); }
+
+  /* ============ PRICING ============ */
+  .pricing-section { background: var(--off-white); }
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 700px; }
+  .price-card { background: white; border-radius: var(--radius); padding: 36px 32px; box-shadow: var(--shadow); border: 2px solid transparent; transition: border-color 0.2s; position: relative; }
+  .price-card.featured { border-color: var(--blue-accent); }
+  .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--blue-accent); color: white; font-size: 12px; font-weight: 600; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+  .price-name { font-size: 18px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+  .price-amount { font-family: 'DM Serif Display', serif; font-size: 44px; color: var(--charcoal); margin-bottom: 4px; }
+  .price-period { font-size: 14px; color: var(--mid); margin-bottom: 20px; }
+  .price-features { list-style: none; margin-bottom: 28px; }
+  .price-features li { font-size: 14px; color: var(--charcoal-3); padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; gap: 8px; }
+  .price-features li::before { content: '✓'; color: var(--blue-accent); font-weight: 600; }
+  .price-trial { text-align: center; margin-top: 12px; font-size: 13px; color: var(--soft); }
+
+  /* ============ FAQ ============ */
+  .faq-list { max-width: 800px; }
+  .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .faq-question { width: 100%; background: none; border: none; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: inherit; text-align: left; }
+  .faq-question span { font-size: 16px; font-weight: 500; color: var(--charcoal); }
+  .faq-arrow { font-size: 20px; color: var(--soft); transition: transform 0.3s; }
+  .faq-item.open .faq-arrow { transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .faq-answer-inner { padding: 0 0 24px; font-size: 15px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+  .faq-answer-inner a { color: var(--blue-accent); text-decoration: none; }
+  .faq-answer-inner a:hover { text-decoration: underline; }
+
+  /* ============ CTA BANNER ============ */
+  .cta-banner { background: linear-gradient(120deg, var(--sky-light) 0%, rgba(74,163,211,0.15) 100%); display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 60px; }
+  .cta-banner-text h2 { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--charcoal); margin-bottom: 10px; font-weight: 400; }
+  .cta-banner-text p { font-size: 16px; color: var(--mid); font-weight: 300; }
+  .cta-banner-right { flex-shrink: 0; text-align: right; }
+  .cta-microcopy { font-size: 12px; color: var(--soft); margin-top: 10px; }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta { background: linear-gradient(160deg, var(--sky-light) 0%, var(--sky-pale) 100%); text-align: center; padding: 100px 60px; }
+  .final-cta .section-title { font-size: 48px; margin-bottom: 16px; max-width: 700px; margin-inline: auto; }
+  .final-cta .section-sub { margin-inline: auto; max-width: 500px; }
+  .final-cta-badges { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+  .badge { background: rgba(74,163,211,0.1); color: var(--blue-dark); font-size: 13px; padding: 6px 16px; border-radius: 100px; font-weight: 500; }
+
+  /* ============ CRISIS ============ */
+  .crisis-block { background: #FEF3C7; padding: 32px 60px; display: flex; align-items: center; gap: 20px; }
+  .crisis-icon { font-size: 28px; flex-shrink: 0; }
+  .crisis-text { font-size: 14px; color: #92400E; line-height: 1.6; }
+  .crisis-text strong { font-weight: 600; }
+  .crisis-text a { color: #B45309; font-weight: 500; }
+
+  /* ============ EXPERTS ============ */
+  .experts-section { background: var(--off-white); }
+  .experts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .expert-card { background: white; border-radius: var(--radius); padding: 30px 24px; box-shadow: var(--shadow); text-align: center; }
+  .expert-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--sky) 0%, var(--blue-accent) 100%); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; }
+  .expert-name { font-size: 16px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; }
+  .expert-role { font-size: 13px; color: var(--blue-accent); font-weight: 500; margin-bottom: 10px; }
+  .expert-desc { font-size: 13px; color: var(--mid); line-height: 1.6; font-weight: 300; }
+  .experts-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 36px; font-size: 15px; color: var(--blue-accent); font-weight: 500; text-decoration: none; }
+  .experts-link:hover { text-decoration: underline; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--charcoal); color: rgba(255,255,255,0.5); padding: 60px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand { font-size: 14px; line-height: 1.7; }
+  .footer-brand .nav-logo { color: white; margin-bottom: 14px; }
+  .footer-col h4 { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-legal { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; margin-left: 24px; }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-dot"></div>
+    Dzeny
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Услуги</a></li>
+    <li><a href="#">Как это работает</a></li>
+    <li><a href="#">Тарифы</a></li>
+    <li><a href="#">Инструменты КПТ</a></li>
+    <li><a href="#">Блог</a></li>
+    <li><a href="#">Тесты</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-login">Войти</button>
+    <button class="nav-cta">
+      Попробовать бесплатно
+      <span class="nav-badge">7 дней</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ BREADCRUMB ============ -->
+<div class="breadcrumb">
+  <a href="#">Главная</a><span>›</span>
+  <a href="#">Услуги</a><span>›</span>
+  ИИ-психолог для взрослых
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">ИИ-психолог</div>
+    <h1>ИИ-психолог для взрослых —<br><em>онлайн поддержка 24/7</em></h1>
+    <p class="hero-sub">Анонимная психологическая помощь на базе КПТ. Попробуйте бесплатно — 7 дней без оплаты.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Попробовать бесплатно</button>
+      <button class="btn-ghost">Как это работает ↓</button>
+    </div>
+    <div class="trust-badges">
+      <span class="trust-badge">Полная анонимность</span>
+      <span class="trust-badge">Без привязки карты</span>
+      <span class="trust-badge">7 дней бесплатно</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-phone">
+      <div class="phone-screen">
+        <div class="phone-header">
+          <div class="phone-header-left">
+            <div class="phone-avatar"></div>
+            <span class="phone-header-text">Dzeny</span>
+          </div>
+          <div class="phone-status"></div>
+        </div>
+        <div class="phone-body">
+          <div class="chat-msg chat-ai">Привет! Я Dzeny — ваш ИИ-психолог. Расскажите, что вас беспокоит сегодня?</div>
+          <div class="chat-msg chat-user">Последние недели я чувствую постоянную тревогу и не могу нормально спать</div>
+          <div class="chat-msg chat-ai">Я вас слышу. Тревога и проблемы со сном часто связаны. Давайте начнём с техники КПТ для снижения тревоги…</div>
+          <div class="chat-typing">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-float-1">
+      <strong>КПТ-методология</strong>
+      Рекомендована ВОЗ
+    </div>
+    <div class="hero-float-2">
+      <div class="float-badge"></div>
+      Онлайн · Доступен 24/7
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEO INTRO ============ -->
+<section class="intro-section">
+  <div class="intro-grid">
+    <div class="intro-text">
+      <div class="section-label">О сервисе</div>
+      <h2 class="section-title">Что такое ИИ-психолог Dzeny?</h2>
+      <p>Онлайн-психолог для взрослых на базе искусственного интеллекта помогает справляться с тревогой, стрессом, выгоранием и эмоциональными кризисами. Dzeny использует методы когнитивно-поведенческой терапии (КПТ), адаптированные под каждого пользователя.</p>
+      <p>Поддержка доступна анонимно, круглосуточно и без записи — начните бесплатную сессию прямо сейчас. ИИ-психолог анализирует ваши эмоции, предлагает персональные практики и помогает выстроить привычку заботы о ментальном здоровье.</p>
+      <p class="intro-disclaimer">Dzeny не является медицинским сервисом и не заменяет консультацию специалиста.</p>
+    </div>
+    <div class="intro-stats">
+      <div class="stat-card">
+        <div class="stat-num">50 000+</div>
+        <div class="stat-label">проведённых сессий</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">доступность без записи и ожидания</div>
+      </div>
+      <div class="stat-card stat-card-accent">
+        <div class="stat-num">Разработано при участии клинических психологов на основе КПТ</div>
+        <div class="stat-label">Методология подтверждена Всемирной организацией здравоохранения</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNS / КОМУ ПОДХОДИТ ============ -->
+<section>
+  <div class="section-label">Признаки</div>
+  <h2 class="section-title">Как понять, что вам нужна психологическая поддержка</h2>
+  <p class="section-sub">Если вы узнали хотя бы 2–3 пункта — попробуйте бесплатную сессию с Dzeny.</p>
+  <div class="signs-grid">
+    <div class="sign-card">
+      <div class="sign-icon">😰</div>
+      <div class="sign-title">Постоянная тревога</div>
+      <div class="sign-desc">Беспокойство, которое не отпускает даже без видимых причин</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">💤</div>
+      <div class="sign-title">Проблемы со сном</div>
+      <div class="sign-desc">Трудности с засыпанием, частые пробуждения, изменение аппетита</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">😔</div>
+      <div class="sign-title">Потеря интереса</div>
+      <div class="sign-desc">Работа, хобби и общение перестали приносить удовольствие</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">💥</div>
+      <div class="sign-title">Конфликты в отношениях</div>
+      <div class="sign-desc">Напряжение с партнёром, семьёй или коллегами</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">🔥</div>
+      <div class="sign-title">Эмоциональное выгорание</div>
+      <div class="sign-desc">Усталость от работы и ощущение, что ресурсы на нуле</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">🎭</div>
+      <div class="sign-title">Перепады настроения</div>
+      <div class="sign-desc">Резкие эмоциональные скачки от радости к подавленности</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">🪞</div>
+      <div class="sign-title">Проблемы с самооценкой</div>
+      <div class="sign-desc">Постоянная самокритика, неуверенность в себе</div>
+    </div>
+    <div class="sign-card">
+      <div class="sign-icon">⏳</div>
+      <div class="sign-title">Прокрастинация</div>
+      <div class="sign-desc">Потеря мотивации и откладывание важных дел</div>
+    </div>
+  </div>
+  <div class="signs-cta">
+    <button class="btn-primary">Начать бесплатно</button>
+    <span class="signs-cta-text">Без регистрации с паспортом · Полная анонимность</span>
+  </div>
+</section>
+
+<!-- ============ PROBLEMS / С КАКИМИ ЗАПРОСАМИ ============ -->
+<section class="problems">
+  <div class="section-label">Направления помощи</div>
+  <h2 class="section-title">С какими проблемами помогает ИИ-психолог</h2>
+  <p class="section-sub">Каждый запрос — это отправная точка для работы. Dzeny адаптирует подход под вашу конкретную ситуацию.</p>
+  <div class="problems-grid">
+    <div class="problem-card">
+      <div class="problem-icon">😰</div>
+      <h3>Тревога и панические атаки</h3>
+      <p>Техники КПТ помогают распознать тревожные мысли, снизить интенсивность переживаний и вернуть контроль.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🌧️</div>
+      <h3>Депрессия и апатия</h3>
+      <p>Персональные практики для восстановления энергии, интереса к жизни и формирования позитивных привычек.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🔥</div>
+      <h3>Стресс и выгорание</h3>
+      <p>Инструменты для управления стрессом, восстановления ресурсов и профилактики эмоционального истощения.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💔</div>
+      <h3>Проблемы в отношениях</h3>
+      <p>Работа с коммуникацией, границами и эмоциями в партнёрских, семейных и рабочих отношениях.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🧭</div>
+      <h3>Кризис самоидентификации</h3>
+      <p>Поддержка в периоды неопределённости, поиска смысла и переоценки жизненных приоритетов.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⏳</div>
+      <h3>Прокрастинация и мотивация</h3>
+      <p>Практики для понимания причин откладывания, формирования дисциплины и достижения целей.</p>
+      <a href="#" class="problem-link">Подробнее →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STEPS / КАК РАБОТАЕТ ============ -->
+<section class="steps-section">
+  <div class="section-label">Процесс</div>
+  <h2 class="section-title">Как проходит сессия с ИИ-психологом</h2>
+  <p class="section-sub">5 шагов от первого сообщения до формирования привычки заботы о себе.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Начните разговор</h3>
+      <p>Напишите или позвоните Dzeny — расскажите, что беспокоит. Полная анонимность.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>ИИ анализирует состояние</h3>
+      <p>Определяет уровень стресса, тревожности и эмоциональный фон по валидированным методикам.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>Персональный план</h3>
+      <p>Рекомендации практик КПТ, медитаций и упражнений, адаптированных под ваш запрос.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <h3>Практики и прогресс</h3>
+      <p>Трекер эмоций, AI-инсайты и статистика изменений — видите результат каждый день.</p>
+      <span class="step-connector">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <h3>Привычка заботы</h3>
+      <p>Долгосрочное сопровождение, мотивация и адаптация плана по мере вашего прогресса.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ADVANTAGES / ПРЕИМУЩЕСТВА ============ -->
+<section>
+  <div class="section-label">Преимущества</div>
+  <h2 class="section-title">Почему Dzeny</h2>
+  <p class="section-sub">Безопасный, доступный и научно обоснованный подход к ментальному здоровью.</p>
+  <div class="advantages-grid">
+    <div class="adv-card">
+      <div class="adv-icon">🔒</div>
+      <div>
+        <div class="adv-title">Полная анонимность</div>
+        <div class="adv-desc">Без имени, паспорта и камеры. Обсуждайте любые темы без страха.</div>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🕐</div>
+      <div>
+        <div class="adv-title">Доступен 24/7</div>
+        <div class="adv-desc">Поддержка в любой момент — ночью, в выходные, когда эмоции на пике.</div>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🧠</div>
+      <div>
+        <div class="adv-title">Основан на КПТ</div>
+        <div class="adv-desc">Методы когнитивно-поведенческой терапии, рекомендованные ВОЗ.</div>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">⚡</div>
+      <div>
+        <div class="adv-title">Без очередей и записи</div>
+        <div class="adv-desc">Начните прямо сейчас, не дожидаясь свободного слота.</div>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🎯</div>
+      <div>
+        <div class="adv-title">Персональный план</div>
+        <div class="adv-desc">ИИ адаптирует рекомендации под ваш конкретный запрос и прогресс.</div>
+      </div>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">📊</div>
+      <div>
+        <div class="adv-title">Отслеживание прогресса</div>
+        <div class="adv-desc">Трекер эмоций, AI-инсайты, статистика изменений — видите результат.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="social-section">
+  <div class="section-label">Доверие</div>
+  <h2 class="section-title">Нам доверяют тысячи пользователей</h2>
+  <p class="section-sub">Реальные цифры и отзывы людей, которые уже используют Dzeny.</p>
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-num">50 000+</div>
+      <div class="metric-label">проведённых сессий</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">4.8/5</div>
+      <div class="metric-label">средняя оценка</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">12 000+</div>
+      <div class="metric-label">активных пользователей</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">87%</div>
+      <div class="metric-label">заметили улучшения</div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«После двух недель с Dzeny я впервые за полгода нормально уснула без тревожных мыслей. Практики КПТ реально работают.»</div>
+      <div class="review-author">Анна, 32 года</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«Долго не мог решиться пойти к психологу. Dzeny стал первым шагом — анонимно, без стресса. Сейчас уже совмещаю с терапевтом.»</div>
+      <div class="review-author">Максим, 28 лет</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <div class="review-text">«Трекер эмоций показал закономерность, которую я не замечала: выгорание нарастало каждый четверг. Теперь я знаю, что делать.»</div>
+      <div class="review-author">Ольга, 35 лет</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="compare-section">
+  <div class="section-label">Сравнение</div>
+  <h2 class="section-title">Сессия с психологом vs Dzeny</h2>
+  <p class="section-sub">Dzeny не заменяет живого специалиста, а дополняет — делая помощь доступной каждый день.</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Параметр</th>
+        <th>Психолог</th>
+        <th>Dzeny</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Стоимость</td>
+        <td>~3 000 ₽ за сессию</td>
+        <td>от 325 ₽/мес (7 дней бесплатно)</td>
+      </tr>
+      <tr>
+        <td>Доступность</td>
+        <td>Запись за дни/недели</td>
+        <td>Мгновенно, 24/7</td>
+      </tr>
+      <tr>
+        <td>Анонимность</td>
+        <td>Ограничена</td>
+        <td>100% — без имени и камеры</td>
+      </tr>
+      <tr>
+        <td>Подход</td>
+        <td>Индивидуальный, зависит от специалиста</td>
+        <td>КПТ-алгоритмы + персонализация</td>
+      </tr>
+      <tr>
+        <td>Отслеживание прогресса</td>
+        <td>Нет / субъективно</td>
+        <td>Трекер эмоций, AI-инсайты</td>
+      </tr>
+      <tr>
+        <td>Подходит для</td>
+        <td>Клинические расстройства, глубинная терапия</td>
+        <td>Повседневная поддержка, стресс, тревога</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="compare-disclaimer">Dzeny не заменяет консультацию психолога или врача. При серьёзных расстройствах обратитесь к специалисту.</div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing-section">
+  <div class="section-label">Тарифы</div>
+  <h2 class="section-title">Стоимость</h2>
+  <p class="section-sub">Прозрачные цены. 7 дней бесплатно без привязки карты.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Ежемесячный</div>
+      <div class="price-amount">990 ₽</div>
+      <div class="price-period">в месяц</div>
+      <ul class="price-features">
+        <li>Безлимитные сессии с ИИ</li>
+        <li>Трекер эмоций</li>
+        <li>Персональные практики КПТ</li>
+        <li>AI-инсайты и статистика</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;">Попробовать бесплатно</button>
+      <div class="price-trial">7 дней бесплатно · Без привязки карты</div>
+    </div>
+    <div class="price-card featured">
+      <div class="price-badge">Выгодно — скидка 67%</div>
+      <div class="price-name">Годовой</div>
+      <div class="price-amount">3 900 ₽</div>
+      <div class="price-period">в год · 325 ₽/мес</div>
+      <ul class="price-features">
+        <li>Всё из ежемесячного тарифа</li>
+        <li>Расширенная аналитика</li>
+        <li>Приоритетные обновления</li>
+        <li>Экономия 7 980 ₽ в год</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;">Попробовать бесплатно</button>
+      <div class="price-trial">7 дней бесплатно · Без привязки карты</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section>
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">Часто задаваемые вопросы</h2>
+  <p class="section-sub">Ответы на самые популярные вопросы о сервисе Dzeny.</p>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Что такое Dzeny и чем отличается от живого психолога?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dzeny — это ИИ-психолог, работающий на базе когнитивно-поведенческой терапии (КПТ). Он доступен круглосуточно, полностью анонимен и помогает с повседневными эмоциональными трудностями. В отличие от живого психолога, Dzeny не ставит диагнозы и не работает с клиническими расстройствами, но является отличным инструментом для ежедневной поддержки.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Кому подходит онлайн-психолог для взрослых?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Сервис подходит всем взрослым, кто испытывает тревогу, стресс, выгорание, проблемы со сном или мотивацией. Особенно полезен тем, кто пока не готов к очной терапии, ищет доступную альтернативу или хочет дополнить работу с психологом ежедневными практиками.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Как проходит сессия с ИИ-психологом?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Вы начинаете разговор в чате или по голосу. ИИ анализирует ваше состояние, задаёт уточняющие вопросы, а затем предлагает персональные практики КПТ. После сессии вы получаете рекомендации, которые можно отслеживать в трекере эмоций. <a href="#">Подробнее о процессе →</a></div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Безопасно ли доверять свои данные ИИ?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Ваши данные зашифрованы и хранятся в защищённом виде. Мы не требуем имени, паспортных данных или видео. Анонимность — базовый принцип работы Dzeny. <a href="#">Политика конфиденциальности →</a></div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Может ли Dzeny заменить терапевта?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Dzeny не заменяет профессионального психолога или врача, особенно при серьёзных расстройствах. Сервис создан как доступный инструмент ежедневной поддержки и может быть дополнением к очной терапии.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Сколько сессий нужно для результата?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Многие пользователи замечают первые улучшения уже после 1–2 недель регулярного использования. Для устойчивых результатов рекомендуется практиковать не менее месяца — именно поэтому мы даём 7 бесплатных дней для знакомства.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open'); var a=this.nextElementSibling; a.style.maxHeight=a.style.maxHeight?null:a.scrollHeight+'px';">
+        <span>Есть ли бесплатный период?</span>
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-answer-inner">Да! Первые 7 дней полностью бесплатны и без привязки карты. Вы получаете доступ ко всем функциям сервиса, включая сессии с ИИ, трекер эмоций и персональные практики. <a href="#">Начать бесплатно →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<div class="cta-banner">
+  <div>
+    <div class="cta-banner-text">
+      <h2>Сделайте первый шаг к ментальному здоровью</h2>
+      <p>Бесплатные 7 дней с ИИ-психологом Dzeny — начните прямо сейчас.</p>
+    </div>
+  </div>
+  <div class="cta-banner-right">
+    <button class="btn-primary">Начать бесплатно →</button>
+    <div class="cta-microcopy">Без привязки карты · Полная анонимность · 24/7</div>
+  </div>
+</div>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="section-label">Начните сейчас</div>
+  <h2 class="section-title">Ваше ментальное здоровье — в ваших руках</h2>
+  <p class="section-sub">ИИ-психолог для ежедневной поддержки — бесплатно первые 7 дней, доступен 24/7.</p>
+  <div class="final-cta-badges">
+    <span class="badge">✓ 7 дней бесплатно</span>
+    <span class="badge">✓ На основе КПТ</span>
+    <span class="badge">✓ Доступен 24/7</span>
+    <span class="badge">✓ Полная анонимность</span>
+  </div>
+  <button class="btn-primary" style="font-size: 18px; padding: 18px 48px;">Попробовать бесплатно</button>
+  <div style="margin-top:20px; font-size: 14px; color: var(--mid); font-weight: 300;">Присоединяйтесь к <strong style="color:var(--charcoal); font-weight:600;">12 000+</strong> пользователей, которые уже заботятся о себе</div>
+</section>
+
+<!-- ============ CRISIS ============ -->
+<div class="crisis-block">
+  <div class="crisis-icon">🆘</div>
+  <div class="crisis-text">
+    <strong>Если вы или ваши близкие находитесь в кризисной ситуации — обратитесь за помощью немедленно.</strong><br>
+    Телефон доверия: <strong>8-800-2000-122</strong> (бесплатно, круглосуточно) · <a href="#">Страница экстренной помощи →</a>
+  </div>
+</div>
+
+<!-- ============ EXPERTS ============ -->
+<section class="experts-section">
+  <div class="section-label">Экспертиза</div>
+  <h2 class="section-title">За методологией стоят реальные специалисты</h2>
+  <p class="section-sub">Методология Dzeny разработана при участии клинических психологов и основана на принципах КПТ.</p>
+  <div class="experts-grid">
+    <div class="expert-card">
+      <div class="expert-avatar">👩‍⚕️</div>
+      <div class="expert-name">Елена Смирнова</div>
+      <div class="expert-role">Клинический психолог, КПТ-терапевт</div>
+      <div class="expert-desc">15 лет клинической практики. Научный руководитель методологии Dzeny.</div>
+    </div>
+    <div class="expert-card">
+      <div class="expert-avatar">👨‍⚕️</div>
+      <div class="expert-name">Алексей Воронов</div>
+      <div class="expert-role">Психиатр, нейропсихолог</div>
+      <div class="expert-desc">Консультант по безопасности алгоритмов и YMYL-соответствию контента.</div>
+    </div>
+    <div class="expert-card">
+      <div class="expert-avatar">👩‍💻</div>
+      <div class="expert-name">Мария Козлова</div>
+      <div class="expert-role">PhD, исследователь ИИ в психотерапии</div>
+      <div class="expert-desc">Разработчик моделей персонализации и адаптации терапевтических интервенций.</div>
+    </div>
+  </div>
+  <a href="#" class="experts-link">Подробнее о команде →</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-dot"></div>
+        Dzeny
+      </a>
+      <p style="margin-top:14px;">ИИ-психолог на базе когнитивно-поведенческой терапии. Анонимная поддержка ментального здоровья 24/7.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Услуги</h4>
+      <a href="#">ИИ-психолог для взрослых</a>
+      <a href="#">Помощь при тревоге</a>
+      <a href="#">Психолог для подростков</a>
+      <a href="#">Помощь при выгорании</a>
+    </div>
+    <div class="footer-col">
+      <h4>Компания</h4>
+      <a href="#">Как это работает</a>
+      <a href="#">Тарифы</a>
+      <a href="#">Блог</a>
+      <a href="#">Эксперты</a>
+    </div>
+    <div class="footer-col">
+      <h4>Поддержка</h4>
+      <a href="#">Telegram-бот</a>
+      <a href="#">support@dzeny.ru</a>
+      <a href="#">App Store</a>
+      <a href="#">Google Play</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 Dzeny · ИНН 0000000000 · ОГРН 0000000000000 · Dzeny не является медицинским сервисом и не заменяет профессионального психолога.</div>
+    <div class="footer-links">
+      <a href="#">Политика конфиденциальности</a>
+      <a href="#">Условия использования</a>
+      <a href="#">Обработка ПД</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
