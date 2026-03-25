@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анна Иванова — клинический психолог, КПТ-терапевт | Dzeny</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#F7F5F2;--dark:#1A1A2E;--t1:#1A1A2E;--t2:#5A5A72;--t3:#8E8EA0;--ac:#6C5CE7;--ac2:#5B4BD5;--acs:#F0EDFF;--gr:#00B894;--bd:#E8E6E1;--bd2:#F0EDE8;--sh:0 4px 16px rgba(26,26,46,.08);--mw:1200px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Onest',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--t1);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+/* HEADER */
+.hd{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd2);}
+.hd-in{max-width:var(--mw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo i{width:32px;height:32px;background:var(--ac);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;font-style:normal;}
+.logo b{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+.nv{display:flex;align-items:center;gap:28px;}
+.nv a{color:var(--t2);font-size:14px;font-weight:500;transition:color .2s;}
+.nv a:hover,.nv a.on{color:var(--ac);}
+.btn{display:inline-flex;align-items:center;background:var(--ac);color:#fff;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;}
+.btn:hover{background:var(--ac2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(108,92,231,.3);}
+
+/* BREADCRUMBS */
+.bc{max-width:var(--mw);margin:0 auto;padding:12px 24px;display:flex;gap:6px;font-size:13px;color:var(--t3);}
+.bc a{color:var(--t3);transition:color .2s;}.bc a:hover{color:var(--ac);}
+
+/* HERO */
+.hero{max-width:var(--mw);margin:0 auto;padding:32px 24px 48px;display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:start;}
+.hero-photo{width:280px;height:340px;border-radius:20px;background:linear-gradient(135deg,#E8E4FF,#D4C9FF);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hero-photo .em{font-size:100px;opacity:.3;}
+.hero-photo .badge-type{position:absolute;top:16px;left:16px;background:var(--ac);color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;}
+.hero-info h1{font-size:34px;font-weight:700;line-height:1.2;letter-spacing:-.4px;margin-bottom:8px;}
+.hero-spec{font-size:16px;color:var(--ac);font-weight:600;margin-bottom:12px;}
+.hero-exp{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);padding:6px 14px;border-radius:100px;font-size:13px;font-weight:600;color:var(--t2);margin-bottom:16px;}
+.hero-bio{font-size:16px;color:var(--t2);line-height:1.7;margin-bottom:20px;max-width:560px;}
+.hero-links{display:flex;gap:10px;flex-wrap:wrap;}
+.ext-link{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:1.5px solid var(--bd);border-radius:100px;font-size:13px;font-weight:500;color:var(--t2);transition:all .2s;}
+.ext-link:hover{border-color:var(--ac);color:var(--ac);}
+
+/* SECTIONS */
+.sec{max-width:var(--mw);margin:0 auto;padding:0 24px 48px;}
+.sec h2{font-size:24px;font-weight:700;letter-spacing:-.3px;margin-bottom:20px;}
+
+/* BIO */
+.bio p{font-size:16px;color:var(--t2);line-height:1.75;margin-bottom:14px;max-width:760px;}
+
+/* EDUCATION */
+.edu-list{max-width:760px;}
+.edu-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--bd2);}
+.edu-item:last-child{border-bottom:none;}
+.edu-year{font-size:13px;font-weight:600;color:var(--ac);min-width:60px;padding-top:2px;}
+.edu-body h3{font-size:15px;font-weight:600;margin-bottom:2px;}
+.edu-body p{font-size:14px;color:var(--t2);}
+.edu-body .tag{display:inline-flex;align-items:center;gap:4px;background:var(--acs);color:var(--ac);font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;margin-top:4px;}
+.memberships{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;}
+.membership{display:flex;align-items:center;gap:8px;background:var(--bg2);padding:10px 16px;border-radius:12px;font-size:13px;font-weight:500;color:var(--t2);}
+.membership .ico{width:28px;height:28px;border-radius:50%;background:var(--acs);display:flex;align-items:center;justify-content:center;font-size:14px;}
+
+/* DIRECTIONS */
+.dir-grid{display:flex;gap:10px;flex-wrap:wrap;}
+.dir-tag{display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border:1.5px solid var(--bd);border-radius:100px;font-size:14px;font-weight:500;color:var(--t2);transition:all .2s;}
+.dir-tag:hover{border-color:var(--ac);color:var(--ac);background:var(--acs);}
+.dir-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--ac);opacity:.5;}
+
+/* ARTICLES */
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:20px;}
+.card{border-radius:16px;border:1px solid var(--bd2);overflow:hidden;transition:all .3s;background:var(--bg);}
+.card:hover{transform:translateY(-3px);box-shadow:var(--sh);border-color:transparent;}
+.card-img{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;}
+.card-img .em{font-size:40px;opacity:.35;}
+.card-img .tg{position:absolute;bottom:10px;left:10px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;color:var(--ac);}
+.card-body{padding:14px 18px 18px;}
+.card-body .dt{font-size:11px;color:var(--t3);margin-bottom:4px;}
+.card-body h3{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:4px;}
+.card-body .tm{font-size:12px;color:var(--t3);}
+.link-all{display:inline-flex;align-items:center;gap:4px;color:var(--ac);font-size:14px;font-weight:600;}
+.link-all:hover{text-decoration:underline;}
+
+/* CTA */
+.cta{max-width:var(--mw);margin:0 auto;padding:0 24px 48px;}
+.cta-block{background:var(--dark);border-radius:24px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden;}
+.cta-block::before{content:'';position:absolute;top:-60%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(108,92,231,.25),transparent 70%);pointer-events:none;}
+.cta-t{position:relative;z-index:1;}
+.cta-t h2{font-size:28px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.3px;}
+.cta-t p{font-size:15px;color:rgba(255,255,255,.65);max-width:460px;line-height:1.6;}
+.cta-a{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;flex-shrink:0;}
+.bc2{display:inline-flex;align-items:center;background:var(--gr);color:#fff;padding:14px 28px;border-radius:100px;font-size:15px;font-weight:600;transition:all .2s;white-space:nowrap;}
+.bc2:hover{background:#00A885;transform:translateY(-1px);}
+.cta-s{font-size:12px;color:rgba(255,255,255,.45);}
+
+/* FOOTER */
+.ft{background:var(--dark);color:#fff;padding:48px 24px 0;}
+.ft-in{max-width:var(--mw);margin:0 auto;}
+.cr{background:rgba(220,53,69,.12);border:1px solid rgba(220,53,69,.2);border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.cr h4{color:#FF6B6B;font-size:13px;font-weight:600;margin-bottom:4px;}
+.cr p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;}.cr a{color:#FF6B6B;font-weight:600;}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;}
+.fc h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.45);margin-bottom:14px;}
+.fc a{display:block;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:8px;transition:color .2s;}.fc a:hover{color:#fff;}
+.fb p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5;margin-bottom:12px;}
+.fb .lt{color:#fff;font-size:22px;font-weight:700;display:block;margin-bottom:8px;}
+.bd2f{display:flex;gap:8px;margin-bottom:12px;}
+.bdg{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:8px;font-size:11px;color:rgba(255,255,255,.65);transition:background .2s;}.bdg:hover{background:rgba(255,255,255,.15);}
+.sf2{display:flex;gap:8px;}
+.sf2 a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:11px;font-weight:600;transition:background .2s;}.sf2 a:hover{background:rgba(255,255,255,.18);}
+.fd{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;text-align:center;}
+.fd p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5;max-width:700px;margin:0 auto 8px;}
+.fl{display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:rgba(255,255,255,.25);}
+
+@media(max-width:900px){.hero{grid-template-columns:1fr;}.hero-photo{width:200px;height:240px;}.art-grid{grid-template-columns:1fr 1fr;}.fg{grid-template-columns:1fr 1fr;}.cta-block{flex-direction:column;text-align:center;padding:32px 24px;}}
+@media(max-width:600px){.nv{display:none;}.hero h1{font-size:26px;}.art-grid{grid-template-columns:1fr;}.fg{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd">
+  <div class="hd-in">
+    <a href="/" class="logo"><i>D</i><b>Dzeny</b></a>
+    <nav class="nv">
+      <a href="/uslugi/">Услуги</a>
+      <a href="/testy/">Тесты</a>
+      <a href="/blog/">Блог</a>
+      <a href="/eksperty/" class="on">Эксперты</a>
+      <a href="/tseny/">Цены</a>
+    </nav>
+    <a href="#" class="btn">Попробовать Dzeny</a>
+  </div>
+</header>
+
+<!-- BREADCRUMBS -->
+<div class="bc">
+  <a href="/">Главная</a><span>›</span>
+  <a href="/eksperty/">Эксперты</a><span>›</span>
+  <span>Анна Иванова</span>
+</div>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="hero-photo">
+    <span class="badge-type">Основной автор</span>
+    <span class="em">👩‍⚕️</span>
+  </div>
+  <div class="hero-info">
+    <h1>Анна Иванова — клинический психолог, КПТ-терапевт</h1>
+    <div class="hero-spec">Тревожные расстройства, депрессия, эмоциональное выгорание</div>
+    <div class="hero-exp">🎓 12+ лет клинической практики</div>
+    <p class="hero-bio">Сочетает доказательные методы когнитивно-поведенческой терапии с клиент-центрированным подходом. Контент-эксперт и научный редактор блога Dzeny.</p>
+    <div class="hero-links">
+      <a href="#" class="ext-link">🔗 B17.ru</a>
+      <a href="#" class="ext-link">🔗 Profi.ru</a>
+      <a href="#" class="ext-link">✈️ Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. БИОГРАФИЯ -->
+<section class="sec bio">
+  <h2>Об авторе</h2>
+  <p>Анна окончила факультет клинической психологии МГУ им. М.В. Ломоносова и прошла сертификацию по когнитивно-поведенческой терапии в Ассоциации когнитивно-поведенческой психотерапии (АКПТ). За 12 лет практики работала в клинических центрах и частной практике, специализируясь на тревожных расстройствах, панических атаках и эмоциональном выгорании.</p>
+  <p>В своём подходе опирается на доказательную базу: все рекомендации основаны на результатах клинических исследований и адаптированы для российского контекста. Верит, что понимание механизмов тревоги — первый шаг к её преодолению.</p>
+  <p>В Dzeny выступает как контент-эксперт и научный редактор: разрабатывает структуру статей, проверяет клинические рекомендации и адаптирует материалы КПТ для широкой аудитории.</p>
+</section>
+
+<!-- 3. ОБРАЗОВАНИЕ И СЕРТИФИКАТЫ -->
+<section class="sec">
+  <h2>Образование и квалификация</h2>
+  <div class="edu-list">
+
+    <div class="edu-item">
+      <div class="edu-year">2024</div>
+      <div class="edu-body">
+        <h3>Сертификация по схема-терапии</h3>
+        <p>ISST (International Society of Schema Therapy)</p>
+        <span class="tag">🏅 Сертификат</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2020</div>
+      <div class="edu-body">
+        <h3>Когнитивно-поведенческая терапия</h3>
+        <p>Ассоциация когнитивно-поведенческой психотерапии (АКПТ)</p>
+        <span class="tag">🏅 Сертификат</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2018</div>
+      <div class="edu-body">
+        <h3>Повышение квалификации: тревожные расстройства</h3>
+        <p>Научный центр психического здоровья РАМН</p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2014</div>
+      <div class="edu-body">
+        <h3>Клиническая психология (специалитет)</h3>
+        <p>МГУ им. М.В. Ломоносова, факультет психологии</p>
+        <span class="tag">🎓 Диплом</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="memberships">
+    <div class="membership"><div class="ico">🏛️</div>Российское психологическое общество (РПО)</div>
+    <div class="membership"><div class="ico">🏛️</div>Ассоциация когнитивно-поведенческой психотерапии</div>
+    <div class="membership"><div class="ico">🏛️</div>Московское психологическое общество</div>
+  </div>
+</section>
+
+<!-- 4. НАПРАВЛЕНИЯ ЭКСПЕРТИЗЫ -->
+<section class="sec">
+  <h2>Направления работы</h2>
+  <div class="dir-grid">
+    <a href="/blog/trevozhnost-i-stress/" class="dir-tag"><span class="dot"></span>Тревожность и стресс</a>
+    <a href="/blog/depressiya-i-apatiya/" class="dir-tag"><span class="dot"></span>Депрессия и апатия</a>
+    <a href="/blog/metody-terapii/" class="dir-tag"><span class="dot"></span>Методы терапии (КПТ)</a>
+    <a href="/blog/samoocenka/" class="dir-tag"><span class="dot"></span>Самооценка и уверенность</a>
+    <a href="/blog/prokrastinaciya/" class="dir-tag"><span class="dot"></span>Эмоциональное выгорание</a>
+  </div>
+</section>
+
+<!-- 5. СТАТЬИ АВТОРА -->
+<section class="sec">
+  <h2>Статьи автора</h2>
+  <div class="art-grid">
+
+    <a href="/blog/kak-spravitsya-s-panicheskoj-atakoj/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#E8E4FF,#D4C9FF)"><span class="em">🧠</span><span class="tg">Тревожность и стресс</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 15 марта 2026</div>
+        <h3>Как справиться с панической атакой: пошаговый гайд</h3>
+        <span class="tm">12 мин</span>
+      </div>
+    </a>
+
+    <a href="/blog/kognitivnye-iskazheniya/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)"><span class="em">🔍</span><span class="tg">Самооценка</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 12 марта 2026</div>
+        <h3>12 когнитивных искажений, которые мешают вам жить</h3>
+        <span class="tm">8 мин</span>
+      </div>
+    </a>
+
+    <a href="/blog/chto-takoe-gtr/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)"><span class="em">😟</span><span class="tg">Тревожность и стресс</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 3 марта 2026</div>
+        <h3>Генерализованное тревожное расстройство: симптомы и лечение</h3>
+        <span class="tm">12 мин</span>
+      </div>
+    </a>
+
+    <a href="/blog/dyhanie-protiv-trevogi/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#E0F7FA,#B2EBF2)"><span class="em">🌬️</span><span class="tg">Тревожность и стресс</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 28 февраля 2026</div>
+        <h3>5 дыхательных техник для снятия тревоги за 3 минуты</h3>
+        <span class="tm">5 мин</span>
+      </div>
+    </a>
+
+    <a href="/blog/chto-takoe-vygoranie/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2)"><span class="em">🔥</span><span class="tg">Прокрастинация</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 20 февраля 2026</div>
+        <h3>Эмоциональное выгорание: признаки, стадии и что делать</h3>
+        <span class="tm">10 мин</span>
+      </div>
+    </a>
+
+    <a href="/blog/kpt-dnevnik-myslej/" class="card">
+      <div class="card-img" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)"><span class="em">📝</span><span class="tg">Методы терапии</span></div>
+      <div class="card-body">
+        <div class="dt">Обновлено: 14 февраля 2026</div>
+        <h3>Дневник мыслей в КПТ: как вести и зачем это нужно</h3>
+        <span class="tm">7 мин</span>
+      </div>
+    </a>
+
+  </div>
+  <a href="/blog/?author=anna-ivanova" class="link-all">Все статьи автора →</a>
+</section>
+
+<!-- 6. CTA -->
+<section class="cta">
+  <div class="cta-block">
+    <div class="cta-t">
+      <h2>Попробуйте Dzeny — 7 дней бесплатно</h2>
+      <p>ИИ-психолог на основе когнитивно-поведенческой терапии. Анонимно, конфиденциально, 24/7 — в мобильном приложении.</p>
+    </div>
+    <div class="cta-a">
+      <a href="#" class="bc2">Попробовать Dzeny</a>
+      <span class="cta-s">7 дней бесплатно</span>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FOOTER (сквозной с кризисным блоком) -->
+<footer class="ft">
+  <div class="ft-in">
+    <div class="cr">
+      <h4>Если вам или близкому нужна срочная помощь</h4>
+      <p>Телефон доверия: <a href="tel:88002000122">8-800-2000-122</a> (бесплатно, круглосуточно) · <a href="/ekstrennaya-pomoshch/">Подробнее →</a></p>
+    </div>
+    <div class="fg">
+      <div class="fc fb">
+        <span class="lt">Dzeny</span>
+        <p>ИИ-психолог на основе КПТ.<br>Анонимно и конфиденциально, 24/7.</p>
+        <div class="bd2f"><a href="#" class="bdg">🍎 App Store</a><a href="#" class="bdg">▶️ Google Play</a></div>
+        <div class="sf2"><a href="#">VK</a><a href="#">Дз</a><a href="#">TG</a></div>
+      </div>
+      <div class="fc"><h4>О сервисе</h4><a href="/o-nas/">О нас</a><a href="/kak-eto-rabotaet/">Как это работает</a><a href="/tseny/">Цены</a><a href="/eksperty/">Эксперты</a><a href="/otzyvy/">Отзывы</a></div>
+      <div class="fc"><h4>Полезное</h4><a href="/blog/">Блог</a><a href="/testy/">Тесты</a><a href="/instrumenty/">Инструменты КПТ</a><a href="/ekstrennaya-pomoshch/">Экстренная помощь</a></div>
+      <div class="fc"><h4>Контакты</h4><a href="mailto:support@dzeny.ru">support@dzeny.ru</a><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><a href="/oferta/">Оферта</a></div>
+    </div>
+    <div class="fd">
+      <p>⚠️ Dzeny не является медицинским сервисом и не заменяет консультацию у психолога, психотерапевта или врача. Если вы испытываете проблемы с психическим здоровьем, обратитесь к квалифицированному специалисту.</p>
+      <div class="fl"><span>ООО «Виджетс» · ИНН XXXXXXXXXX · ОГРН XXXXXXXXXXXXX</span><span>© 2026 Dzeny</span></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
