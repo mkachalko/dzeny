@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Блог о ментальном здоровье: советы ИИ-психолога | Dzeny</title>
+<meta name="description" content="Полезные статьи о тревожности, стрессе, отношениях и самопознании. Практические рекомендации от ИИ-психолога Dzeny и экспертов в области психологии. Читайте и заботьтесь о себе.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#F7F5F2;--dark:#1A1A2E;--t1:#1A1A2E;--t2:#5A5A72;--t3:#8E8EA0;--ac:#6C5CE7;--ac2:#5B4BD5;--acl:#A29BFE;--acs:#F0EDFF;--gr:#00B894;--bd:#E8E6E1;--bd2:#F0EDE8;--sh:0 4px 16px rgba(26,26,46,.08);--mw:1200px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Onest',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--t1);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+/* HEADER */
+.hd{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd2);}
+.hd-in{max-width:var(--mw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo i{width:32px;height:32px;background:var(--ac);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;font-style:normal;}
+.logo b{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+.nv{display:flex;align-items:center;gap:28px;}
+.nv a{color:var(--t2);font-size:14px;font-weight:500;transition:color .2s;}
+.nv a:hover,.nv a.on{color:var(--ac);}
+.btn{display:inline-flex;align-items:center;background:var(--ac);color:#fff;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;}
+.btn:hover{background:var(--ac2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(108,92,231,.3);}
+
+/* BREADCRUMBS */
+.bc{max-width:var(--mw);margin:0 auto;padding:12px 24px;display:flex;gap:6px;font-size:13px;color:var(--t3);}
+.bc a{color:var(--t3);transition:color .2s;}.bc a:hover{color:var(--ac);}
+
+/* HERO */
+.hero{max-width:var(--mw);margin:0 auto;padding:32px 24px 40px;text-align:center;}
+.hero h1{font-size:38px;font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:14px;}
+.hero p{font-size:16px;color:var(--t2);max-width:680px;margin:0 auto 28px;line-height:1.65;}
+.srch{max-width:540px;margin:0 auto;position:relative;}
+.srch input{width:100%;padding:14px 48px 14px 20px;border:2px solid var(--bd);border-radius:100px;font-size:15px;font-family:inherit;outline:none;transition:border .2s;}
+.srch input:focus{border-color:var(--ac);}
+.srch input::placeholder{color:var(--t3);}
+.srch svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--t3);}
+
+/* CATEGORIES */
+.cats{max-width:var(--mw);margin:0 auto;padding:0 24px 28px;}
+.cats-r{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}.cats-r::-webkit-scrollbar{display:none;}
+.ch{display:inline-flex;padding:8px 16px;border-radius:100px;border:1.5px solid var(--bd);color:var(--t2);font-size:13px;font-weight:500;white-space:nowrap;transition:all .2s;}
+.ch:hover{border-color:var(--ac);color:var(--ac);}
+.ch.on{background:var(--ac);border-color:var(--ac);color:#fff;}
+
+/* POPULAR CAROUSEL */
+.pop{max-width:var(--mw);margin:0 auto;padding:0 24px 40px;}
+.pop h2{font-size:24px;font-weight:700;margin-bottom:20px;letter-spacing:-.3px;}
+.pop-tr{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;}.pop-tr::-webkit-scrollbar{display:none;}
+.pc{min-width:300px;max-width:340px;flex-shrink:0;scroll-snap-align:start;border-radius:16px;overflow:hidden;border:1px solid var(--bd2);transition:all .3s;background:var(--bg);}
+.pc:hover{transform:translateY(-3px);box-shadow:var(--sh);border-color:transparent;}
+.pc-img{height:170px;position:relative;display:flex;align-items:center;justify-content:center;}
+.pc-img .em{font-size:48px;opacity:.35;}
+.pc-bdg{position:absolute;top:10px;left:10px;background:var(--ac);color:#fff;font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;}
+.pc-b{padding:14px 18px 18px;}
+.pc-b h3{font-size:15px;font-weight:600;line-height:1.35;margin-bottom:6px;}
+.pc-b p{font-size:13px;color:var(--t2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* GRID */
+.gs{max-width:var(--mw);margin:0 auto;padding:0 24px 20px;}
+.g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.c{border-radius:16px;border:1px solid var(--bd2);overflow:hidden;transition:all .3s;background:var(--bg);}
+.c:hover{transform:translateY(-3px);box-shadow:var(--sh);border-color:transparent;}
+.c-img{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;}
+.c-img .em{font-size:40px;opacity:.35;}
+.c-tg{position:absolute;bottom:10px;left:10px;display:flex;gap:5px;}
+.tg{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;color:var(--ac);}
+.tg.s{color:var(--t2);}
+.c-b{padding:14px 18px 18px;}
+.c-dt{font-size:11px;color:var(--t3);margin-bottom:5px;}
+.c-b h3{font-size:15px;font-weight:600;line-height:1.4;margin-bottom:6px;}
+.c-b>p{font-size:13px;color:var(--t2);line-height:1.5;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.c-ft{display:flex;align-items:center;justify-content:space-between;}
+.c-au{display:flex;align-items:center;gap:8px;}
+.av{width:28px;height:28px;border-radius:50%;background:var(--acs);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--ac);}
+.an{font-size:12px;font-weight:500;}
+.ar{font-size:10px;color:var(--t3);}
+.ct{font-size:12px;color:var(--t3);white-space:nowrap;}
+
+/* CTA in grid */
+.gc{grid-column:1/-1;background:var(--dark);border-radius:24px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden;border:none;}
+.gc::before{content:'';position:absolute;top:-60%;right:-10%;width:360px;height:360px;background:radial-gradient(circle,rgba(108,92,231,.25),transparent 70%);pointer-events:none;}
+.gc-t{position:relative;z-index:1;}
+.gc-t h3{font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;}
+.gc-t p{font-size:14px;color:rgba(255,255,255,.65);max-width:420px;}
+.bc2{display:inline-flex;align-items:center;background:var(--gr);color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;position:relative;z-index:1;white-space:nowrap;}
+.bc2:hover{background:#00A885;transform:translateY(-1px);}
+
+/* CTA section */
+.cta{max-width:var(--mw);margin:0 auto;padding:20px 24px 48px;}
+.cta-bk{background:var(--dark);border-radius:24px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;overflow:hidden;}
+.cta-bk::before{content:'';position:absolute;top:-60%;right:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(108,92,231,.25),transparent 70%);pointer-events:none;}
+.cta-t{position:relative;z-index:1;}
+.cta-t h2{font-size:28px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.3px;}
+.cta-t p{font-size:15px;color:rgba(255,255,255,.65);max-width:460px;line-height:1.6;}
+.cta-a{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1;flex-shrink:0;}
+.cta-s{font-size:12px;color:rgba(255,255,255,.45);}
+
+/* PAGINATION */
+.pg-w{max-width:var(--mw);margin:0 auto;padding:20px 24px 48px;display:flex;justify-content:center;}
+.pg-r{display:flex;align-items:center;gap:4px;}
+.pg{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--bd);border-radius:8px;color:var(--t2);font-size:14px;font-weight:500;transition:all .2s;}
+.pg:hover{border-color:var(--ac);color:var(--ac);}
+.pg.on{background:var(--ac);border-color:var(--ac);color:#fff;}
+.pg.ar2{width:auto;padding:0 14px;font-size:13px;}
+.pg.dt{border:none;cursor:default;}
+
+/* TESTS */
+.ts{max-width:var(--mw);margin:0 auto;padding:0 24px 48px;}
+.ts h2{font-size:24px;font-weight:700;margin-bottom:8px;letter-spacing:-.3px;}
+.ts-s{font-size:15px;color:var(--t2);margin-bottom:24px;}
+.ts-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:16px;}
+.tc{border:1.5px solid var(--bd2);border-radius:12px;padding:20px;transition:all .2s;}
+.tc:hover{border-color:var(--ac);transform:translateY(-2px);box-shadow:0 1px 3px rgba(26,26,46,.06);}
+.tc-i{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px;}
+.tc h3{font-size:14px;font-weight:600;margin-bottom:3px;line-height:1.3;}
+.tc>p{font-size:12px;color:var(--t3);}
+.tc-m{display:flex;gap:6px;margin-top:8px;font-size:11px;color:var(--t3);}
+.la{display:inline-flex;align-items:center;gap:4px;color:var(--ac);font-size:14px;font-weight:600;}
+.la:hover{text-decoration:underline;}
+
+/* SUBSCRIBE */
+.sb{background:var(--bg2);padding:48px 24px;}
+.sb-in{max-width:580px;margin:0 auto;text-align:center;}
+.sb-in h2{font-size:22px;font-weight:700;margin-bottom:4px;}
+.sb-p{font-size:15px;color:var(--t2);margin-bottom:20px;}
+.soc{display:flex;justify-content:center;gap:12px;margin-bottom:20px;}
+.sl{width:44px;height:44px;border-radius:50%;background:var(--bg);border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--t2);transition:all .2s;}
+.sl:hover{border-color:var(--ac);color:var(--ac);}
+.dv{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:12px;color:var(--t3);}
+.dv::before,.dv::after{content:'';flex:1;height:1px;background:var(--bd);}
+.sf{display:flex;gap:10px;max-width:420px;margin:0 auto;}
+.sf input{flex:1;padding:12px 18px;border:1.5px solid var(--bd);border-radius:100px;font-size:14px;font-family:inherit;outline:none;background:#fff;}
+.sf input:focus{border-color:var(--ac);}
+.sf button{padding:12px 22px;background:var(--ac);color:#fff;border:none;border-radius:100px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;transition:background .2s;}
+.sf button:hover{background:var(--ac2);}
+.sc{font-size:11px;color:var(--t3);margin-top:10px;}.sc a{color:var(--ac);}
+
+/* FOOTER */
+.ft{background:var(--dark);color:#fff;padding:48px 24px 0;}
+.ft-in{max-width:var(--mw);margin:0 auto;}
+.cr{background:rgba(220,53,69,.12);border:1px solid rgba(220,53,69,.2);border-radius:12px;padding:16px 20px;margin-bottom:28px;}
+.cr h4{color:#FF6B6B;font-size:13px;font-weight:600;margin-bottom:4px;}
+.cr p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;}.cr a{color:#FF6B6B;font-weight:600;}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;}
+.fc h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.45);margin-bottom:14px;}
+.fc a{display:block;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:8px;transition:color .2s;}.fc a:hover{color:#fff;}
+.fb p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5;margin-bottom:12px;}
+.fb .lt{color:#fff;font-size:22px;font-weight:700;display:block;margin-bottom:8px;}
+.bd2{display:flex;gap:8px;margin-bottom:12px;}
+.bdg{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:8px;font-size:11px;color:rgba(255,255,255,.65);transition:background .2s;}
+.bdg:hover{background:rgba(255,255,255,.15);}
+.sf2{display:flex;gap:8px;}
+.sf2 a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:11px;font-weight:600;transition:background .2s;}
+.sf2 a:hover{background:rgba(255,255,255,.18);}
+.fd{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;text-align:center;}
+.fd p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5;max-width:700px;margin:0 auto 8px;}
+.fl{display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:rgba(255,255,255,.25);}
+
+@media(max-width:1024px){.g{grid-template-columns:repeat(2,1fr);}.ts-g{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.hero h1{font-size:28px;}.g{grid-template-columns:1fr;}.ts-g{grid-template-columns:1fr 1fr;}.fg{grid-template-columns:1fr 1fr;}.cta-bk,.gc{flex-direction:column;text-align:center;padding:28px 20px;}.pc{min-width:260px;}}
+@media(max-width:600px){.nv{display:none;}.ts-g{grid-template-columns:1fr;}.fg{grid-template-columns:1fr;}.sf{flex-direction:column;}.hero h1{font-size:24px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd">
+  <div class="hd-in">
+    <a href="/" class="logo"><i>D</i><b>Dzeny</b></a>
+    <nav class="nv">
+      <a href="/uslugi/">Услуги</a>
+      <a href="/testy/">Тесты</a>
+      <a href="/blog/" class="on">Блог</a>
+      <a href="/eksperty/">Эксперты</a>
+      <a href="/tseny/">Цены</a>
+    </nav>
+    <a href="#" class="btn">Попробовать Dzeny</a>
+  </div>
+</header>
+
+<!-- BREADCRUMBS -->
+<div class="bc"><a href="/">Главная</a><span>›</span><span>Блог</span></div>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <h1>Блог Dzeny: всё о ментальном здоровье и заботе о себе</h1>
+  <p>Практические статьи о тревожности, стрессе, отношениях и самопознании — от экспертов в области психологии и ИИ-ассистента Dzeny. Каждая статья помогает лучше понимать себя и выстраивать полезные привычки.</p>
+  <div class="srch">
+    <input type="text" placeholder="Найти статью...">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  </div>
+</section>
+
+<!-- 2. КАТЕГОРИИ -->
+<section class="cats">
+  <div class="cats-r">
+    <a href="/blog/" class="ch on">Все статьи</a>
+    <a href="/blog/trevozhnost-i-stress/" class="ch">Тревожность и стресс</a>
+    <a href="/blog/depressiya-i-apatiya/" class="ch">Депрессия и апатия</a>
+    <a href="/blog/otnosheniya/" class="ch">Отношения</a>
+    <a href="/blog/samoocenka/" class="ch">Самооценка и уверенность</a>
+    <a href="/blog/prokrastinaciya/" class="ch">Прокрастинация и продуктивность</a>
+    <a href="/blog/metody-terapii/" class="ch">Методы терапии</a>
+    <a href="/blog/lichnost/" class="ch">Личность и характер</a>
+  </div>
+</section>
+
+<!-- 3. ПОПУЛЯРНЫЕ СТАТЬИ (карусель) -->
+<section class="pop">
+  <h2>Популярные статьи</h2>
+  <div class="pop-tr">
+    <a href="#" class="pc">
+      <div class="pc-img" style="background:linear-gradient(135deg,#E8E4FF,#D4C9FF)"><span class="em">🧠</span><span class="pc-bdg">Тревожность и стресс</span></div>
+      <div class="pc-b"><h3>Как справиться с панической атакой: пошаговый гайд</h3><p>Что происходит с телом во время паники и какие техники помогают прямо сейчас</p></div>
+    </a>
+    <a href="#" class="pc">
+      <div class="pc-img" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB)"><span class="em">💭</span><span class="pc-bdg">Депрессия и апатия</span></div>
+      <div class="pc-b"><h3>10 признаков депрессии, которые нельзя игнорировать</h3><p>Как отличить обычную грусть от клинической депрессии</p></div>
+    </a>
+    <a href="#" class="pc">
+      <div class="pc-img" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2)"><span class="em">💬</span><span class="pc-bdg">Отношения</span></div>
+      <div class="pc-b"><h3>Как говорить о чувствах: техники ненасильственного общения</h3><p>Простые формулы для выражения эмоций без конфликтов</p></div>
+    </a>
+    <a href="#" class="pc">
+      <div class="pc-img" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)"><span class="em">🔬</span><span class="pc-bdg">Методы терапии</span></div>
+      <div class="pc-b"><h3>Что такое КПТ и почему она считается «золотым стандартом»</h3><p>Принципы когнитивно-поведенческой терапии и её эффективность</p></div>
+    </a>
+    <a href="#" class="pc">
+      <div class="pc-img" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)"><span class="em">🎭</span><span class="pc-bdg">Самооценка</span></div>
+      <div class="pc-b"><h3>Синдром самозванца: почему вы думаете, что недостаточно хороши</h3><p>Как распознать паттерн и что с ним делать</p></div>
+    </a>
+  </div>
+</section>
+
+<!-- 4. ОСНОВНАЯ СЕТКА СТАТЕЙ -->
+<section class="gs">
+  <div class="g">
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#E0F7FA,#B2EBF2)"><span class="em">🌬️</span><div class="c-tg"><span class="tg">Тревожность и стресс</span><span class="tg s">Практика</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 20 марта 2026</div>
+        <h3>5 дыхательных техник для снятия тревоги за 3 минуты</h3>
+        <p>Простые методы, которые можно применять прямо сейчас — на работе, в транспорте или дома</p>
+        <div class="c-ft"><div class="c-au"><div class="av">МК</div><div><div class="an">Мария Козлова</div><div class="ar">Клинический психолог</div></div></div><span class="ct">5 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#E3F2FD,#BBDEFB)"><span class="em">🤝</span><div class="c-tg"><span class="tg">Депрессия и апатия</span><span class="tg s">Гайд</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 18 марта 2026</div>
+        <h3>Как помочь близкому с депрессией и не навредить себе</h3>
+        <p>Практическое руководство: что говорить, что не говорить и как сохранить границы</p>
+        <div class="c-ft"><div class="c-au"><div class="av">ИС</div><div><div class="an">Игорь Смирнов</div><div class="ar">Психиатр</div></div></div><span class="ct">9 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2)"><span class="em">❤️</span><div class="c-tg"><span class="tg">Отношения</span><span class="tg s">Понятие</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 15 марта 2026</div>
+        <h3>Теория привязанности: как детский опыт влияет на взрослые отношения</h3>
+        <p>Четыре типа привязанности и что с этим делать в повседневной жизни</p>
+        <div class="c-ft"><div class="c-au"><div class="av">ЕВ</div><div><div class="an">Елена Васильева</div><div class="ar">Семейный психолог</div></div></div><span class="ct">11 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9)"><span class="em">🔍</span><div class="c-tg"><span class="tg">Самооценка</span><span class="tg s">Понятие</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 12 марта 2026</div>
+        <h3>12 когнитивных искажений, которые мешают вам жить</h3>
+        <p>Как мозг обманывает нас каждый день и почему это нормально</p>
+        <div class="c-ft"><div class="c-au"><div class="av">АП</div><div><div class="an">Анна Петрова</div><div class="ar">КПТ-терапевт</div></div></div><span class="ct">8 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#FFF9C4,#FFF176)"><span class="em">⏰</span><div class="c-tg"><span class="tg">Прокрастинация</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 10 марта 2026</div>
+        <h3>Почему мы откладываем дела: нейронаука прокрастинации</h3>
+        <p>Это не лень — за прокрастинацией стоят тревога, перфекционизм и страх неудачи</p>
+        <div class="c-ft"><div class="c-au"><div class="av">МК</div><div><div class="an">Мария Козлова</div><div class="ar">Клинический психолог</div></div></div><span class="ct">7 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)"><span class="em">🧩</span><div class="c-tg"><span class="tg">Методы терапии</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 8 марта 2026</div>
+        <h3>Гештальт-терапия простыми словами: принципы и техники</h3>
+        <p>Что значит «закрыть гештальт» и как это работает на практике</p>
+        <div class="c-ft"><div class="c-au"><div class="av">ИС</div><div><div class="an">Игорь Смирнов</div><div class="ar">Психотерапевт</div></div></div><span class="ct">10 мин</span></div>
+      </div>
+    </a>
+
+    <!-- CTA в сетке (по аналогии с Zigmund) -->
+    <div class="gc">
+      <div class="gc-t"><h3>Начни заботиться о себе сегодня</h3><p>Попробуй Dzeny — 7 дней бесплатно. ИИ-психолог на основе КПТ, 24/7 в мобильном приложении.</p></div>
+      <a href="#" class="bc2">Попробовать Dzeny</a>
+    </div>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#FCE4EC,#F8BBD0)"><span class="em">🎨</span><div class="c-tg"><span class="tg">Личность и характер</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 5 марта 2026</div>
+        <h3>Темперамент и характер: в чём разница и можно ли себя изменить</h3>
+        <p>Что заложено генетически, а что можно развивать</p>
+        <div class="c-ft"><div class="c-au"><div class="av">ЕВ</div><div><div class="an">Елена Васильева</div><div class="ar">Психолог</div></div></div><span class="ct">6 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)"><span class="em">😟</span><div class="c-tg"><span class="tg">Тревожность и стресс</span><span class="tg s">Понятие</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 3 марта 2026</div>
+        <h3>Генерализованное тревожное расстройство: симптомы и лечение</h3>
+        <p>Когда обычная тревога становится расстройством и что с этим делать</p>
+        <div class="c-ft"><div class="c-au"><div class="av">АП</div><div><div class="an">Анна Петрова</div><div class="ar">КПТ-терапевт</div></div></div><span class="ct">12 мин</span></div>
+      </div>
+    </a>
+
+    <a href="#" class="c">
+      <div class="c-img" style="background:linear-gradient(135deg,#EDE7F6,#D1C4E9)"><span class="em">🤖</span><div class="c-tg"><span class="tg" style="color:#00B894;">Психология и ИИ</span></div></div>
+      <div class="c-b">
+        <div class="c-dt">Обновлено: 1 марта 2026</div>
+        <h3>ИИ-психолог: как работает и чем отличается от живого специалиста</h3>
+        <p>Какие задачи может решать ИИ, а для каких нужен человек — без мифов</p>
+        <div class="c-ft"><div class="c-au"><div class="av">ИС</div><div><div class="an">Игорь Смирнов</div><div class="ar">КПТ-терапевт</div></div></div><span class="ct">11 мин</span></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- 6. CTA-БЛОК -->
+<section class="cta">
+  <div class="cta-bk">
+    <div class="cta-t"><h2>Начни заботиться о себе сегодня</h2><p>Попробуй Dzeny — 7 дней бесплатно. ИИ-психолог на основе когнитивно-поведенческой терапии, анонимно и конфиденциально, 24/7.</p></div>
+    <div class="cta-a"><a href="#" class="bc2">Попробовать Dzeny</a><span class="cta-s">7 дней бесплатно</span></div>
+  </div>
+</section>
+
+<!-- 5. ПАГИНАЦИЯ -->
+<div class="pg-w">
+  <div class="pg-r">
+    <span class="pg on">1</span>
+    <a href="#" class="pg">2</a>
+    <a href="#" class="pg">3</a>
+    <a href="#" class="pg">4</a>
+    <span class="pg dt">…</span>
+    <a href="#" class="pg">8</a>
+    <a href="#" class="pg ar2">Далее →</a>
+  </div>
+</div>
+
+<!-- 7. ПОПУЛЯРНЫЕ ТЕСТЫ -->
+<section class="ts">
+  <h2>Проверьте себя</h2>
+  <p class="ts-s">Научно обоснованные тесты для самодиагностики</p>
+  <div class="ts-g">
+    <a href="/testy/test-trevozhnosti-beck/" class="tc"><div class="tc-i" style="background:#FFF0E0;">😰</div><h3>Тест тревожности Бека (BAI)</h3><p>Оцените уровень тревоги</p><div class="tc-m"><span>21 вопрос</span><span>·</span><span>5 мин</span></div></a>
+    <a href="/testy/test-depressii-beck/" class="tc"><div class="tc-i" style="background:#E8F0FE;">📋</div><h3>Тест депрессии Бека (BDI-II)</h3><p>Скрининг депрессивных симптомов</p><div class="tc-m"><span>21 вопрос</span><span>·</span><span>7 мин</span></div></a>
+    <a href="/testy/test-stressa-dass/" class="tc"><div class="tc-i" style="background:#E8F5E9;">🔥</div><h3>Шкала стресса DASS-21</h3><p>Стресс, тревога и депрессия</p><div class="tc-m"><span>21 вопрос</span><span>·</span><span>5 мин</span></div></a>
+    <a href="/testy/test-samoocenki-rozenberg/" class="tc"><div class="tc-i" style="background:#F3E5F5;">✨</div><h3>Шкала самооценки Розенберга</h3><p>Ваше отношение к себе</p><div class="tc-m"><span>10 вопросов</span><span>·</span><span>3 мин</span></div></a>
+  </div>
+  <a href="/testy/" class="la">Все тесты →</a>
+</section>
+
+<!-- 8. ПОДПИСКА -->
+<section class="sb">
+  <div class="sb-in">
+    <h2>Подписывайтесь на Dzeny</h2>
+    <p class="sb-p">Полезные советы о ментальном здоровье — в соцсетях и на почту</p>
+    <div class="soc">
+      <a href="#" class="sl" title="Telegram">TG</a>
+      <a href="#" class="sl" title="VK">VK</a>
+      <a href="#" class="sl" title="YouTube">YT</a>
+      <a href="#" class="sl" title="Дзен">Дз</a>
+    </div>
+    <div class="dv">или по email</div>
+    <div class="sf"><input type="email" placeholder="Ваш email"><button>Подписаться</button></div>
+    <p class="sc">Нажимая «Подписаться», вы соглашаетесь с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a></p>
+  </div>
+</section>
+
+<!-- 9. FOOTER -->
+<footer class="ft">
+  <div class="ft-in">
+    <div class="cr">
+      <h4>Если вам или близкому нужна срочная помощь</h4>
+      <p>Телефон доверия: <a href="tel:88002000122">8-800-2000-122</a> (бесплатно, круглосуточно) · <a href="/ekstrennaya-pomoshch/">Подробнее →</a></p>
+    </div>
+    <div class="fg">
+      <div class="fc fb">
+        <span class="lt">Dzeny</span>
+        <p>ИИ-психолог на основе КПТ.<br>Анонимно и конфиденциально, 24/7.</p>
+        <div class="bd2"><a href="#" class="bdg">🍎 App Store</a><a href="#" class="bdg">▶️ Google Play</a></div>
+        <div class="sf2"><a href="#">VK</a><a href="#">Дз</a><a href="#">TG</a></div>
+      </div>
+      <div class="fc"><h4>О сервисе</h4><a href="/o-nas/">О нас</a><a href="/kak-eto-rabotaet/">Как это работает</a><a href="/tseny/">Цены</a><a href="/eksperty/">Эксперты</a><a href="/otzyvy/">Отзывы</a></div>
+      <div class="fc"><h4>Полезное</h4><a href="/blog/">Блог</a><a href="/testy/">Тесты</a><a href="/instrumenty/">Инструменты КПТ</a><a href="/ekstrennaya-pomoshch/">Экстренная помощь</a></div>
+      <div class="fc"><h4>Контакты</h4><a href="mailto:support@dzeny.ru">support@dzeny.ru</a><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><a href="/oferta/">Оферта</a></div>
+    </div>
+    <div class="fd">
+      <p>⚠️ Dzeny не является медицинским сервисом и не заменяет консультацию у психолога, психотерапевта или врача. Если вы испытываете проблемы с психическим здоровьем, обратитесь к квалифицированному специалисту.</p>
+      <div class="fl"><span>ООО «Виджетс» · ИНН XXXXXXXXXX · ОГРН XXXXXXXXXXXXX</span><span>© 2026 Dzeny</span></div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как справиться с панической атакой: пошаговый гайд | Блог Dzeny</title>
+<meta name="description" content="Что происходит с телом во время панической атаки, почему это не опасно и какие техники помогают прямо сейчас. Разбираемся с клиническим психологом.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Как справиться с панической атакой: пошаговый гайд | Блог Dzeny">
+<meta property="og:image" content="https://dzeny.ru/images/blog/panic-attack-guide.jpg">
+<meta property="article:published_time" content="2026-01-10">
+<meta property="article:modified_time" content="2026-03-15">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--bg2:#F7F5F2;--dark:#1A1A2E;--t1:#1A1A2E;--t2:#5A5A72;--t3:#8E8EA0;--ac:#6C5CE7;--ac2:#5B4BD5;--acs:#F0EDFF;--gr:#00B894;--bd:#E8E6E1;--bd2:#F0EDE8;--sh:0 4px 16px rgba(26,26,46,.08);--mw:1200px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Onest',-apple-system,BlinkMacSystemFont,sans-serif;color:var(--t1);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+/* HEADER */
+.hd{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd2);}
+.hd-in{max-width:var(--mw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo i{width:32px;height:32px;background:var(--ac);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;font-style:normal;}
+.logo b{font-size:20px;font-weight:700;letter-spacing:-.3px;}
+.nv{display:flex;align-items:center;gap:28px;}
+.nv a{color:var(--t2);font-size:14px;font-weight:500;transition:color .2s;}
+.nv a:hover,.nv a.on{color:var(--ac);}
+.btn{display:inline-flex;align-items:center;background:var(--ac);color:#fff;padding:10px 20px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;}
+.btn:hover{background:var(--ac2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(108,92,231,.3);}
+
+/* PROGRESS BAR */
+.progress{position:fixed;top:64px;left:0;width:0;height:3px;background:var(--ac);z-index:99;transition:width .1s;}
+
+/* BREADCRUMBS */
+.bc{max-width:var(--mw);margin:0 auto;padding:12px 24px;display:flex;gap:6px;font-size:13px;color:var(--t3);flex-wrap:wrap;}
+.bc a{color:var(--t3);transition:color .2s;}.bc a:hover{color:var(--ac);}
+
+/* ARTICLE LAYOUT */
+.art-wrap{max-width:var(--mw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 280px;gap:40px;align-items:start;}
+
+/* HERO */
+.art-hero{margin-bottom:32px;}
+.art-cat{display:inline-flex;padding:5px 14px;border-radius:100px;background:var(--acs);color:var(--ac);font-size:12px;font-weight:600;margin-bottom:16px;}
+.art-hero h1{font-size:36px;font-weight:700;line-height:1.2;letter-spacing:-.5px;margin-bottom:16px;}
+.art-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.art-author{display:flex;align-items:center;gap:10px;}
+.au-ph{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#A29BFE);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:600;}
+.au-nm{font-size:14px;font-weight:600;}
+.au-rl{font-size:12px;color:var(--t3);}
+.art-date{font-size:13px;color:var(--t3);}
+.art-time{font-size:13px;color:var(--t3);}
+.dot{color:var(--bd);margin:0 2px;}
+.art-img{width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;margin-bottom:24px;background:linear-gradient(135deg,#E8E4FF,#D4C9FF);display:flex;align-items:center;justify-content:center;}
+.art-img .em{font-size:80px;opacity:.3;}
+.share-row{display:flex;align-items:center;gap:8px;margin-bottom:32px;}
+.share-row span{font-size:13px;color:var(--t3);margin-right:4px;}
+.sh-btn{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--t2);transition:all .2s;cursor:pointer;}
+.sh-btn:hover{border-color:var(--ac);color:var(--ac);}
+
+/* MAIN CONTENT */
+.art-body h2{font-size:24px;font-weight:700;margin:36px 0 14px;letter-spacing:-.3px;padding-top:8px;}
+.art-body h3{font-size:19px;font-weight:600;margin:28px 0 10px;}
+.art-body p{font-size:16px;color:var(--t1);margin-bottom:16px;line-height:1.75;}
+.art-body ul,.art-body ol{margin:0 0 16px 24px;font-size:16px;}
+.art-body li{margin-bottom:8px;line-height:1.65;}
+.art-body a:not(.btn):not(.bc2):not(.cta-l){color:var(--ac);text-decoration:underline;text-decoration-color:rgba(108,92,231,.3);text-underline-offset:2px;transition:text-decoration-color .2s;}
+.art-body a:not(.btn):not(.bc2):not(.cta-l):hover{text-decoration-color:var(--ac);}
+
+/* Blockquote */
+.bq{border-left:4px solid var(--ac);background:var(--acs);padding:16px 20px;border-radius:0 12px 12px 0;margin:24px 0;font-size:15px;color:var(--t1);line-height:1.65;font-style:italic;}
+
+/* Info box */
+.info-box{background:#E8F5E9;border-radius:12px;padding:16px 20px;margin:24px 0;font-size:15px;line-height:1.6;}
+.info-box.warn{background:#FFF3E0;}
+.info-box strong{display:block;margin-bottom:4px;font-size:14px;}
+
+/* Check/cross examples */
+.check-list{margin:16px 0 24px;font-size:15px;}
+.check-list .item{display:flex;gap:10px;padding:8px 0;align-items:flex-start;}
+.check-list .ico{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px;}
+.check-list .ico.yes{background:#E8F5E9;color:#00B894;}
+.check-list .ico.no{background:#FFEBEE;color:#E74C3C;}
+
+/* Table */
+.art-table{width:100%;border-collapse:collapse;margin:20px 0 24px;font-size:14px;border-radius:12px;overflow:hidden;border:1px solid var(--bd);}
+.art-table th{background:var(--bg2);padding:12px 16px;text-align:left;font-weight:600;font-size:13px;}
+.art-table td{padding:12px 16px;border-top:1px solid var(--bd2);}
+
+/* AI Blocks */
+.ai-block{border:2px solid var(--ac);border-radius:16px;padding:20px 24px;margin:28px 0;background:linear-gradient(135deg,rgba(108,92,231,.04),rgba(162,155,254,.04));}
+.ai-block .ai-label{font-size:14px;font-weight:700;color:var(--ac);margin-bottom:8px;}
+.ai-block p{font-size:15px;margin-bottom:10px;}
+.ai-block .cta-l{display:inline-flex;align-items:center;gap:4px;color:var(--ac);font-weight:600;font-size:14px;}
+.ai-block .cta-l:hover{text-decoration:underline;}
+
+.ai-insight{background:var(--acs);border-radius:16px;padding:20px 24px;margin:28px 0;border:none;}
+.ai-insight .ai-label{font-size:14px;font-weight:700;color:var(--ac);margin-bottom:6px;}
+.ai-insight .stat{font-size:28px;font-weight:700;color:var(--ac);margin-bottom:4px;}
+.ai-insight p{font-size:14px;color:var(--t2);margin-bottom:0;}
+
+/* CTA inline */
+.cta-inline{background:var(--dark);border-radius:16px;padding:28px 32px;margin:32px 0;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;overflow:hidden;}
+.cta-inline::before{content:'';position:absolute;top:-40%;right:-5%;width:250px;height:250px;background:radial-gradient(circle,rgba(108,92,231,.3),transparent 70%);pointer-events:none;}
+.cta-inline-t{position:relative;z-index:1;}
+.cta-inline-t h3{font-size:18px;font-weight:700;margin-bottom:4px;}
+.cta-inline-t p{font-size:14px;color:rgba(255,255,255,.6);max-width:380px;}
+.bc2{display:inline-flex;align-items:center;background:var(--gr);color:#fff;padding:12px 24px;border-radius:100px;font-size:14px;font-weight:600;transition:all .2s;position:relative;z-index:1;white-space:nowrap;}
+.bc2:hover{background:#00A885;transform:translateY(-1px);}
+
+/* References */
+.refs{margin:36px 0;padding-top:24px;border-top:1px solid var(--bd);}
+.refs h2{font-size:20px;font-weight:700;margin-bottom:14px;}
+.refs ol{margin-left:20px;font-size:14px;color:var(--t2);}
+.refs li{margin-bottom:8px;line-height:1.5;}
+.refs a{color:var(--ac);word-break:break-all;}
+
+/* FAQ */
+.faq{margin:36px 0;}
+.faq h2{font-size:24px;font-weight:700;margin-bottom:16px;}
+.faq-item{border:1px solid var(--bd2);border-radius:12px;margin-bottom:8px;overflow:hidden;}
+.faq-q{padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;}
+.faq-q:hover{background:var(--bg2);}
+.faq-q .arr{font-size:18px;color:var(--t3);transition:transform .2s;}
+.faq-item.open .arr{transform:rotate(180deg);}
+.faq-a{padding:0 20px 16px;font-size:15px;color:var(--t2);line-height:1.65;display:none;}
+.faq-item.open .faq-a{display:block;}
+
+/* Author block */
+.author-card{background:var(--bg2);border-radius:16px;padding:24px;margin:36px 0;display:flex;gap:20px;align-items:flex-start;}
+.author-card .au-photo{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--ac),#A29BFE);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;font-weight:600;flex-shrink:0;}
+.author-card .au-info h3{font-size:18px;font-weight:700;margin-bottom:2px;}
+.author-card .au-info .role{font-size:13px;color:var(--ac);font-weight:600;margin-bottom:8px;}
+.author-card .au-info p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:8px;}
+.author-card .au-link{font-size:13px;color:var(--ac);font-weight:600;}
+.author-card .au-link:hover{text-decoration:underline;}
+.reviewer{font-size:13px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid var(--bd);}
+.reviewer strong{color:var(--t2);}
+
+/* Prev/Next */
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0;}
+.pn-card{border:1px solid var(--bd2);border-radius:12px;padding:16px 20px;transition:all .2s;}
+.pn-card:hover{border-color:var(--ac);box-shadow:0 2px 8px rgba(26,26,46,.06);}
+.pn-label{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.pn-card h4{font-size:14px;font-weight:600;line-height:1.4;}
+
+/* Related */
+.related{margin:36px 0;}
+.related h2{font-size:24px;font-weight:700;margin-bottom:20px;}
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rel-card{border:1px solid var(--bd2);border-radius:16px;overflow:hidden;transition:all .3s;}
+.rel-card:hover{transform:translateY(-3px);box-shadow:var(--sh);border-color:transparent;}
+.rel-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;}
+.rel-img .em{font-size:36px;opacity:.35;}
+.rel-body{padding:14px 18px 18px;}
+.rel-body .cat{font-size:11px;font-weight:600;color:var(--ac);margin-bottom:4px;}
+.rel-body h3{font-size:14px;font-weight:600;line-height:1.35;margin-bottom:4px;}
+.rel-body p{font-size:12px;color:var(--t2);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:88px;align-self:start;}
+.toc{background:var(--bg2);border-radius:16px;padding:20px;margin-bottom:20px;}
+.toc h4{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);margin-bottom:12px;}
+.toc a{display:block;font-size:13px;color:var(--t2);padding:6px 0 6px 12px;border-left:2px solid transparent;transition:all .2s;line-height:1.4;}
+.toc a:hover,.toc a.active{color:var(--ac);border-color:var(--ac);}
+.toc a.sub{padding-left:24px;font-size:12px;color:var(--t3);}
+.side-cta{background:var(--dark);border-radius:16px;padding:20px;text-align:center;margin-bottom:20px;}
+.side-cta p{font-size:14px;color:rgba(255,255,255,.7);margin-bottom:12px;line-height:1.5;}
+.side-cta .bc2{width:100%;justify-content:center;}
+.side-cta .sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:6px;}
+.side-share{display:flex;gap:8px;justify-content:center;}
+.side-share .sh-btn{background:var(--bg2);border:none;}
+
+/* CRISIS */
+.crisis{max-width:var(--mw);margin:0 auto;padding:0 24px 32px;}
+.crisis-box{background:#FFF5F5;border:1px solid #FFD4D4;border-radius:16px;padding:20px 24px;}
+.crisis-box h3{font-size:15px;font-weight:700;color:#D63031;margin-bottom:6px;}
+.crisis-box p{font-size:14px;color:var(--t2);line-height:1.6;margin-bottom:4px;}
+.crisis-box a{color:#D63031;font-weight:600;}
+.crisis-disc{font-size:12px;color:var(--t3);margin-top:8px;padding-top:8px;border-top:1px solid #FFE8E8;font-style:italic;}
+
+/* FOOTER */
+.ft{background:var(--dark);color:#fff;padding:48px 24px 0;}
+.ft-in{max-width:var(--mw);margin:0 auto;}
+.fg{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;}
+.fc h4{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.45);margin-bottom:14px;}
+.fc a{display:block;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:8px;transition:color .2s;}.fc a:hover{color:#fff;}
+.fb p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5;margin-bottom:12px;}
+.fb .lt{color:#fff;font-size:22px;font-weight:700;display:block;margin-bottom:8px;}
+.bd2f{display:flex;gap:8px;margin-bottom:12px;}
+.bdg{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:8px;font-size:11px;color:rgba(255,255,255,.65);transition:background .2s;}.bdg:hover{background:rgba(255,255,255,.15);}
+.sf2{display:flex;gap:8px;}
+.sf2 a{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);font-size:11px;font-weight:600;transition:background .2s;}.sf2 a:hover{background:rgba(255,255,255,.18);}
+.fd{border-top:1px solid rgba(255,255,255,.08);padding:20px 0;text-align:center;}
+.fd p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.5;max-width:700px;margin:0 auto 8px;}
+.fl{display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;color:rgba(255,255,255,.25);}
+
+@media(max-width:900px){.art-wrap{grid-template-columns:1fr;}.sidebar{display:none;}.pn{grid-template-columns:1fr;}.rel-grid{grid-template-columns:1fr 1fr;}.fg{grid-template-columns:1fr 1fr;}.cta-inline{flex-direction:column;text-align:center;}}
+@media(max-width:600px){.nv{display:none;}.hero h1,.art-hero h1{font-size:26px;}.rel-grid{grid-template-columns:1fr;}.fg{grid-template-columns:1fr;}.author-card{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress" id="prog"></div>
+
+<!-- HEADER -->
+<header class="hd">
+  <div class="hd-in">
+    <a href="/" class="logo"><i>D</i><b>Dzeny</b></a>
+    <nav class="nv">
+      <a href="/uslugi/">Услуги</a>
+      <a href="/testy/">Тесты</a>
+      <a href="/blog/" class="on">Блог</a>
+      <a href="/eksperty/">Эксперты</a>
+      <a href="/tseny/">Цены</a>
+    </nav>
+    <a href="#" class="btn">Попробовать Dzeny</a>
+  </div>
+</header>
+
+<!-- BREADCRUMBS -->
+<div class="bc">
+  <a href="/">Главная</a><span>›</span>
+  <a href="/blog/">Блог</a><span>›</span>
+  <a href="/blog/trevozhnost-i-stress/">Тревожность и стресс</a><span>›</span>
+  <span>Как справиться с панической атакой</span>
+</div>
+
+<!-- ARTICLE + SIDEBAR LAYOUT -->
+<div class="art-wrap">
+  <main>
+
+    <!-- 1. HERO -->
+    <section class="art-hero">
+      <a href="/blog/trevozhnost-i-stress/" class="art-cat">Тревожность и стресс</a>
+      <h1>Как справиться с панической атакой: пошаговый гайд</h1>
+      <div class="art-meta">
+        <a href="/blog/authors/anna-petrova/" class="art-author">
+          <div class="au-ph">АП</div>
+          <div><div class="au-nm">Анна Петрова</div><div class="au-rl">Клинический психолог, КПТ-терапевт</div></div>
+        </a>
+        <span class="art-date">Обновлено: 15 марта 2026</span>
+        <span class="dot">·</span>
+        <span class="art-time">12 мин чтения</span>
+      </div>
+      <div class="art-img"><span class="em">🧠</span></div>
+      <div class="share-row">
+        <span>Поделиться:</span>
+        <div class="sh-btn" title="Скопировать ссылку">🔗</div>
+        <div class="sh-btn" title="Telegram">TG</div>
+        <div class="sh-btn" title="VK">VK</div>
+        <div class="sh-btn" title="WhatsApp">WA</div>
+      </div>
+    </section>
+
+    <!-- 3. ОСНОВНОЙ КОНТЕНТ -->
+    <article class="art-body">
+
+      <p>Паническая атака — это внезапный приступ интенсивного страха, который сопровождается физическими симптомами: учащённое сердцебиение, одышка, головокружение, чувство нереальности происходящего. Приступ длится от 5 до 20 минут и, хотя он пугает, <strong>не опасен для жизни</strong>.</p>
+
+      <p>В этом гайде разберёмся, что происходит с телом во время паники, и освоим конкретные техники, которые помогут прямо в момент приступа. Материал подготовлен совместно с клиническим психологом и основан на принципах <a href="/blog/metody-terapii/chto-takoe-kpt/">когнитивно-поведенческой терапии (КПТ)</a>.</p>
+
+      <!-- CTA #1: после вступления -->
+      <div class="cta-inline">
+        <div class="cta-inline-t"><h3>Начни заботиться о себе сегодня</h3><p>Попробуй Dzeny — 7 дней бесплатно</p></div>
+        <a href="#" class="bc2">Попробовать Dzeny</a>
+      </div>
+
+      <h2 id="s1">Что такое паническая атака</h2>
+
+      <p>Паническая атака — это реакция «бей или беги», которая запускается без реальной угрозы. Миндалевидное тело (амигдала) ошибочно интерпретирует внутренние сигналы как опасность и запускает каскад реакций.</p>
+
+      <div class="info-box">
+        <strong>💡 Ключевой вывод</strong>
+        Паническая атака — это не сердечный приступ и не психическое расстройство. Это сбой в системе «бей или беги». Понимание механизма — первый шаг к контролю.
+      </div>
+
+      <h3 id="s1-1">Физиология приступа</h3>
+
+      <p>Когда амигдала подаёт ложный сигнал тревоги, надпочечники выбрасывают адреналин. Это вызывает характерные симптомы:</p>
+
+      <ul>
+        <li><strong>Учащённое сердцебиение</strong> — сердце готовит тело к бегу</li>
+        <li><strong>Одышка</strong> — гипервентиляция из-за избытка кислорода</li>
+        <li><strong>Головокружение</strong> — сужение сосудов и перераспределение крови</li>
+        <li><strong>Онемение конечностей</strong> — кровь уходит к крупным мышцам</li>
+        <li><strong>Чувство нереальности</strong> — защитный механизм мозга (деперсонализация)</li>
+      </ul>
+
+      <p>Все эти симптомы — адаптивная реакция. Они помогали нашим предкам убегать от хищников, но в современной жизни запускаются без реальной причины.</p>
+
+      <h2 id="s2">5 техник для снятия приступа</h2>
+
+      <p>Эти методы основаны на принципах КПТ и проверены в клинической практике. Их можно применять в любом месте — на работе, в транспорте, дома.</p>
+
+      <h3 id="s2-1">1. Дыхание по квадрату (Box Breathing)</h3>
+
+      <p>Самая простая и эффективная техника. Регулируя дыхание, вы посылаете мозгу сигнал «опасности нет».</p>
+
+      <ol>
+        <li>Вдох через нос — 4 секунды</li>
+        <li>Задержка дыхания — 4 секунды</li>
+        <li>Выдох через рот — 4 секунды</li>
+        <li>Задержка — 4 секунды</li>
+      </ol>
+
+      <p>Повторите 4–6 циклов. Выдох должен быть длиннее вдоха — это активирует парасимпатическую нервную систему.</p>
+
+      <!-- AI Block: Попробуй с Dzeny -->
+      <div class="ai-block">
+        <div class="ai-label">🤖 Попробуй с Dzeny:</div>
+        <p>Попроси Dzeny провести тебя через технику дыхания по квадрату в реальном времени. ИИ-психолог адаптируется под твой темп и даёт обратную связь.</p>
+        <a href="#" class="cta-l">Попробовать с Dzeny →</a>
+      </div>
+
+      <h3 id="s2-2">2. Техника 5-4-3-2-1 (заземление)</h3>
+
+      <p>Техника сенсорного заземления перенаправляет внимание от внутренних ощущений к внешнему миру:</p>
+
+      <table class="art-table">
+        <thead><tr><th>Канал</th><th>Задание</th><th>Пример</th></tr></thead>
+        <tbody>
+          <tr><td><strong>5</strong> вещей, которые вижу</td><td>Назовите вслух</td><td>Стол, окно, лампа, книга, ручка</td></tr>
+          <tr><td><strong>4</strong> вещи, которые трогаю</td><td>Коснитесь</td><td>Ткань рубашки, клавиатура, стул, стена</td></tr>
+          <tr><td><strong>3</strong> звука</td><td>Вслушайтесь</td><td>Часы, кондиционер, голоса</td></tr>
+          <tr><td><strong>2</strong> запаха</td><td>Принюхайтесь</td><td>Кофе, дерево</td></tr>
+          <tr><td><strong>1</strong> вкус</td><td>Сконцентрируйтесь</td><td>Вкус воды или зубной пасты</td></tr>
+        </tbody>
+      </table>
+
+      <h3 id="s2-3">3. Когнитивное переосмысление</h3>
+
+      <p>Этот метод из <a href="/blog/metody-terapii/chto-takoe-kpt/">КПТ</a> помогает заменить катастрофические мысли на реалистичные:</p>
+
+      <div class="check-list">
+        <div class="item"><div class="ico no">✗</div><div>«Я сейчас умру от сердечного приступа»</div></div>
+        <div class="item"><div class="ico yes">✓</div><div>«Это паническая атака. Она неприятна, но не опасна. Она пройдёт через несколько минут»</div></div>
+        <div class="item"><div class="ico no">✗</div><div>«Я схожу с ума, теряю контроль»</div></div>
+        <div class="item"><div class="ico yes">✓</div><div>«Мой мозг ошибочно запустил реакцию тревоги. Я в безопасности»</div></div>
+      </div>
+
+      <!-- CTA #2: в середине -->
+      <div class="cta-inline">
+        <div class="cta-inline-t"><h3>Техники КПТ — в мобильном приложении</h3><p>Dzeny проведёт через когнитивное переосмысление шаг за шагом</p></div>
+        <a href="#" class="bc2">Попробовать Dzeny</a>
+      </div>
+
+      <h3 id="s2-4">4. Прогрессивная мышечная релаксация</h3>
+
+      <p>Напряжение и расслабление мышечных групп помогает снять физическое напряжение, сопровождающее панику. Начните с кулаков: сожмите на 5 секунд, затем расслабьте. Двигайтесь вверх по телу: предплечья, плечи, лицо.</p>
+
+      <h3 id="s2-5">5. Холодная вода</h3>
+
+      <p>Опустите руки в холодную воду или приложите что-то холодное к лицу. Холод активирует «рефлекс ныряния» — парасимпатический ответ, который замедляет сердцебиение.</p>
+
+      <!-- AI Insight -->
+      <div class="ai-insight">
+        <div class="ai-label">🧠 Инсайт Dzeny:</div>
+        <div class="stat">73%</div>
+        <p>пользователей отмечают снижение тревожности после 7 дней ежедневных сессий с ИИ-психологом Dzeny. Источник: внутреннее исследование, n=1200, 2025</p>
+      </div>
+
+      <h2 id="s3">Когда паника — это расстройство</h2>
+
+      <p>Единичные панические атаки бывают у 10–30% людей хотя бы раз в жизни. Но если приступы повторяются регулярно, а вы начинаете избегать ситуаций из страха перед новым приступом — это может быть <a href="/blog/trevozhnost-i-stress/chto-takoe-gtr/">паническое расстройство</a>. В этом случае рекомендуется обратиться к специалисту.</p>
+
+      <div class="info-box warn">
+        <strong>⚠️ Важно</strong>
+        Если панические атаки происходят чаще 1–2 раз в месяц и существенно влияют на качество жизни, обратитесь к психиатру или психотерапевту. Самопомощь — дополнение к терапии, а не её замена.
+      </div>
+
+      <h2 id="s4">Профилактика панических атак</h2>
+
+      <p>Регулярная практика снижает частоту и интенсивность приступов:</p>
+
+      <ul>
+        <li><strong>Ежедневная медитация</strong> (10–15 минут) — снижает фоновую тревожность</li>
+        <li><strong>Физическая активность</strong> — регулярные аэробные нагрузки сравнимы по эффективности с анксиолитиками</li>
+        <li><strong>Ограничение кофеина</strong> — кофеин активирует те же рецепторы, что и адреналин</li>
+        <li><strong>Дневник тревоги</strong> — отслеживание триггеров помогает предотвращать приступы</li>
+        <li><strong>Качественный сон</strong> — 7–9 часов, регулярный режим</li>
+      </ul>
+
+      <p>Попробуйте также пройти <a href="/testy/test-trevozhnosti-beck/">тест тревожности Бека (BAI)</a> — он поможет оценить текущий уровень тревоги и понять, нужна ли профессиональная помощь.</p>
+
+      <!-- CTA #3: перед заключением -->
+      <div class="cta-inline" style="background:linear-gradient(135deg,#1A1A2E,#2D2D4A);">
+        <div class="cta-inline-t"><h3>Dzeny — ваш ИИ-психолог 24/7</h3><p>Когнитивно-поведенческая терапия в мобильном приложении. 7 дней бесплатно.</p></div>
+        <a href="#" class="bc2">Попробовать Dzeny</a>
+      </div>
+
+    </article>
+
+    <!-- 6. ИСТОЧНИКИ -->
+    <section class="refs">
+      <h2>Источники</h2>
+      <ol>
+        <li>American Psychological Association. (2022). <em>Understanding panic attacks and panic disorder.</em> <a href="#">apa.org</a></li>
+        <li>Clark, D. M. (1986). A cognitive approach to panic. <em>Behaviour Research and Therapy, 24</em>(4), 461–470.</li>
+        <li>Bandelow, B. et al. (2022). Treatment of panic disorder. <em>World Journal of Biological Psychiatry, 23</em>(7), 501–517.</li>
+        <li>Минздрав России. (2024). <em>Клинические рекомендации: паническое расстройство.</em> <a href="#">rosminzdrav.ru</a></li>
+        <li>Meuret, A. E. et al. (2010). Do unexpected panic attacks occur spontaneously? <em>Biological Psychiatry, 67</em>(5), 422–427.</li>
+      </ol>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="faq">
+      <h2>Частые вопросы</h2>
+
+      <div class="faq-item open">
+        <h3 class="faq-q">Может ли паническая атака привести к смерти? <span class="arr">▾</span></h3>
+        <div class="faq-a">Нет. Паническая атака — это реакция нервной системы, которая не угрожает жизни. Симптомы пугающие, но они проходят самостоятельно, обычно в течение 10–20 минут. Если у вас есть сомнения — обратитесь к кардиологу, чтобы исключить сердечные причины.</div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-q">Сколько длится паническая атака? <span class="arr">▾</span></h3>
+        <div class="faq-a">Пик приступа обычно наступает через 5–10 минут и длится 15–30 минут. В редких случаях остаточная тревога может сохраняться до часа, но интенсивная фаза всегда кратковременна.</div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-q">Чем отличается паническая атака от тревожного расстройства? <span class="arr">▾</span></h3>
+        <div class="faq-a">Паническая атака — это острый эпизод (минуты). Генерализованное тревожное расстройство — это хроническое состояние повышенной тревоги, которое длится месяцами. Панические атаки могут быть симптомом ГТР.</div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-q">Можно ли справиться с паническими атаками без таблеток? <span class="arr">▾</span></h3>
+        <div class="faq-a">Да, КПТ — это терапия первого выбора при паническом расстройстве. Техники, описанные в этой статье, основаны на КПТ. Однако при тяжёлых случаях психиатр может назначить медикаментозную поддержку на период терапии.</div>
+      </div>
+
+      <div class="faq-item">
+        <h3 class="faq-q">Может ли Dzeny помочь при панических атаках? <span class="arr">▾</span></h3>
+        <div class="faq-a">Dzeny может провести вас через техники дыхания, заземления и когнитивного переосмысления в реальном времени. Это не замена терапии, но полезный инструмент для ежедневной практики между сессиями со специалистом.</div>
+      </div>
+    </section>
+
+    <!-- 8. БЛОК АВТОРА -->
+    <div class="author-card">
+      <div class="au-photo">АП</div>
+      <div class="au-info">
+        <h3>Анна Петрова</h3>
+        <div class="role">Клинический психолог, КПТ-терапевт</div>
+        <p>Специализация: тревожные расстройства, панические атаки, фобии. 12 лет клинического опыта. Автор более 30 статей по когнитивно-поведенческой терапии.</p>
+        <a href="/blog/authors/anna-petrova/" class="au-link">Все статьи автора →</a>
+        <div class="reviewer">Проверено: <strong>Игорь Смирнов</strong>, психиатр, 18 марта 2026</div>
+      </div>
+    </div>
+
+    <!-- 10. PREV / NEXT -->
+    <div class="pn">
+      <a href="#" class="pn-card">
+        <div class="pn-label">← Предыдущая</div>
+        <h4>5 дыхательных техник для снятия тревоги за 3 минуты</h4>
+      </a>
+      <a href="#" class="pn-card" style="text-align:right;">
+        <div class="pn-label">Следующая →</div>
+        <h4>Генерализованное тревожное расстройство: симптомы и лечение</h4>
+      </a>
+    </div>
+
+    <!-- 10. ЧИТАЙТЕ ТАКЖЕ -->
+    <section class="related">
+      <h2>Читайте также</h2>
+      <div class="rel-grid">
+        <a href="#" class="rel-card">
+          <div class="rel-img" style="background:linear-gradient(135deg,#E0F7FA,#B2EBF2)"><span class="em">🌬️</span></div>
+          <div class="rel-body"><div class="cat">Тревожность и стресс</div><h3>5 дыхательных техник для снятия тревоги за 3 минуты</h3><p>Простые методы, которые можно применять прямо сейчас</p></div>
+        </a>
+        <a href="#" class="rel-card">
+          <div class="rel-img" style="background:linear-gradient(135deg,#F3E5F5,#E1BEE7)"><span class="em">🔬</span></div>
+          <div class="rel-body"><div class="cat">Методы терапии</div><h3>Что такое КПТ и почему она считается «золотым стандартом»</h3><p>Принципы и эффективность когнитивно-поведенческой терапии</p></div>
+        </a>
+        <a href="#" class="rel-card">
+          <div class="rel-img" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9)"><span class="em">😟</span></div>
+          <div class="rel-body"><div class="cat">Тревожность и стресс</div><h3>Генерализованное тревожное расстройство: симптомы и лечение</h3><p>Когда обычная тревога становится расстройством</p></div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 2 + 13. SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc">
+      <h4>Содержание</h4>
+      <a href="#s1" class="active">Что такое паническая атака</a>
+      <a href="#s1-1" class="sub">Физиология приступа</a>
+      <a href="#s2">5 техник для снятия приступа</a>
+      <a href="#s2-1" class="sub">1. Дыхание по квадрату</a>
+      <a href="#s2-2" class="sub">2. Техника 5-4-3-2-1</a>
+      <a href="#s2-3" class="sub">3. Когнитивное переосмысление</a>
+      <a href="#s2-4" class="sub">4. Мышечная релаксация</a>
+      <a href="#s2-5" class="sub">5. Холодная вода</a>
+      <a href="#s3">Когда паника — это расстройство</a>
+      <a href="#s4">Профилактика</a>
+    </div>
+    <div class="side-cta">
+      <p>ИИ-психолог на основе КПТ. Анонимно, 24/7.</p>
+      <a href="#" class="bc2">Попробовать Dzeny</a>
+      <div class="sub">7 дней бесплатно</div>
+    </div>
+    <div class="side-share">
+      <div class="sh-btn">🔗</div>
+      <div class="sh-btn">TG</div>
+      <div class="sh-btn">VK</div>
+      <div class="sh-btn">WA</div>
+    </div>
+  </aside>
+</div>
+
+<!-- 12. КРИЗИСНЫЙ БЛОК -->
+<section class="crisis">
+  <div class="crisis-box">
+    <h3>Если вам или близкому нужна срочная помощь</h3>
+    <p>Телефон доверия: <a href="tel:88002000122">8-800-2000-122</a> (бесплатно, круглосуточно)</p>
+    <p><a href="/ekstrennaya-pomoshch/">Подробнее о службах экстренной помощи →</a></p>
+    <div class="crisis-disc">Dzeny не является медицинским сервисом и не заменяет консультацию у психолога, психотерапевта или врача. Если вы испытываете проблемы с психическим здоровьем, обратитесь к квалифицированному специалисту.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ft-in">
+    <div class="fg">
+      <div class="fc fb">
+        <span class="lt">Dzeny</span>
+        <p>ИИ-психолог на основе КПТ.<br>Анонимно и конфиденциально, 24/7.</p>
+        <div class="bd2f"><a href="#" class="bdg">🍎 App Store</a><a href="#" class="bdg">▶️ Google Play</a></div>
+        <div class="sf2"><a href="#">VK</a><a href="#">Дз</a><a href="#">TG</a></div>
+      </div>
+      <div class="fc"><h4>О сервисе</h4><a href="/o-nas/">О нас</a><a href="/kak-eto-rabotaet/">Как это работает</a><a href="/tseny/">Цены</a><a href="/eksperty/">Эксперты</a><a href="/otzyvy/">Отзывы</a></div>
+      <div class="fc"><h4>Полезное</h4><a href="/blog/">Блог</a><a href="/testy/">Тесты</a><a href="/instrumenty/">Инструменты КПТ</a><a href="/ekstrennaya-pomoshch/">Экстренная помощь</a></div>
+      <div class="fc"><h4>Контакты</h4><a href="mailto:support@dzeny.ru">support@dzeny.ru</a><a href="/politika-konfidencialnosti/">Политика конфиденциальности</a><a href="/oferta/">Оферта</a></div>
+    </div>
+    <div class="fd">
+      <p>⚠️ Dzeny не является медицинским сервисом и не заменяет консультацию у психолога, психотерапевта или врача. Если вы испытываете проблемы с психическим здоровьем, обратитесь к квалифицированному специалисту.</p>
+      <div class="fl"><span>ООО «Виджетс» · ИНН XXXXXXXXXX · ОГРН XXXXXXXXXXXXX</span><span>© 2026 Dzeny</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('prog').style.width=p+'%';
+});
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    q.parentElement.classList.toggle('open');
+  });
+});
+// TOC active state
+const toc=document.querySelectorAll('.toc a');
+const sections=document.querySelectorAll('[id^="s"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id;});
+  toc.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+});
+</script>
+
+</body>
+</html>
